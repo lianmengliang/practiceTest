@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.domain.User">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="userName" jdbcType="VARCHAR" property="userName"/>
+        <result column="passWord" jdbcType="VARCHAR" property="passWord"/>
+        <result column="realName" jdbcType="VARCHAR" property="realName"/>
+    </resultMap>
+
+    <select id="Sel" resultType="com.example.domain.User">
+        select * from user where id = #{id}
+    </select>
+
+    <select id="login" resultType="com.example.domain.User">
+        select *from user where userName = #{param1} and password = #{param2}
+
+    </select>
+
+    <insert id="register" parameterType="com.example.domain.User">
+        insert into user (userName,passWord) values (#{userName}, #{passWord})
+    </insert>
+</mapper>

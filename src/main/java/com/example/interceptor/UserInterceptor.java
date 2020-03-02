@@ -28,12 +28,12 @@ public class UserInterceptor implements HandlerInterceptor {
         System.out.println(handler);
 
         User user = (User) request.getSession().getAttribute("session_user");
-       /* if (user == null) {
+        if (user == null) {
             //拦截后 跳转到登录页面
             response.sendRedirect(request.getContextPath() + "/user/toIndex");
             System.out.println("已成功拦截并发生跳转");
             return false;
-        }*/
+        }
         System.out.println("合格不需要拦截，放行");
         return true;
     }

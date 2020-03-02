@@ -45,6 +45,8 @@ public class SessionInterceptor implements WebMvcConfigurer {
         list.add("/v2/**");
         list.add("/swagger-resources/**");
         list.add("/webjars/**");
+        list.add("/**")
+        ;
         registry.addInterceptor(new UserInterceptor()).addPathPatterns("/**").excludePathPatterns(list);
 
     }

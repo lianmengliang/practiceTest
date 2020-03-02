@@ -64,7 +64,11 @@
             <version>2.1.1</version>
         </dependency>
 
-
+        <!--MQ配置-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

@@ -1,0 +1,104 @@
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!--suppress MybatisGenerateCustomPluginInspection -->
+<generatorConfiguration>
+    <classPathEntry location="H:\Mysql\mysql-connector-java-5.1.44-bin.jar"/>
+
+    <context id="My" targetRuntime="MyBatis3" defaultModelType="flat">
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <property name="useMapperCommentGenerator" value="true"/>
+
+        <!--
+        1.自动生成mapper接口
+        2.实体类使用lombok+Data
+        -->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+            <property name="caseSensitive" value="true"/>
+            <property name="forceAnnotation" value="true"/>
+
+            <!--<property name="useMapperCommentGenerator" value="true"/>-->
+            <property name="beginningDelimiter" value="`"/>
+            <property name="endingDelimiter" value="`"/>
+            <property name="lombok" value="Data"/>
+        </plugin>
+
+        <!--不生成xml，但是会生成example-->
+        <!--<plugin type="com.xiqu.common.mbg.plugins.NoSqlMapXmlPlugin"></plugin>-->
+
+        <!-- 忽略生成注释日期 -->
+        <commentGenerator>
+            <!-- 这个元素用来去除指定生成的注释中是否包含生成的日期 false:表示保护 -->
+            <!-- 如果生成日期，会造成即使修改一个字段，整个实体类所有属性都会发生变化，不利于版本控制，所以设置为true -->
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="false"/>
+        </commentGenerator>
+
+        <!--mysql数据库连接-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/leotest"
+                        userId="root"
+                        password="root">
+            <!--根据字段comment生成注释需要用此配置-->
+            <property name="remarksReporting" value="true"></property>
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!--生成实体类的文件位置-->
+        <javaModelGenerator targetPackage="com.example.domain"
+                            targetProject="src/main/java"/>
+        <!--生成mapper.xml配置文件位置-->
+        <sqlMapGenerator targetPackage="mapping"
+                         targetProject="src/main/resources"/>
+        <!--生成mapper接口的文件位置-->
+        <javaClientGenerator targetPackage="com.example.dao"
+                             targetProject="src/main/java"
+                             type="XMLMAPPER"/>
+
+        <!--生成的表-->
+       <!-- <table tableName="student" domainObjectName="Student"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+-->
+        <table tableName="dept" domainObjectName="Dept">
+
+        </table>
+<!--
+<resultMap id="BaseResultMap" type="com.xiqu.db.model.AdAppUsersDetail">
+    <result column="USERID" jdbcType="DECIMAL" property="userid" />
+    <result column="DEVICEID" jdbcType="VARCHAR" property="deviceid" />
+    <result column="MSAOADID" jdbcType="VARCHAR" property="msaoadid" />
+    <result column="XWOAID" jdbcType="VARCHAR" property="xwoaid" />
+    <result column="ITIME" jdbcType="TIMESTAMP" property="itime" />
+    <result column="LASTTIME" jdbcType="TIMESTAMP" property="lasttime" />
+    <result column="SIMID" jdbcType="VARCHAR" property="simid" />
+    <result column="PTYPE" jdbcType="DECIMAL" property="ptype" />
+    <result column="PVERSION" jdbcType="VARCHAR" property="pversion" />
+    <result column="PBRAND" jdbcType="VARCHAR" property="pbrand" />
+    <result column="ANDROIDOSV" jdbcType="DECIMAL" property="androidosv" />
+    <result column="COL1" jdbcType="VARCHAR" property="col1" />
+    <result column="COL2" jdbcType="VARCHAR" property="col2" />
+  </resultMap>
+  -->
+
+       <!-- <table tableName="T_USER_AUTHS" domainObjectName="UserAuths">
+
+            &lt;!&ndash;<columnOverride column="id" jdbcType="NUMBER"/>&ndash;&gt;
+            &lt;!&ndash;<columnOverride column="USERID" jdbcType="NUMBER"/>&ndash;&gt;
+            &lt;!&ndash;<columnOverride column="AUTHS_TYPE" jdbcType="NUMBER"/>&ndash;&gt;
+        </table>-->
+
+
+
+
+
+    </context>
+</generatorConfiguration>

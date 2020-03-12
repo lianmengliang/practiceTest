@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.domain.User;
+import com.example.enums.testEnum;
 import com.example.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

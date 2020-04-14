@@ -17,4 +17,14 @@ public class testString {
         System.out.println(split);
         System.out.println(s);
     }
+
+    public String getStr(){
+        String str = null;
+
+        if (str.equals("1122")){
+            return "321312";
+        }else {
+            return  "31231";
+        }
+    }
 }

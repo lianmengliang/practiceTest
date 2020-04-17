@@ -1,6 +1,9 @@
 package com.example.domain;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;
 
@@ -15,5 +18,7 @@ public class User implements Serializable {
     private String userName;
     private String passWord;
     private String realName;
+
+
 
 }

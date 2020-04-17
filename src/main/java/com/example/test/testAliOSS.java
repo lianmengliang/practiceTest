@@ -18,10 +18,10 @@ public class testAliOSS {
         String endpoint = "http://oss-cn-beijing.aliyuncs.com";
 
 //        String accessKeyId = "LTAI4FfhFy4UYs4GxK5cQVGY";
-        String accessKeyId = "LTAIdmst7udCr3vB";
+        String accessKeyId = "";
 
 //        String accessKeySecret = "6iLCIoOnQHD4NOpcz3JGMLSLIzYZp5";
-        String accessKeySecret = "Q8Yje9xS4z4Z2BTUhuPaT1bxz8qiDK";
+        String accessKeySecret = "";
 
         String bucketName= "qing-cheng";
         //创建OSSClient 实例

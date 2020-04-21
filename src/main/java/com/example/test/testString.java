@@ -6,7 +6,7 @@ package com.example.test;
  */
 public class testString {
     public static void main(String[] args) {
-        getString();
+        getStr1();
     }
 
     public static void getString(){
@@ -27,4 +27,17 @@ public class testString {
             return  "31231";
         }
     }
+    public static void getStr1(){
+        String config = "/try/try_cpl_plus.aspx?adid= 6106";
+
+        String[] split = config.split("'?'");
+        String[] split1 = config.split("[?]",2);
+        for (String s : split1) {
+            System.out.println(s);
+        }
+
+        System.out.println("qewq?".replaceAll("[?]","a"));
+        System.out.println(config.split("[?]")[1]);
+    }
+
 }

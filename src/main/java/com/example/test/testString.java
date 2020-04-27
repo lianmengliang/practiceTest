@@ -6,7 +6,7 @@ package com.example.test;
  */
 public class testString {
     public static void main(String[] args) {
-        getStr1();
+        getStr2();
     }
 
     public static void getString(){
@@ -39,5 +39,14 @@ public class testString {
         System.out.println("qewq?".replaceAll("[?]","a"));
         System.out.println(config.split("[?]")[1]);
     }
+    public static void getStr2(){
 
+        String adid="4589";
+
+        String arg = "/try/try_cpl_plus.aspx";
+
+        String format = String.format("%s?adid=%s",arg, adid);
+
+        System.out.println(format);
+    }
 }

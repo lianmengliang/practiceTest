@@ -1,6 +1,8 @@
 package com.example.controller;
 
 import com.example.domain.CpaTaskReviewLogRequest;
+import com.example.enums.MgAdError;
+import com.example.exception.MgException;
 import com.example.response.ReviewResultResponse;
 import com.example.utils.SortedKeySignUtil;
 import io.swagger.annotations.Api;
@@ -24,6 +26,9 @@ public class BeanToSign {
     @PostMapping(value = "/editCpaTaskReviewLog")
     public ReviewResultResponse editCpaTaskReviewLog(@RequestBody CpaTaskReviewLogRequest reviewLogRequest ,@RequestParam(value = "secret") String secret){
 
+        if (secret == null){
+             throw new MgException(MgAdError.NETWORK_ERROR);
+        }
         String sign = SortedKeySignUtil.sign(secret, reviewLogRequest);
 
         return ReviewResultResponse.builderSuccess(sign);

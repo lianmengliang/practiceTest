@@ -1,12 +1,24 @@
 package com.example.test;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 /**
  * @Author ： leo
  * @Date :2020/3/26 10:40
  *
  * 练习 jdk8的stream
+ */
+
+/**
+ * stream 的常用方法：
+ * 1.循环 stream.forEach();
+ * 2.过滤 stream.filter();
+ * 3.类型转换 stream.map();  如：stream.map((String s)-> Integer.parseInt(s));
+ * 4.计数 stream.count();
+ * 5.截取 stream.limit();  如： stream.limit(3); 截取前三个元素
+ * 6.跳过元素 stream.skip(); 如： stream.skip(3); 跳过前三个元素
+ * 7.把流组合到一起 Stream.concat(stream1, stream2);
  */
 public class testStream {
 
@@ -62,9 +74,51 @@ public class testStream {
     }
 
 
+    private static void getStreamResult(){
+        //创建一个 List 集合,存储姓名
+        List<String> list = new ArrayList<>();
+        list.add("张无忌");
+        list.add("周芷若");
+        list.add("赵敏");
+        list.add("张强");
+        list.add("张三丰");
 
-    public static void main(String[] args) {
+        /*list.stream().filter(s‐>
+                s.startsWith("张"))
+        .filter(s ‐> s.length() == 3)
+        .forEach(System.out::println); }
+        */
+
+        list.stream()
+                .filter(s->s.startsWith("张"))
+                .filter(s->s.length()==3)
+                .forEach(System.out::println);
+
+        System.out.println(list.stream().count());
 
 
     }
+
+    /**
+     * 转换流
+     */
+    private static void getStreamToMap(){
+        //获取一个 String 类型的 Stream 流
+         Stream<String> stream = Stream.of("1", "2", "3", "4");
+        // 使用 map 方法,把字符串类型的整数,转换(映射)为 Integer 类型 的整数
+        Stream<Integer> stream2 = stream.map((String s)-> Integer.parseInt(s));
+        //System.out.println(stream2.count());
+        // 遍历 Stream2 流
+        stream2.forEach(i-> System.out.println(i));
+
+
+    }
+
+
+    public static void main(String[] args) {
+
+        getStreamResult();
+    }
+
+
 }

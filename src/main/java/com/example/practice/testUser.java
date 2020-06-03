@@ -37,7 +37,6 @@ public class testUser {
         }
 
         System.out.println(list);
-
         List<ScoreInfo> collect = list.stream()
                 .filter(item -> item.getChinese() == 1 || item.getChinese() == 2 || item.getChinese() == 3)
                 .collect(Collectors.toList());

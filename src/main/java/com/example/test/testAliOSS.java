@@ -17,10 +17,10 @@ public class testAliOSS {
 
         String endpoint = "http://oss-cn-beijing.aliyuncs.com";
 
-//        String accessKeyId = "LTAI4FfhFy4UYs4GxK5cQVGY";
+//        String accessKeyId = "\u004c\u0054\u0041\u0049\u0034\u0046\u0066\u0068\u0046\u0079\u0034\u0055\u0059\u0073\u0034\u0047\u0078\u004b\u0035\u0063\u0051\u0056\u0047\u0059";
         String accessKeyId = "";
 
-//        String accessKeySecret = "6iLCIoOnQHD4NOpcz3JGMLSLIzYZp5";
+//        String accessKeySecret = "\u0036\u0069\u004c\u0043\u0049\u006f\u004f\u006e\u0051\u0048\u0044\u0034\u004e\u004f\u0070\u0063\u007a\u0033\u004a\u0047\u004d\u004c\u0053\u004c\u0049\u007a\u0059\u005a\u0070\u0035";
         String accessKeySecret = "";
 
         String bucketName= "qing-cheng";

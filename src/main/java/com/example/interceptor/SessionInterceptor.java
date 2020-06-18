@@ -43,6 +43,7 @@ public class SessionInterceptor implements WebMvcConfigurer {
         list.add("demo/hi");
         list.add("swagger-ui.html");
         list.add("/v2/**");
+        list.add("/withdraw/**");
         list.add("/swagger-resources/**");
         list.add("/webjars/**")
         ;

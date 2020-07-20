@@ -8,6 +8,7 @@ import java.io.Serializable;
 @Data
 @Table(name = "student")
 public class Student implements Serializable {
+
     /**
      * 用户id
      */

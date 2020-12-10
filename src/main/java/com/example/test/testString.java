@@ -1,6 +1,8 @@
 package com.example.test;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author ： leo
@@ -114,9 +116,51 @@ public class testString {
 
     }
 
+    /**
+     * String.join
+     * 1.以连接符号，连接各个分开的字符串 如： String.join("%", "java", "python","C++"); --> java%python%C++
+     * 2.以连接符号，连接数组或集合中的各个元素 如： String.join(",", list); --> 123,456,789
+     *              *注意： 数组或集合中的元素必须是字符串类型
+     */
+    public static void testString001(){
+
+        List<String> list = new ArrayList<>();
+        list.add("123");
+        list.add("456");
+        list.add("789");
+
+     /*   List<Integer> list2 = new ArrayList<>();
+        list2.add(1);
+        list2.add(2);
+        list2.add(3);
+
+        String join = String.join(",", (CharSequence) list2);
+        System.out.println("Integer----->"+ join);*/
+
+        //表示被连接的数组（也可以是集合），或者是要连接的多个字符串
+        String joinResult = String.join(",", list);
+        System.out.println(joinResult);         //123,456,789
+
+        String [] arr = {"java","c++","ruby"};
+        String result = String.join("*",arr);
+        System.out.println(result);  //java*c++*ruby
+
+
+        //拼接字符串:表示连接的符号
+        String join1 = String.join("-", "C++", "python","java"); //C++-python-java
+        String join2 = String.join("%", "java", "python","C++");  //java%python%C++
+        String join3 = String.join("$", "python", "C++","java"); //java%python%C++
+
+        System.out.println(join1);
+        System.out.println(join2);
+        System.out.println(join3);
+
+
+
+    }
 
     public static void main(String[] args) {
-        getResult();
+        testString001();
 
     }
 

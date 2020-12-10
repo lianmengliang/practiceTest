@@ -1,5 +1,8 @@
 package com.example.test;
 
+import com.example.domain.User;
+import org.apache.commons.lang.StringUtils;
+
 /**
  * @Author ： Leo
  * @Date : 2020/9/11 14:31
@@ -9,24 +12,23 @@ public class test0001 {
 
     public static void main(String[] args) {
 
+        if (StringUtils.containsIgnoreCase("test", "pro") || StringUtils.containsIgnoreCase("test", "protest")) {
 
-        for (int i = 0; i < 1; i++) {
-            System.out.println("跳过了");
-            System.out.println("没跳过");
-            for1:
-            for (int j = 0; j < 3; j++) {
-                for2:
-                for (int m = 0; m < 3; m++) {
-                    for3:
-                    if (m == 1) {
-                        break for1;
-                    }
-                    System.out.println(i + "--" + j + "--" + m);
-                }
-//                System.out.println(i + "--" + j + "--");
+            System.out.println("true");
 
-            }
+        }else{
+            System.out.println("false");
         }
+
+        User user = new User();
+
+        user.setId(1)
+                .setUserName("leo")
+                .setId(1)
+                .setPassWord("123123")
+                .setRealName("12312");
+
+
 
 
     }

@@ -1,8 +1,7 @@
 package com.example.domain;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
+import lombok.*;
+import lombok.experimental.Accessors;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.BeanUtils;
 
@@ -14,6 +13,9 @@ import java.io.Serializable;
  * @Date :2019/11/5 18:41
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Accessors(chain = true)
 public class User implements Serializable {
 
 

@@ -10,6 +10,7 @@ import java.io.InputStream;
 /**
  * @Author ： leo
  * @Date :2020/3/17 15:12
+ * Generate name
  */
 public class testAliOSS {
     public static void main(String[] args) {

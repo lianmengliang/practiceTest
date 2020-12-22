@@ -4,8 +4,7 @@ import com.example.practice.model.Person;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.*;
 
 /**
  * @Author ： leo
@@ -13,8 +12,10 @@ import java.util.Comparator;
  */
 public class LambdaTest {
     public static void main(String[] args) {
-        int sum = sum(3);
-        System.out.println(sum);
+       /* int sum = sum(3);
+        System.out.println(sum);*/
+
+        testList();
     }
 
     public static int sum (int n){
@@ -23,6 +24,27 @@ public class LambdaTest {
         }
         return n * sum(n-1);
     }
+
+
+    public static void testList(){
+
+//adId844003channelId1397deviceid[OaidDeviceID]uid[merid]
+        List<String> list = new ArrayList<>();
+
+        list.add("adId");
+        list.add("channelId");
+        list.add("gameId");
+        list.add("uid");
+
+        Collections.sort(list);
+        String result = "";
+        for (String s : list) {
+            result += s;
+        }
+
+        System.out.println(result);
+    }
+
 
     /**
      * Lambda 表达式有参数有返回值的练习

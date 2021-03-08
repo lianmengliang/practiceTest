@@ -167,10 +167,7 @@ public class testString {
 
     }
 
-    public static void main(String[] args) {
-        testString001();
 
-    }
 
     /**
      * 工具类
@@ -221,6 +218,26 @@ public class testString {
         //maxLength是出现最大的公共子串长度
 
         return "";
+    }
+
+
+    public static void getSplitResult(){
+
+
+        String str = "爱奇艺游戏-8期";
+
+        String[] split = str.split("-");
+        System.out.println(split[0]);
+
+    }
+
+    /**
+     * 主方法
+     * @param args
+     */
+    public static void main(String[] args) {
+//        testString001();
+        getSplitResult();
     }
 
 }

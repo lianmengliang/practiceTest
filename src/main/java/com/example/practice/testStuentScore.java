@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class testStuentScore {
 
     public static void main(String[] args) throws JsonProcessingException {
-        testScoreInfo();
+        /*testScoreInfo();
 //        getScoreBymethod1();
        // getScoreBymethod2();
 
@@ -41,10 +41,30 @@ public class testStuentScore {
         for (Map.Entry<String, String> mapping : list) {
             System.out.println(mapping.getKey() + ":" + mapping.getValue());
         }
-
-
+*/
+        testString();
     }
 
+    //字段排序
+
+    public static void testString(){
+
+
+        ArrayList<String> list = new ArrayList<>();
+        list.add("channel");
+        list.add("uid");
+        list.add("appid");
+        list.add("serverid");
+        list.add("itemid");
+        list.add("ex_itemid");
+        list.add("item_time");
+
+        Collections.sort(list);
+
+        for (String s : list) {
+            System.out.println(s);
+        }
+    }
 
     private static List<StudentScore> buildATestList() {
         List<StudentScore> studentScoreList = new ArrayList<>();

@@ -9,6 +9,7 @@ import com.example.utils.XmlTool;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.nio.charset.StandardCharsets;
 import java.security.PublicKey;
 import java.sql.SQLOutput;
 import java.time.LocalDate;
@@ -118,6 +119,13 @@ public class testStream {
                 .filter(s -> s.startsWith("张"))
                 .filter(s -> s.length() == 0)
                 .forEach(System.out::println);
+
+        long count = list.stream()
+                .filter(s -> s.startsWith("张"))
+                .filter(s -> s.length() != 0)
+                .count();
+
+        System.out.println(count);
 
         list.stream()
                 .filter(s -> s.length() != 0)
@@ -326,18 +334,31 @@ public class testStream {
     }
 
 
-
     public static void main(String[] args) {
-        String TOKEN = "419a9d3c203176c05f6081c703c715fd";
+       /* String TOKEN = "419a9d3c203176c05f6081c703c715fd";
         String format = "xml";
 //        String format = "jsonp";
+        testIP(TOKEN, format);*/
 
-        testIP(TOKEN, format);
-
-
+        getStreamResult();
 
         /*testTime();
         testTime1();*/
+
+        String text = "Base64 finally in Java 8!";
+
+        String encoded = Base64
+                .getEncoder()
+                .encodeToString(text.getBytes(StandardCharsets.UTF_8));
+        System.out.println(encoded);
+
+        String decoded = new String(
+                Base64.getDecoder().decode(encoded),
+                StandardCharsets.UTF_8);
+
+
+
+        System.out.println(decoded);
     }
 
 

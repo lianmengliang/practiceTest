@@ -12,6 +12,7 @@ import java.util.Queue;
 @Configuration
 public class RabbitConfig {
 
+
     /*@Bean
     public Queue helloQueue(){
 

@@ -26,7 +26,7 @@
         </plugin>
 
         <!--不生成xml，但是会生成example-->
-        <!--<plugin type="com.xiqu.common.mbg.plugins.NoSqlMapXmlPlugin"></plugin>-->
+        <plugin type="com.xiqu.common.mbg.plugins.NoSqlMapXmlPlugin"></plugin>
 
         <!-- 忽略生成注释日期 -->
         <commentGenerator>
@@ -62,14 +62,10 @@
                              type="XMLMAPPER"/>
 
         <!--生成的表-->
-       <!-- <table tableName="student" domainObjectName="Student"
+        <table tableName="student" domainObjectName="Student"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
-        </table>
--->
-        <table tableName="dept" domainObjectName="Dept">
-
         </table>
 <!--
 <resultMap id="BaseResultMap" type="com.xiqu.db.model.AdAppUsersDetail">

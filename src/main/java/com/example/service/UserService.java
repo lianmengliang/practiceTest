@@ -12,5 +12,5 @@ public interface UserService {
 
     User login(String userName, String passWord);
 
-    int register(User user);
+     int register(User user);
 }

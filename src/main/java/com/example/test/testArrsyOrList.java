@@ -196,6 +196,62 @@ public class testArrsyOrList {
 
     }
 
+    /**
+     * 一维数组
+     */
+    public static void twoArraysforOne() {
+
+        String[] strArray = new String[]{"123", "aa", "bb", "dd"};
+
+        String targetStr = "bb";
+        boolean isFlag = true;
+        //查找 （或 搜索）
+        //线性查找
+        for (int i = 0; i < strArray.length; i++) {
+            if (targetStr.equals(strArray[i])) {
+                isFlag = false;
+                System.out.println("找到了bb," + "位置是索引" + i);
+                break;
+            }
+        }
+
+        if (isFlag) {
+            System.out.println("很遗憾没有找到bb");
+        }
+
+
+        //二分法查找  前提：所要查找的数组必须有序
+        int[] array = new int[]{23, 2, 15, 19, 21, 45, 45, 78, 7, 89, 41, 22};
+        int[] arrays = new int[]{2, 15, 19, 21, 25, 35, 48, 57, 69, 71, 82};
+
+        int targetInt = 21;
+        boolean isFlag1 = true;
+
+        //初始索引
+        int head = 0;
+        //结束索引
+        int end = arrays.length - 1;
+        while (head <= end) {
+            //中间索引
+            int middle = (head + end) / 2;
+            if (targetInt == arrays[middle]) {
+                isFlag1 = false;
+                System.out.println("已经找到了" + targetInt + ",位置在索" + middle);
+                break;
+            } else if (arrays[middle] < targetInt) {
+                head = middle + 1;
+            } else {
+                end = middle - 1;
+            }
+
+        }
+
+        if (isFlag1) {
+            System.out.println("很遗憾没有找到" + targetInt);
+        }
+
+        System.out.println();
+    }
 
     /**
      * 二维数组练习
@@ -311,6 +367,34 @@ public class testArrsyOrList {
 
     }
 
+    /**
+     * 排序练习
+     */
+    public static void testSort() {
+
+        int[] array = new int[]{23, 2, 15, 19, 21,  45, 78, 7, 89, 41, 22};
+        for (int i : array) {
+            System.out.print(i+"\t");
+        }
+        // 冒泡排序
+        for (int i = 0; i < array.length - 1; i++) {
+
+            for (int j = 0; j < array.length - 1 - i; j++) {
+                if (array[j] > array[j+1]) {
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j+1] = temp;
+                }
+
+            }
+
+        }
+        System.out.println();
+        for (int i : array) {
+            System.out.print(i+"\t");
+        }
+
+    }
 
     /**
      * 主方法
@@ -320,7 +404,7 @@ public class testArrsyOrList {
     public static void main(String[] args) {
 //        getRandomNum();
 
-        testListUtil();
+        testSort();
     }
 
 

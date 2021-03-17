@@ -25,11 +25,13 @@ public class SortedKeySignUtil {
     public static String sign(String secret, Object bean) {
         Map<String, String> map = beanToMap(bean);
         String sign = getSign(secret, map);
+        log.info("成功生成签名{}" + sign);
         return sign;
     }
 
     /**
      * 验签
+     *
      * @param appKey
      * @param bean
      * @return
@@ -39,15 +41,18 @@ public class SortedKeySignUtil {
         Map<String, String> params = beanToMap(bean);
 
         Map<String, String> map = new HashMap<>();
-
         for (String key : params.keySet()) {
             if (!key.equalsIgnoreCase(SIGN_FIELD)) {
                 map.put(key, params.get(key));
             }
         }
+
         String sign = getSign(appKey, map);
-        if (sign.equalsIgnoreCase(params.get(SIGN_FIELD))) {
-            return true;
+        if (!sign.isEmpty()) {
+            if (sign.equalsIgnoreCase(params.get(SIGN_FIELD))) {
+                log.info("验签成功");
+                return true;
+            }
         }
         return false;
 
@@ -66,7 +71,7 @@ public class SortedKeySignUtil {
         try {
             List<Map.Entry<String, String>> infoIds = new ArrayList<>(map.entrySet());
             //请求参数中的各个键值对 按照key的字符串顺序升序
-            infoIds.sort(Comparator.comparing(Map.Entry<String, String> :: getKey));
+            infoIds.sort(Comparator.comparing(Map.Entry<String, String>::getKey));
 
             // 构造签名键值对的格式
             StringBuilder sb = new StringBuilder();

@@ -14,5 +14,10 @@ public class TestEnumSingleton {
 
         System.out.println(User.getInstance()==User.getInstance());
 
+        EnumSingleton instance = EnumSingleton.INSTANCE;
+        System.out.println(instance);
+        System.out.println(instance.hashCode());
+        instance.sayOk();
+
     }
 }

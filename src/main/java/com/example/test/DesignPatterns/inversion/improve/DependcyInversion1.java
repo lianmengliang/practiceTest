@@ -44,3 +44,17 @@ class Person1 {
         System.out.println(receiver.getInfo());
     }
 }
+
+/*
+class testPerson extends Person1{
+
+    public  void main(String[] args) {
+
+        receive(new IReceiver() {
+            @Override
+            public String getInfo() {
+                return null;
+            }
+        });
+    }
+}*/

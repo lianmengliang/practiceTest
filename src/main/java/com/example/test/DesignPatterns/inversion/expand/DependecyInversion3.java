@@ -14,12 +14,12 @@ public class DependecyInversion3 {
         TCL tcl = new TCL();
 
         // 1.通过接口 进行依赖传递
-        OpenAndClose openAndClose = new OpenAndClose();
+        /*OpenAndClose openAndClose = new OpenAndClose();
         openAndClose.open(tcl);
-
+*/
         // 2.通过构造器 进行依赖传递
-        /*OpenAndClose openAndClose = new OpenAndClose(tcl);
-        openAndClose.open();*/
+        OpenAndClose openAndClose = new OpenAndClose(tcl);
+        openAndClose.open();
 
         // 3.通过setter方法 进行依赖传递
         /*OpenAndClose openAndClose = new OpenAndClose();
@@ -33,6 +33,7 @@ public class DependecyInversion3 {
  * 方式1：
  *  * 通过接口传递实现依赖
  */
+/*
 interface IOpenAndClose{
     void open(ITV tv);
 }
@@ -54,13 +55,13 @@ class TCL implements ITV{
     public void play() {
         System.out.println("TCL王牌电视机，打开");
     }
-}
 
+}
+*/
 /**方式2：
  * 通过构造器进行依赖传递
  */
 
-/*
 interface IOpenAndClose{
     void open();
 }
@@ -69,12 +70,10 @@ interface IOpenAndClose{
 class OpenAndClose implements IOpenAndClose{
     private ITV tv;
 
-*/
 /**
  * 构造器
  * @param tv
- *//*
-
+ */
     public OpenAndClose(ITV tv){
         this.tv = tv;
     }
@@ -95,10 +94,9 @@ class TCL implements ITV{
         System.out.println("TCL王牌电视机，打开");
     }
 }
-*/
 
 
-/**方式2：
+/**方式 3：
  * 通过setter方法进行依赖传递
  */
 

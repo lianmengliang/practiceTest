@@ -3,6 +3,8 @@ package com.example.test;
 import com.example.domain.User;
 import org.apache.commons.lang.StringUtils;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 /**
  * @Author ： Leo
  * @Date : 2020/9/11 14:31

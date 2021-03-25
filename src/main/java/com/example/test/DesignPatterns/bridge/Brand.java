@@ -7,7 +7,7 @@ import com.example.test.DesignPatterns.Adapter.MediaPlayer;
  * @Date : 2021/3/24 15:45
  * @Desc:
  */
-public interface Brand extends MediaPlayer {
+public interface Brand {
 
     void open();
 

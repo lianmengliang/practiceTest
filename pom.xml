@@ -145,7 +145,12 @@
             <artifactId>spring-mock</artifactId>
             <version>2.0.8</version>
         </dependency>
-
+        <!--糊涂工具-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.6.1</version>
+        </dependency>
     </dependencies>
 
     <build>

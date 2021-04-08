@@ -17,15 +17,18 @@ public class testCommand {
 
 //        JdbcTemplate
 //        Arrays
+
+
+    }
+
+
+    public void testIterator(){
         List<String> list = new ArrayList<>();
         list.add("1231");
         list.add("hello");
         Iterator<String> iterator = list.iterator();
-
         while (iterator.hasNext()){
             System.out.println(iterator.next());
         }
-
-
     }
 }

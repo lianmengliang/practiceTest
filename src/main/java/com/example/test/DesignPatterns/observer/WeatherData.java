@@ -1,4 +1,4 @@
-package com.example.test.DesignPatterns.weather;
+package com.example.test.DesignPatterns.observer;
 
 /**
  * @Author ： Leo

@@ -1,11 +1,11 @@
-package com.example.test.DesignPatterns.observer;
+package com.example.test.DesignPatterns.observer.improve;
 
 /**
  * @Author ： Leo
  * @Date : 2021/4/8 17:39
  * @Desc: 显示当前天气的情况（可以理解成是气象站自己的网站）
  */
-public class CurrentConditions {
+public class CurrentConditions implements Observer{
     /**
      * 温度，气压，湿度
      */
@@ -23,6 +23,7 @@ public class CurrentConditions {
      * @param pressure
      * @param humidity
      */
+    @Override
     public void update(float temperature, float pressure, float humidity) {
         this.temperature = temperature;
         this.pressure = pressure;
@@ -37,5 +38,6 @@ public class CurrentConditions {
         System.out.println("***Today mTemperature:" + temperature + "***");
         System.out.println("***Today mPressure:" + pressure + "***");
         System.out.println("***Today mHumidity:" + humidity + "***");
+        System.out.println("-------------------------------------------");
     }
 }

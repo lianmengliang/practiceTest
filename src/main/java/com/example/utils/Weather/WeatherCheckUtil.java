@@ -25,7 +25,7 @@ public class WeatherCheckUtil {
             "            \"week\": \"星期三\",\n" +
             "            \"dayIcon\": \"https://cache.ip138.com/user/image/tianqi/d00.png\",\n" +
             "            \"nightIcon\": \"https://cache.ip138.com/user/image/tianqi/n01.png\",\n" +
-            "            \"weather\": \"晴转多云\",\n" +
+            "            \"observer\": \"晴转多云\",\n" +
             "            \"tempHigh\": \"18\",\n" +
             "            \"tempLow\": \"11\",\n" +
             "            \"wind\": \"4-5级转3-4级\"\n" +
@@ -35,7 +35,7 @@ public class WeatherCheckUtil {
             "            \"week\": \"星期四\",\n" +
             "            \"dayIcon\": \"https://cache.ip138.com/user/image/tianqi/d01.png\",\n" +
             "            \"nightIcon\": \"https://cache.ip138.com/user/image/tianqi/n00.png\",\n" +
-            "            \"weather\": \"多云转晴\",\n" +
+            "            \"observer\": \"多云转晴\",\n" +
             "            \"tempHigh\": \"21\",\n" +
             "            \"tempLow\": \"14\",\n" +
             "            \"wind\": \"4-5级\"\n" +
@@ -45,7 +45,7 @@ public class WeatherCheckUtil {
             "            \"week\": \"星期五\",\n" +
             "            \"dayIcon\": \"https://cache.ip138.com/user/image/tianqi/d01.png\",\n" +
             "            \"nightIcon\": \"https://cache.ip138.com/user/image/tianqi/n01.png\",\n" +
-            "            \"weather\": \"多云\",\n" +
+            "            \"observer\": \"多云\",\n" +
             "            \"tempHigh\": \"23\",\n" +
             "            \"tempLow\": \"14\",\n" +
             "            \"wind\": \"3-4级转<3级\"\n" +
@@ -55,7 +55,7 @@ public class WeatherCheckUtil {
             "            \"week\": \"星期六\",\n" +
             "            \"dayIcon\": \"https://cache.ip138.com/user/image/tianqi/d01.png\",\n" +
             "            \"nightIcon\": \"https://cache.ip138.com/user/image/tianqi/n01.png\",\n" +
-            "            \"weather\": \"多云\",\n" +
+            "            \"observer\": \"多云\",\n" +
             "            \"tempHigh\": \"22\",\n" +
             "            \"tempLow\": \"12\",\n" +
             "            \"wind\": \"3-4级转<3级\"\n" +
@@ -65,7 +65,7 @@ public class WeatherCheckUtil {
             "            \"week\": \"星期日\",\n" +
             "            \"dayIcon\": \"https://cache.ip138.com/user/image/tianqi/d00.png\",\n" +
             "            \"nightIcon\": \"https://cache.ip138.com/user/image/tianqi/n00.png\",\n" +
-            "            \"weather\": \"晴\",\n" +
+            "            \"observer\": \"晴\",\n" +
             "            \"tempHigh\": \"21\",\n" +
             "            \"tempLow\": \"11\",\n" +
             "            \"wind\": \"4-5级转3-4级\"\n" +
@@ -75,7 +75,7 @@ public class WeatherCheckUtil {
             "            \"week\": \"星期一\",\n" +
             "            \"dayIcon\": \"https://cache.ip138.com/user/image/tianqi/d00.png\",\n" +
             "            \"nightIcon\": \"https://cache.ip138.com/user/image/tianqi/n00.png\",\n" +
-            "            \"weather\": \"晴\",\n" +
+            "            \"observer\": \"晴\",\n" +
             "            \"tempHigh\": \"19\",\n" +
             "            \"tempLow\": \"10\",\n" +
             "            \"wind\": \"4-5级转<3级\"\n" +
@@ -85,7 +85,7 @@ public class WeatherCheckUtil {
             "            \"week\": \"星期二\",\n" +
             "            \"dayIcon\": \"https://cache.ip138.com/user/image/tianqi/d00.png\",\n" +
             "            \"nightIcon\": \"https://cache.ip138.com/user/image/tianqi/n00.png\",\n" +
-            "            \"weather\": \"晴\",\n" +
+            "            \"observer\": \"晴\",\n" +
             "            \"tempHigh\": \"19\",\n" +
             "            \"tempLow\": \"11\",\n" +
             "            \"wind\": \"4-5级\"\n" +
@@ -111,7 +111,7 @@ public class WeatherCheckUtil {
             "        \"nightWind\": \"3-4级\",\n" +
             "        \"temp\": \"18\",\n" +
             "        \"Icon\": \"https://cache.ip138.com/user/image/tianqi/d00.png\",\n" +
-            "        \"weather\": \"晴\",\n" +
+            "        \"observer\": \"晴\",\n" +
             "        \"wind\": \"东北风1级\",\n" +
             "        \"humidity\": \"49\",\n" +
             "        \"pm25\": \"\"\n" +
@@ -120,7 +120,7 @@ public class WeatherCheckUtil {
 
     private static final String WEATHER_TOKEN = "efd6111b0d6b81c25ee97a07a219f04e";
 
-    private static final String WEATHER_URL = "https://api.ip138.com/weather/?code=%s&type=%s&token=%s";
+    private static final String WEATHER_URL = "https://api.ip138.com/observer/?code=%s&type=%s&token=%s";
 
 //    private static final String ERROR_MSG = "行政区划代码code有误";
 

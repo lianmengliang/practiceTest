@@ -103,12 +103,17 @@ public class testStream {
         list.add("张强");
         list.add("张三丰");
 
+
+
+
+
+
+
         /*list.stream().filter(s‐>
                 s.startsWith("张"))
         .filter(s ‐> s.length() == 3)
         .forEach(System.out::println); }
         */
-//        list.stream().forEach(System.out::println);
 
         list.stream()
                 .filter(s -> s.startsWith("张"))
@@ -355,8 +360,6 @@ public class testStream {
 
         System.out.println(decoded);
     }
-
-
 
 
 }

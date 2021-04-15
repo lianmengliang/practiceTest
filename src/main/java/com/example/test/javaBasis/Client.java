@@ -13,22 +13,5 @@ public class Client {
     public static void main(String[] args) {
 
 
-//        Expression
-//        ExpressionParser
-
-
-
-
     }
-
-    /**
-     * 测试源码的解释器
-     */
-    public void testExpressionParser(){
-        SpelExpressionParser parser = new SpelExpressionParser();
-        Expression expression = parser.parseExpression("10 *(2+1)*1+66");
-        int result = (int) expression.getValue();
-        System.out.println(result);
-    }
-
 }

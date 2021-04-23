@@ -12,7 +12,7 @@ public class Success extends Action {
     }
 
     @Override
-    void getWemanResult(Weman weman) {
+    void getWomanResult(Woman woman) {
         System.out.println("女性给的评价是很成功的");
     }
 }

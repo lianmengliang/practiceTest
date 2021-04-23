@@ -12,7 +12,7 @@ public class Fail extends Action {
     }
 
     @Override
-    void getWemanResult(Weman weman) {
+    void getWomanResult(Woman woman) {
         System.out.println("女性给的评价是很失败的");
     }
 }

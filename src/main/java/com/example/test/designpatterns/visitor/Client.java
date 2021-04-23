@@ -12,7 +12,7 @@ public class Client {
         ObjectStructure objectStructure = new ObjectStructure();
 
         objectStructure.attach(new Man());
-        objectStructure.attach(new Weman());
+        objectStructure.attach(new Woman());
 
         // 成功
         Success success = new Success();

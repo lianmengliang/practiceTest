@@ -8,9 +8,9 @@ package com.example.test.designpatterns.visitor;
  * 2.然后woman类调用作为参数的“具体方法”中方法getWomanResult，同事将自己this作为参数传入，完成第二次分派
  *
  */
-public class Weman extends Person {
+public class Woman extends Person {
     @Override
     public void accept(Action action) {
-        action.getWemanResult(this);
+        action.getWomanResult(this);
     }
 }

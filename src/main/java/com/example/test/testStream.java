@@ -7,6 +7,7 @@ import com.example.domain.User;
 import com.example.utils.OkHttpUtil;
 import com.example.utils.XmlTool;
 import com.google.common.collect.Lists;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import lombok.Data;
 import lombok.Value;
 import sun.reflect.generics.tree.Tree;
@@ -42,6 +43,7 @@ import static java.util.stream.Collectors.toList;
  * 5.截取 stream.limit();  如： stream.limit(3); 截取前三个元素
  * 6.跳过元素 stream.skip(); 如： stream.skip(3); 跳过前三个元素
  * 7.把流组合到一起 Stream.concat(stream1, stream2);
+ * 8.去重：stream().distinct()
  */
 public class testStream {
 
@@ -163,7 +165,7 @@ public class testStream {
         ArrayList<User> users = new ArrayList<>();
 
         List<User> collect = users.stream()
-                .filter(a -> 1 == a.getId() &&  a.getUserName().equals("leo"))
+                .filter(a -> 1 == a.getId() && a.getUserName().equals("leo"))
                 .collect(Collectors.toList());
 
 
@@ -254,7 +256,9 @@ public class testStream {
 
     }
 
-
+    /**
+     * 分割字符串
+     */
     public static void test002() {
 
         String str = "3123123,123123123,3213123，66666，888";
@@ -273,7 +277,9 @@ public class testStream {
 
     }
 
-
+    /**
+     * 时间 类测试
+     */
     public static void testTime() {
         LocalDate today = LocalDate.now();
         LocalDate yesterday = today.minusDays(1);
@@ -351,12 +357,12 @@ public class testStream {
         List list = new ArrayList<Order>();
         // 创建数据
         Order order1 = new Order(1L, 125L, "1221813", "服饰", 100.0f, 13.0f, 123);
-        Order order2 = new Order(2L, 143L, "1212313", "水果", 1001.0f, 50.0f, 124);
+        Order order2 = new Order(1L, 143L, "1212313", "水果", 1001.0f, 50.0f, 124);
         Order order3 = new Order(3L, 123L, "122313", "蔬菜", 300.0f, 113.0f, 145);
-        Order order4 = new Order(4L, 113L, "1212813", "服饰", 1500.0f, 26.0f, 126);
-        Order order5 = new Order(5L, 193L, "125453", "调料", 600.0f, 51.0f, 125);
+        Order order4 = new Order(3L, 113L, "1212813", "服饰", 1500.0f, 26.0f, 126);
+        Order order5 = new Order(5L, 193L, "125453", "调料", null, 51.0f, 125);
         Order order6 = new Order(6L, 138L, "124543", "首饰", 200.0f, 106.0f, 133);
-        Order order7 = new Order(7L, 138L, "124543", "首饰", 100.0f, 126.0f, 133);
+        Order order7 = new Order(6L, 138L, "124543", "首饰", 100.0f, 126.0f, 133);
         // 设置数据
         orders.add(order1);
         orders.add(order2);
@@ -375,6 +381,9 @@ public class testStream {
         collect.forEach((key, value)->
                 System.out.println("Key="+key+"-------"+"value="+value)
         );*/
+        // 2-1 按多个元素分组
+       /* Map<Long, Map<String, List<Order>>> collect = orders.stream().collect(Collectors.groupingBy(Order::getId, Collectors.groupingBy(Order::getType)));
+        collect.forEach((k,v)-> System.out.println(k+"----------\n"+v));*/
 
         // 3.按照订单编号去重
         /*orders = orders.stream().collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Order::getNum))), ArrayList::new));*/
@@ -385,9 +394,9 @@ public class testStream {
         //List转Map
         //5. 将订单集合转换成订单编号-应付金额 map，注意订单编号作为 key 不能重复，应先做去重处理
 //        orders.stream().collect(Collectors.toMap(Order::getNum(),Order::getPayAmt));
-       /* Map<String, Float> map = orders.stream().collect(Collectors.toMap(Order::getNum, Order::getPayAmt));
+//        Map<String, Float> map = orders.stream().collect(Collectors.toMap(Order::getNum, Order::getPayAmt));
 //        Map numPayMap = orders.stream().collect(Collectors.toMap(Order::getNum, Order::getPayAmt));
-        map.forEach((k,v)-> System.out.println(k+"-"+ v));*/
+//        map.forEach((k,v)-> System.out.println(k+"-"+ v));
 
         //6.用 id 做 key 将 List 转成 Map
         /*Map<Long, Order> map = orders.stream().collect(Collectors.toMap(Order::getId, item -> item));
@@ -401,8 +410,15 @@ public class testStream {
         // 方式2： 降序排列
         /*orders.sort(Comparator.comparing(Order::getAllAmt, (o1, o2) -> o1 == null ? 1 : (o2 == null ? -1 : o2.compareTo(o1))));*/
 
-        // 方式三:(allAmt 字段不能为 null， null 会导致排序失败)
-//        orders.sort(Comparator.comparing(Order::getAllAmt).reversed());
+        //1. -1 或者 1是判定o值为空的时候排在首位还是末位， -1就是首位， 1就是末位
+        //2. o1.compareTo(o2) 这就是升序，否则就是降序
+        /*orders.sort(Comparator.comparing(Order::getAllAmt, (o1, o2) -> o1 == null ? -1 : (o2 == null ? 1 : o1.compareTo(o2))));
+        orders.stream().sorted((o1, o2) -> o1.getAllAmt().compareTo(o2.getAllAmt()));
+
+        orders.stream().sorted(Comparator.comparing(Order::getAllAmt, (o1, o2) -> o1 == null ? -1 : (o2 == null ? 1 : o1.compareTo(o2))));
+*/
+        // 方式三:(allAmt 字段不能为 null， null 会导致排序失败) 升序排列， 加上.reversed()方法就是降序排列
+//        orders.sort(Comparator.comparing(Order::getAllAmt));
 
 
         // 先按照订单类型排序，再按照订单应付金额从高到低排序
@@ -412,31 +428,51 @@ public class testStream {
         // 统计计数
         // 统计所有订单的总金额
         // 求和
-        /*double sum = orders.stream().filter(item -> item.getAllAmt() != null).mapToDouble(Order::getAllAmt).sum();
+      /*  double sum = orders.stream().filter(item -> item.getAllAmt() != null).mapToDouble(Order::getAllAmt).sum();
         System.out.println(sum);*/
 
         // 最大总金额
-        OptionalDouble max = orders.stream().filter(item -> item.getAllAmt() != null).mapToDouble(Order::getAllAmt).max();
+       /* OptionalDouble max = orders.stream().filter(item -> item.getAllAmt() != null).mapToDouble(Order::getAllAmt).max();
         System.out.println(max);
         // 防止没有订单数据处理
         Double max0 = max.isPresent()? max.getAsDouble():0;
-        System.out.println(max0);
+        System.out.println(max0);*/
 
         // 最小总金额
-        OptionalDouble min = orders.stream().filter(item -> item.getAllAmt() != null).mapToDouble(Order::getAllAmt).min();
+        /*OptionalDouble min = orders.stream().filter(item -> item.getAllAmt() != null).mapToDouble(Order::getAllAmt).min();
         System.out.println(min);
         // 防止没有订单数据处理
-        Double min0 = min.isPresent()? max.getAsDouble():0;
-        System.out.println(min0);
+        Double min0 = min.isPresent()? min.getAsDouble():0;
+        System.out.println(min0);*/
 
         // 平均总金额
-        OptionalDouble average = orders.stream().filter(item -> item.getAllAmt() != null).mapToDouble(Order::getAllAmt).average();
+        /*OptionalDouble average = orders.stream().filter(item -> item.getAllAmt() != null).mapToDouble(Order::getAllAmt).average();
         System.out.println(average);
         double v = average.isPresent() ? average.getAsDouble() : 0;
-        System.out.println(v);
+        System.out.println(v);*/
 
+        /* orders.sort((o1, o2)->o1.getAllAmt() == null ? 1 : (o2.getAllAmt() == null ? -1 : o2.getAllAmt().compareTo(o1.getAllAmt())));*/
 
 //        orders.stream()
+
+
+        // 提取对象中某一元素，最后保存成一个集合
+       /* List<Long> collect = orders.stream().map(Order::getId).collect(toList());
+        Map<Long, Float> longFloatMap = orders.stream().collect(Collectors.toMap(Order::getId, Order::getAllAmt));*/
+
+        // 多重分组以后，再计算总金额 (加上判空，和数据类型转换)
+        Map<Long, IntSummaryStatistics> collect = orders.stream().collect(Collectors.groupingBy(Order::getId,
+                Collectors.summarizingInt(o -> o.getAllAmt() == null ? 0 : o.getAllAmt().intValue())));
+
+        Map<Long, LongSummaryStatistics> collect1 = orders.stream().collect(Collectors.groupingBy(Order::getId, Collectors.summarizingLong(Order::getUserId)));
+
+        Map<Long, Long> collect2 = orders.stream().collect(Collectors.groupingBy(Order::getId, Collectors.counting()));
+
+        Map<Long, Map<String, Long>> collect3 = orders.stream().collect(Collectors.groupingBy(Order::getId, Collectors.groupingBy(Order::getType, Collectors.counting())));
+
+
+
+        collect3.forEach((k, v) -> System.out.println(k + "----" + v));
 
         System.out.println("-------------------------");
         for (Order order : orders) {

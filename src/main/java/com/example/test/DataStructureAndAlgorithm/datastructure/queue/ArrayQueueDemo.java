@@ -1,6 +1,7 @@
 package com.example.test.DataStructureAndAlgorithm.datastructure.queue;
 
 
+
 import java.util.Scanner;
 
 /**
@@ -10,6 +11,7 @@ import java.util.Scanner;
  */
 public class ArrayQueueDemo {
     public static void main(String[] args) {
+
 
 
         // 创建一个队列

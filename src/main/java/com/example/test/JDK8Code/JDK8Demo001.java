@@ -15,6 +15,7 @@ import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.LongBinaryOperator;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @Author ： Leo
@@ -33,7 +34,13 @@ public class JDK8Demo001 {
 
 // appleList.stream().forEach(Apple ->Apple.getColor().equals("green") && Apple.getWeight()>150);
 
+ /*       String collect = appleList.stream().map(Apple::getColor).collect(Collectors.joining(","));*/
+
+
+
         return appleList.stream().filter(apple -> apple.getWeight() > 150 && apple.getColor().equals("green")).collect(Collectors.toList());
+
+
 
     }
 
@@ -150,6 +157,14 @@ public class JDK8Demo001 {
 
 
     public static void main(String[] args) {
-        getResult();
+//        getResult();
+
+        Stream<Integer> stream = Stream.iterate(0, n -> n + 2).limit(5);
+        List<Integer> collect = stream.collect(Collectors.toList());
+
+        collect.forEach(System.out::println);
+
+        Stream<Double> stream1 = Stream.generate(Math::random).limit(5);
+        stream1.collect(Collectors.toList()).forEach(System.out::println);
     }
 }

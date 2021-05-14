@@ -2,12 +2,14 @@ package com.example.test.DataStructureAndAlgorithm.datastructure.linkedlist;
 
 import com.example.test.designpatterns.status.orderprocessing.PublishState;
 
+import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.Stack;
 
 /**
  * @Author ： Leo
  * @Date : 2021/4/29 15:13
- * @Desc:
+ * @Desc: 单链表的实现 以及 增删改查
  */
 public class SingleLinkedListDemo {
     public static void main(String[] args) {
@@ -21,9 +23,24 @@ public class SingleLinkedListDemo {
         // 创建要给链表
         SingleLinkedList singleLinkedList = new SingleLinkedList();
         singleLinkedList.add(hero1);
-        singleLinkedList.add(hero2);
         singleLinkedList.add(hero3);
-        singleLinkedList.add(hero4);
+        singleLinkedList.add(hero5);
+
+        singleLinkedList.list();
+        System.out.println("----------------");
+
+
+        SingleLinkedList singleLinkedList1 = new SingleLinkedList();
+        singleLinkedList1.add(hero2);
+        singleLinkedList1.add(hero4);
+
+        singleLinkedList1.list();
+        System.out.println("---------");
+
+
+        SingleLinkedList linkedList = sumSingleLinkedList(singleLinkedList, singleLinkedList1);
+
+        linkedList.list();
 
         // 按照编号加入
       /*  singleLinkedList.addByOreder(hero1);
@@ -31,7 +48,7 @@ public class SingleLinkedListDemo {
         singleLinkedList.addByOreder(hero4);
         singleLinkedList.addByOreder(hero3);
         singleLinkedList.addByOreder(hero5);*/
-        singleLinkedList.list();
+//        singleLinkedList.list();
 //        singleLinkedList.update(new HeroNode(4, "花和尚", "鲁智深"));
 
        /* System.out.println("修改后");
@@ -47,10 +64,15 @@ public class SingleLinkedListDemo {
         HeroNode lastIndexNode = findLastIndexNode(singleLinkedList.getHead(), 1);
         System.out.println("倒数第k个节点：" + lastIndexNode);
 */
-        System.out.println("反转后");
+        /*System.out.println("反转后");
         reversetList(singleLinkedList.getHead());
-        singleLinkedList.list();
+        singleLinkedList.list();*/
+
+        // 从尾到头打印
+//        System.out.println("------");
+//        reverPrint(singleLinkedList.getHead());
     }
+
     /**
      * 求单链表的有效个数
      * 获取到单链表的节点的个数(如果是带头结点的链表，需求不统计头节点)
@@ -77,7 +99,7 @@ public class SingleLinkedListDemo {
      * @param index
      * @return
      */
-    public static HeroNode findLastIndexNode(HeroNode head,int index) {
+    public static HeroNode findLastIndexNode(HeroNode head, int index) {
         if (head.next == null) {
             // 空链表
             return null;
@@ -106,8 +128,10 @@ public class SingleLinkedListDemo {
         return cur;
     }
 
+
     /**
      * 反转链表
+     * 腾讯面试题
      *
      * @return
      */
@@ -140,6 +164,90 @@ public class SingleLinkedListDemo {
         head.next = reverseHead.next;
     }
 
+    /**
+     * 从尾打印单链表
+     * 方式1：先把单链表反转，然后再遍历打印输出 （不建议）
+     * 方式2：遍历单链表，放入栈（先进后出），最后从栈中取出并打印数据
+     * --百度面试题
+     *
+     * @param head
+     */
+    public static void reverPrint(HeroNode head) {
+        // 判断链表是否为空
+        if (head.next == null) {
+            System.out.println("链表为空");
+            return;
+        }
+        Stack<HeroNode> stack = new Stack<>();
+        //因为头节点不能动，因此我们需要一个辅助变量来遍历
+        HeroNode temp = head.next;
+        while (temp != null) {
+            stack.push(temp);
+            //将temp后移，一定小心
+            temp = temp.next;
+        }
+        // 遍历栈打印输出
+        while (stack.size() > 0) {
+            HeroNode pop = stack.pop();
+            System.out.println(pop);
+        }
+    }
+
+    /**
+     * 最后练习：
+     * 合并两个有序的单链表，合并之后的链表依然有序
+     */
+    /**
+     * 合并两个有序的单链表，合并之后的链表依然有序
+     *
+     * @param linkedList1
+     * @param linkedList2
+     * @return
+     */
+    public static SingleLinkedList sumSingleLinkedList(SingleLinkedList linkedList1, SingleLinkedList linkedList2) {
+
+        SingleLinkedList newLinkedList = new SingleLinkedList();
+        HeroNode head = newLinkedList.getHead();
+        HeroNode preNode = head;
+
+
+
+        HeroNode head1 = linkedList1.getHead();
+        HeroNode head2 = linkedList2.getHead();
+
+        // 判断链表是否为空
+        if (head1.next == null && head2 == null) {
+            System.out.println("传入的链表都为空");
+            return null;
+       /* } else if (head1.next == null && head2 != null) {
+            System.out.println("链表1为空");
+            return linkedList2;
+        } else if (head1.next != null && head2 == null) {
+            System.out.println("链表2为空");
+            return linkedList1;*/
+        } else {
+            HeroNode temp1 = head1.next;
+            HeroNode temp2 = head2.next;
+
+            while (temp1 != null && temp2 != null) {
+                if (temp1.no < temp2.no) {
+                    preNode.next = temp1;
+                    temp1 = temp1.next;
+                } else {
+                    preNode.next = temp2;
+                    temp2 = temp2.next;
+                }
+                preNode = preNode.next;
+            }
+             preNode.next = (temp1 == null) ? temp2 : temp1;
+
+            return newLinkedList;
+        }
+
+
+    }
+
+
 }
 
 /**
@@ -150,11 +258,12 @@ class SingleLinkedList {
     /**
      * 先初始化一个节点，头结点不要动，不存放具体的数据
      */
-    private static HeroNode head = new HeroNode(0, "", "");
+    private  HeroNode head = new HeroNode(0, "", "");
 
-    public  HeroNode getHead() {
+    public HeroNode getHead() {
         return head;
     }
+
 
     /**
      * //添加节点到单向链表
@@ -318,10 +427,9 @@ class SingleLinkedList {
     }
 
 
-
 }
 
-class HeroNode {
+class HeroNode implements Serializable {
     public int no;
     public String name;
     public String nickName;

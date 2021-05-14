@@ -21,28 +21,28 @@ public class DoublyLinkedListDemo {
         HeroNode2 hero5 = new HeroNode2(5, "行者", "武松");
 
         //添加
-        doublyLinkedList.add(hero1);
-        doublyLinkedList.add(hero2);
-        doublyLinkedList.add(hero3);
-        doublyLinkedList.add(hero4);
-        doublyLinkedList.add(hero5);
+        doublyLinkedList.addByOrder(hero2);
+        doublyLinkedList.addByOrder(hero3);
+        doublyLinkedList.addByOrder(hero5);
+        doublyLinkedList.addByOrder(hero4);
+        doublyLinkedList.addByOrder(hero1);
         // 遍历
         doublyLinkedList.list();
         System.out.println("-----------------------------------------------------");
 
         //删除
 //        doublyLinkedList.delete(1);
-        doublyLinkedList.delete(5);
+       /* doublyLinkedList.delete(5);
 
         // 遍历
         doublyLinkedList.list();
         System.out.println("-----------------------------------------------------");
 
         //修改
-        doublyLinkedList.update(new HeroNode2(3,"花和尚","鲁智深"));
+        doublyLinkedList.update(new HeroNode2(3, "花和尚", "鲁智深"));
         // 遍历
         doublyLinkedList.list();
-        System.out.println("-----------------------------------------------------");
+        System.out.println("-----------------------------------------------------");*/
     }
 }
 
@@ -132,6 +132,46 @@ class DoublyLinkedList {
         // 添加
         temp.next = heroNode;
         heroNode.pre = temp;
+
+    }
+
+    /**
+     * 按照顺序 添加操作
+     *
+     * @param heroNode
+     */
+    public void addByOrder(HeroNode2 heroNode) {
+        HeroNode2 temp = head;
+        boolean flag = false;
+
+        while (temp.next != null) {
+            if (heroNode.no < temp.next.no) {
+
+                break;
+            } else if (temp.next.no == heroNode.no) {
+                flag = true;
+                break;
+            }
+            temp = temp.next;
+        }
+
+        // 添加
+        if (flag) {
+            System.out.printf("该英雄的编号%d已经存在,不能添加\n", heroNode.no);
+        } else {
+            // 插入到链表中，temp的后面
+            // heroNode 指向temp节点的下一个节点
+            heroNode.next = temp.next;
+            // 判断是否是最后一个节点
+            if (temp.next != null){
+                temp.next.pre = heroNode;
+            }
+
+            // temp 节点指向heroNode节点
+            temp.next = heroNode;
+            heroNode.pre = temp;
+        }
+
 
     }
 

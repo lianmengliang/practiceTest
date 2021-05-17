@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * @Author ： Leo
  * @Date : 2021/4/25 18:44
- * @Desc:
+ * @Desc: 队列： 先进先出
  */
 public class ArrayQueueDemo {
     public static void main(String[] args) {

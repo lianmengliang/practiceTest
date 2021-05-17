@@ -21,7 +21,9 @@ public class Md5Encrypt {
 			byte[] b = md.digest();
 			for (int i = 0; i < b.length; i++) {
 				int temp = b[i] & 0xff;
-				if (temp < 16) strBuf.append("0");
+				if (temp < 16) {
+                    strBuf.append("0");
+                }
 				strBuf.append(Integer.toHexString(temp));
 			}
 		} catch (NoSuchAlgorithmException e) {

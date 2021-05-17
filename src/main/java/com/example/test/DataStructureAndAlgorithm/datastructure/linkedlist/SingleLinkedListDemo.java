@@ -30,6 +30,8 @@ public class SingleLinkedListDemo {
         System.out.println("----------------");
 
 
+/*
+
         SingleLinkedList singleLinkedList1 = new SingleLinkedList();
         singleLinkedList1.add(hero2);
         singleLinkedList1.add(hero4);
@@ -41,6 +43,7 @@ public class SingleLinkedListDemo {
         SingleLinkedList linkedList = sumSingleLinkedList(singleLinkedList, singleLinkedList1);
 
         linkedList.list();
+*/
 
         // 按照编号加入
       /*  singleLinkedList.addByOreder(hero1);

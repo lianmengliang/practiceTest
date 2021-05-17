@@ -1,7 +1,9 @@
 package com.example.test.DataStructureAndAlgorithm.datastructure.stack;
 
-import sun.awt.SunHints;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Scanner;
 
 /**
@@ -11,6 +13,17 @@ import java.util.Scanner;
  */
 public class ArrayStackDemo {
     public static void main(String[] args) {
+
+        ArrayList<Integer> list = new ArrayList<>();
+//        list.sort(Comparator.comparing((o1,o2)-> Comparator.comparing(o1-o2)));
+
+        list.sort(Integer::compareTo);
+        list.sort(Comparator.reverseOrder());
+
+
+        int[] array = new int[4];
+        Arrays.sort(array);
+
 
         ArrayStack stack = new ArrayStack(5);
 

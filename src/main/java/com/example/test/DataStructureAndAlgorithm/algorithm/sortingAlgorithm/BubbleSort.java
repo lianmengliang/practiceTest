@@ -1,6 +1,8 @@
 package com.example.test.DataStructureAndAlgorithm.algorithm.sortingAlgorithm;
 
 
+import com.example.utils.RandomGenerationUtil;
+
 import java.util.Arrays;
 
 /**
@@ -28,15 +30,15 @@ public class BubbleSort {
         bubbleSortByFlag(arr1);*/
 
         //获取一个固定长度的数组
-        int[] random1 = getArrayByRandom(10000);
+        int[] random1 = RandomGenerationUtil.getArrayByRandom(50000);
 
-        int[] random2 = getArrayByRandom(10000);
+        int[] random2 = RandomGenerationUtil.getArrayByRandom(50000);
 
-        int[] random3 = getArrayByRandom(10000);
+        int[] random3 = RandomGenerationUtil.getArrayByRandom(50000);
 
-        int[] random4 = getArrayByRandom(10000);
+        int[] random4 = RandomGenerationUtil.getArrayByRandom(50000);
 
-        int[] random5 = getArrayByRandom(10000);
+        int[] random5 = RandomGenerationUtil.getArrayByRandom(50000);
 
         // 测试程序运行时间长短
 
@@ -49,11 +51,11 @@ public class BubbleSort {
         long start = System.currentTimeMillis();
         bubbleSort(random1);
         long end = System.currentTimeMillis();
-        System.out.println("for循环运行的时间为："+(end-start)+"ms");
+        System.out.println("冒泡排序运行的时间为："+(end-start)+"ms");
 
         System.out.println("----------------------------------");
 
-        long start1 = System.currentTimeMillis();
+       /* long start1 = System.currentTimeMillis();
         bubbleSortByWhile(random2);
         long end1 = System.currentTimeMillis();
         System.out.println("while循环运行的时间为："+(end1-start1)+"ms");
@@ -73,7 +75,7 @@ public class BubbleSort {
         System.out.println("while循环优化后的运行的时间为："+(end3-start3)+"ms");
 
         System.out.println("----------------------------------");
-
+*/
 
 
 

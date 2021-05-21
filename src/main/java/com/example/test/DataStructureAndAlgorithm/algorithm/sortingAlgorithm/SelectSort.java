@@ -4,6 +4,8 @@ import com.example.utils.RandomGenerationUtil;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Author ： Leo
@@ -13,30 +15,40 @@ import java.util.Arrays;
 public class SelectSort {
     public static void main(String[] args) {
 
-        int[] array = RandomGenerationUtil.getArrayByRandom(50000);
-        int[] array1 = RandomGenerationUtil.getArrayByRandom(50000);
-        int[] array2 = RandomGenerationUtil.getArrayByRandom(50000);
+        int[] array = RandomGenerationUtil.getArrayByRandom(5000);
+        int[] array1 = RandomGenerationUtil.getArrayByRandom(15);
+        int[] array2 = RandomGenerationUtil.getArrayByRandom(5000);
 
         long start4 = System.currentTimeMillis();
         Arrays.sort(array2);
         long end4 = System.currentTimeMillis();
-        System.out.println("Arrays工具类排序运行的时间为："+(end4-start4)+"ms");
+        System.out.println("Arrays工具类排序运行的时间为：" + (end4 - start4) + "ms");
         System.out.println("----------------------------------");
 
         long start = System.currentTimeMillis();
         sort(array);
         long end = System.currentTimeMillis();
-        System.out.println("选择排序运行的时间为："+(end-start)+"ms");
+        System.out.println("选择排序运行的时间为：" + (end - start) + "ms");
         System.out.println("----------------------------------");
 
-       /* long start1 = System.currentTimeMillis();
+        System.out.println(Arrays.toString(array1));
+        long start1 = System.currentTimeMillis();
         sortByFlag(array1);
         long end1 = System.currentTimeMillis();
+        System.out.println(Arrays.toString(array1));
         System.out.println("for循环byflag排序运行的时间为："+(end1-start1)+"ms");
-        System.out.println("----------------------------------");*/
+        System.out.println("----------------------------------");
 
+       /* // 测试
+        System.out.println("测试前：" + Arrays.toString(array1));
+        test(array1);
+        System.out.println("排序后：" + Arrays.toString(array1));
+*/
 
+        Map<Integer, String> map = new HashMap<>();
+        map.isEmpty();
 
+//        map.put()
     }
 
 
@@ -129,7 +141,6 @@ public class SelectSort {
      */
     public static void sortByFlag(int[] arr) {
 
-        boolean flag = false;
         for (int i = 0; i < arr.length - 1; i++) {
 
             int minIndex = i;
@@ -138,39 +149,45 @@ public class SelectSort {
                 if (arr[j] < min) {
                     min = arr[j];
                     minIndex = j;
-                    flag = true;
-                }
-            }
-
-            if (!flag) {
-                break;
-            } else {
-                if (minIndex != i) {
-                    arr[minIndex] = arr[i];
-                    arr[i] = min;
-                }
-            }
-
-        }
-
-    }
-
-    public void get(int[] arr) {
-       /*
-
-        for (int i = 0; i < arr.length - 1; i++) {
-            int minIndex = i;
-            int min = arr[i];
-            for (int j = i + 1; j < arr.length; j++) {
-                if (min > arr[j]) {
-                    min = arr[j];
-                    minIndex = j;
                 }
             }
             if (minIndex != i) {
                 arr[minIndex] = arr[i];
                 arr[i] = min;
             }
-        }*/
+        }
+
+
+
+}
+
+
+    /**
+     * 用于测试
+     * 内部for循环筛序出最小值，然后和前面的值替换
+     * 外部for循环 决定筛选赋值次数
+     *
+     * @param arr
+     */
+    public static void test(int[] arr) {
+
+        for (int i = 0; i < arr.length - 1; i++) {
+            int min = arr[i];
+            int minIndex = i;
+
+            // 从i+1索引 开始循环
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < min) {
+                    minIndex = j;
+                    min = arr[j];
+                }
+            }
+
+            if (minIndex != i) {
+                arr[minIndex] = arr[i];
+                arr[i] = min;
+            }
+        }
+
     }
 }

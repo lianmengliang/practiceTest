@@ -11,6 +11,9 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @Author ： leo
  * @Date :2019/11/13 11:33
@@ -20,6 +23,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
     @Bean
     public Docket createRestApi() {
+        //返回结果格式
+        Set<String> set = new HashSet<>();
+        set.add("application/json");
         return new Docket(DocumentationType.SWAGGER_2)
                 .pathMapping("/")
                 .select()
@@ -31,7 +37,7 @@ public class SwaggerConfig {
                         .version("9.0")
                         .license("The Apache License")
                         .licenseUrl("http://www.baidu.com")
-                        .build());
+                        .build()).produces(set);
 
     }
 }

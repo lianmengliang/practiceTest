@@ -30,23 +30,23 @@ public class BubbleSort {
         bubbleSortByFlag(arr1);*/
 
         //获取一个固定长度的数组
-        int[] random1 = RandomGenerationUtil.getArrayByRandom(50000);
+        int[] random1 = RandomGenerationUtil.getArrayByRandom(5);
 
-        int[] random2 = RandomGenerationUtil.getArrayByRandom(50000);
+       /* int[] random2 = RandomGenerationUtil.getArrayByRandom(50000);
 
         int[] random3 = RandomGenerationUtil.getArrayByRandom(50000);
 
-        int[] random4 = RandomGenerationUtil.getArrayByRandom(50000);
+        int[] random4 = RandomGenerationUtil.getArrayByRandom(50000);*/
 
-        int[] random5 = RandomGenerationUtil.getArrayByRandom(50000);
+        int[] random5 = RandomGenerationUtil.getArrayByRandom(5);
 
         // 测试程序运行时间长短
 
-        long start4 = System.currentTimeMillis();
-        Arrays.sort(random5);
+       /* long start4 = System.currentTimeMillis();
+        Arrays.toString(random5);
         long end4 = System.currentTimeMillis();
         System.out.println("Arrays工具类排序运行的时间为："+(end4-start4)+"ms");
-        System.out.println("----------------------------------");
+        System.out.println("----------------------------------");*/
 
         long start = System.currentTimeMillis();
         bubbleSort(random1);
@@ -77,14 +77,18 @@ public class BubbleSort {
         System.out.println("----------------------------------");
 */
 
-
+        // 测试
+        System.out.println("测试前"+Arrays.toString(random5));
+        test(random5);
+        System.out.println("排序后"+Arrays.toString(random5));
 
 
     }
 
     /**
      * 冒泡排序
-     *
+     * 外for循环决定 几轮内部循环比较替换
+     * 内for循环决定比较替换
      * @param arr
      */
     public static void bubbleSort(int[] arr) {
@@ -101,8 +105,8 @@ public class BubbleSort {
                     arr[j + 1] = temp;
                 }
             }
-           /* System.out.printf("第%d趟排序后的数组：\n", (i + 1));
-            System.out.println(Arrays.toString(arr));*/
+            System.out.printf("第%d趟排序后的数组：\n", (i + 1));
+            System.out.println(Arrays.toString(arr));
         }
 
         // while循环
@@ -221,20 +225,42 @@ public class BubbleSort {
         }
     }
 
+
     /**
-     * 随机生成长度为 length的数组
-     *
-     * @param length
-     * @return
+     *      * 用于练习排序
+     * @param arr
      */
-    public static int[] getArrayByRandom(int length) {
+    public static void test(int[] arr){
 
-        int[] arr = new int[length];
+        // 设置一个中专值
+        int temp = 0;
 
-        for (int i = 0; i < length; i++) {
-            arr[i] = (int) (Math.random() * 10000);
+        // 外部for循环，几轮比较
+        for (int i = 1; i < arr.length ; i++) {
+            // 内部for循环
+            for (int j = 0; j < arr.length -i; j++) {
+                if (arr[j]>arr[j+1]){
+                    temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1]= temp;
+
+                }
+
+            }
         }
-        return arr;
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 }

@@ -13,7 +13,7 @@ import java.util.Arrays;
 public class insertSort {
     public static void main(String[] args) {
 
-        int[] arr = RandomGenerationUtil.getArrayByRandom(5000);
+      /*  int[] arr = RandomGenerationUtil.getArrayByRandom(5000);
         int[] arr1 = RandomGenerationUtil.getArrayByRandom(5000);
 
         long start = System.currentTimeMillis();
@@ -26,10 +26,10 @@ public class insertSort {
         Arrays.sort(arr1);
         long end1 = System.currentTimeMillis();
         System.out.println("Arrays工具类排序运行的时间为：" + (end1 - start1) + "ms");
-        System.out.println("----------------------------------");
+        System.out.println("----------------------------------");*/
 
         int[] arr2 = RandomGenerationUtil.getArrayByRandom(10);
-        test1(arr2);
+        test(arr2);
         System.out.println(Arrays.toString(arr2));
 
     }
@@ -100,28 +100,27 @@ public class insertSort {
         }
     }
 
+    /**
+     * 用于测试 练习
+     *
+     * @param arr
+     */
+    public static void test(int[] arr) {
 
-    public static void test1(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
 
-
-        /*for (int i = 0; i < arr.length - 1; i++) {
-
-            // 要插入的值
             int insertValue = arr[i + 1];
-            // 要插入值的前一个 索引 index
-            int inserIndex = i;
+            int insertIndex = i;
 
-            // 要插入的值 和 有序数组中的 元素进行比较
-            while (0 <= inserIndex && insertValue < arr[inserIndex]) {
-                // 赋值
-                arr[inserIndex + 1] = arr[inserIndex];
-                inserIndex--;
+            while (insertIndex >= 0 && insertValue < arr[insertIndex]) {
+                // 符合 插入值 < 前面的值，就发生替换
+                arr[insertIndex + 1] = arr[insertIndex];
+                insertIndex--;
             }
-
-            arr[inserIndex + 1] = insertValue;
-
+            // 把插入值 赋值给前面的值
+            arr[insertIndex + 1] = insertValue;
 
         }
-*/
+
     }
 }

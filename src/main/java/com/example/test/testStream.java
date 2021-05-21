@@ -408,7 +408,7 @@ public class testStream {
         /* orders.sort((o1, o2)->o1.getAllAmt() == null ? 1 : (o2.getAllAmt() == null ? -1 : o2.getAllAmt().compareTo(o1.getAllAmt())));*/
 
         // 方式2： 降序排列
-        /*orders.sort(Comparator.comparing(Order::getAllAmt, (o1, o2) -> o1 == null ? 1 : (o2 == null ? -1 : o2.compareTo(o1))));*/
+        orders.sort(Comparator.comparing(Order::getAllAmt, (o1, o2) -> o1 == null ? 1 : (o2 == null ? -1 : o2.compareTo(o1))));
 
         //1. -1 或者 1是判定o值为空的时候排在首位还是末位， -1就是首位， 1就是末位
         //2. o1.compareTo(o2) 这就是升序，否则就是降序

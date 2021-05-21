@@ -2,6 +2,9 @@ package com.example.interceptor;
 
 import com.example.domain.User;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,7 +29,15 @@ public class UserInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
         System.out.println("执行到了preHandle方法");
         System.out.println(handler);
-
+        if (!(handler instanceof HandlerMethod)) {
+            return true;
+        }
+        HandlerMethod method = (HandlerMethod) handler;
+        if (!method.getBeanType().isAnnotationPresent(Controller.class) && !method.getBeanType()
+                .isAnnotationPresent(
+                        RestController.class)) {
+            return true;
+        }
         User user = (User) request.getSession().getAttribute("session_user");
         if (user == null) {
             //拦截后 跳转到登录页面
@@ -34,8 +45,12 @@ public class UserInterceptor implements HandlerInterceptor {
             System.out.println("已成功拦截并发生跳转");
             return false;
         }
-        System.out.println("合格不需要拦截，放行");
+
+
+
         return true;
+
+
     }
 
     /**

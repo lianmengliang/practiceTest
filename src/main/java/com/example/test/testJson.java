@@ -1,15 +1,19 @@
 package com.example.test;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.example.domain.IpAddress;
-import com.example.domain.Student;
 import com.example.domain.User;
+import com.example.utils.JsonFormatUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 
 import java.awt.*;
-import java.io.File;
 
 /**
  * @Author ： leo
@@ -56,46 +60,59 @@ public class testJson {
             "    \"url\":\"http://fish-api.4gqp.com/Cpl/reginfoimei\"\n" +
             "}";
 
+    private static final String JSON_NO = "{\"_index\":\"book_shop\",\"_type\":\"it_book\",\"_id\":\"1\",\"_score\":1.0," +
+            "\"_source\":{\"name\": \"Java编程思想（第4版）\",\"author\": \"[美] Bruce Eckel\",\"category\": \"编程语言\"," +
+            "\"price\": 109.0,\"publisher\": \"机械工业出版社\",\"date\": \"2007-06-01\",\"tags\": [ \"Java\", \"编程语言\" ]}}";
+
     /**
      * 主方法
+     *
      * @param args
      */
     public static void main(String[] args) {
 
-        JSONObject jsonObject1 = JSON.parseObject(TEST_STR1);
+       /* JSONObject jsonObject1 = JSON.parseObject(TEST_STR1);
         System.out.println(jsonObject1);
 
         JSONObject jsonObject = JSON.parseObject(TEST_STR);
-        System.out.println(jsonObject);
+        System.out.println(jsonObject);*/
+        /*System.out.println(TEST_STR);*/
+        System.out.println("格式化前：" + JSON_NO);
+        System.out.println("------------------------------------------------------------");
+        JSONObject object = JSONObject.parseObject(JSON_NO);
+        String pretty = jsonStringFormat(object);
+        System.out.println("SerializerFeature格式后：" + pretty);
+        System.out.println("------------------------------------------------------------");
+        String format = toPrettyFormat(JSON_NO);
+        System.out.println("Format:" + format);
+        System.out.println("----------------------------------------------------------------");
+        String s = JsonFormatUtil.formatJson(JSON_NO);
+        System.out.println(s);
+
+        /*User user = new User();
+        user.setId(1);
+        user.setUserName("leo");
+        user.setRealName("MrLian");
+        user.setPassWord("123");
+        System.out.println(user);
+        String s = JSON.toJSONString(user);
+        System.out.println(s);
+        String format1 = jsonStringFormat(JSON.parseObject(s));
+        System.out.println(format1);*/
 
 
-        /*String a = "hello xiqu";
 
-        String jsonDemo = "{\"locationInfo\":[{\"ret\":\"ok\", \"data\":[{\"zip\":\"321000\", \"country\":\"中国\", \"city\":\"金华\", \"zone\":\"0579\", \"district\":\"\", \"isp\":\"移动\", \"region\":\"浙江\"} ], \"ip\":\"112.17.25.148\"} ] }";
-        testJson(jsonDemo);*/
+    }
 
-        /*String json = "" +
-                "\"{\n" +
-                "\t\\\"locationInfo\\\":[\n" +
-                "\t\t{\n" +
-                "\t\t\t\\\"ret\\\":\\\"ok\\\",\n" +
-                "\t\t\t\\\"data\\\":[\n" +
-                "\t\t\t\t{\n" +
-                "\t\t\t\t\t\\\"zip\\\":\\\"321000\\\",\n" +
-                "\t\t\t\t\t\\\"country\\\":\\\"中国\\\",\n" +
-                "\t\t\t\t\t\\\"city\\\":\\\"金华\\\",\n" +
-                "\t\t\t\t\t\\\"zone\\\":\\\"0579\\\",\n" +
-                "\t\t\t\t\t\\\"district\\\":\\\"\\\",\n" +
-                "\t\t\t\t\t\\\"isp\\\":\\\\\"移动\\\",\n" +
-                "\t\t\t\t\t\\\"region\\\":\\\"浙江\\\"\n" +
-                "\t\t\t\t}\n" +
-                "\t\t\t],\n" +
-                "\t\t\t\\\"ip\\\":\\\"112.17.25.148\\\"\n" +
-                "\t\t}\n" +
-                "\t]\n" +
-                "}\"";
-*/
-
+    /**
+     * json字符串格式化输出
+     *
+     * @param object
+     * @return
+     */
+    public static String jsonStringFormat(Object object) {
+        return JSON.toJSONString(object, SerializerFeature.PrettyFormat, SerializerFeature.WriteMapNullValue,
+                SerializerFeature.WriteDateUseDateFormat);
     }
 
     public static void testJson(String json) {
@@ -143,18 +160,26 @@ public class testJson {
 
     }
 
+    /**
+     * 谷歌的插件： json字符串格式化-输出
+     * @param json
+     * @return
+     */
+    private static String toPrettyFormat(String json) {
+        JsonParser jsonParser = new JsonParser();
+        JsonObject jsonObject = jsonParser.parse(json).getAsJsonObject();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return gson.toJson(jsonObject);
+    }
+
+
     public static void getJson() {
 
-
         User user = new User();
-
         user.setId(1);
         user.setPassWord("123");
         user.setRealName("leo");
         user.setUserName("lml");
-
-
-        ObjectMapper objectMapper = new ObjectMapper();
 
 
         Label message = new Label("hello,java");

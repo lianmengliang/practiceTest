@@ -10,7 +10,8 @@ import java.util.Map;
 /**
  * @Author ： Leo
  * @Date : 2021/5/18 14:19
- * @Desc: 选择排序
+ * @Desc: 选择排序：
+ * 简单理解就是：经过嵌套循环，把某个数组中素的最小值一个一个的从前面第一个索引0往后排序
  */
 public class SelectSort {
     public static void main(String[] args) {
@@ -19,7 +20,7 @@ public class SelectSort {
         int[] array1 = RandomGenerationUtil.getArrayByRandom(15);
         int[] array2 = RandomGenerationUtil.getArrayByRandom(5000);
 
-        long start4 = System.currentTimeMillis();
+       /* long start4 = System.currentTimeMillis();
         Arrays.sort(array2);
         long end4 = System.currentTimeMillis();
         System.out.println("Arrays工具类排序运行的时间为：" + (end4 - start4) + "ms");
@@ -36,19 +37,15 @@ public class SelectSort {
         sortByFlag(array1);
         long end1 = System.currentTimeMillis();
         System.out.println(Arrays.toString(array1));
-        System.out.println("for循环byflag排序运行的时间为："+(end1-start1)+"ms");
-        System.out.println("----------------------------------");
+        System.out.println("for循环byflag排序运行的时间为：" + (end1 - start1) + "ms");
+        System.out.println("----------------------------------");*/
 
-       /* // 测试
+        // 测试
         System.out.println("测试前：" + Arrays.toString(array1));
         test(array1);
         System.out.println("排序后：" + Arrays.toString(array1));
-*/
 
-        Map<Integer, String> map = new HashMap<>();
-        map.isEmpty();
 
-//        map.put()
     }
 
 
@@ -158,8 +155,7 @@ public class SelectSort {
         }
 
 
-
-}
+    }
 
 
     /**
@@ -171,7 +167,7 @@ public class SelectSort {
      */
     public static void test(int[] arr) {
 
-        for (int i = 0; i < arr.length - 1; i++) {
+        /*for (int i = 0; i < arr.length - 1; i++) {
             int min = arr[i];
             int minIndex = i;
 
@@ -187,7 +183,28 @@ public class SelectSort {
                 arr[minIndex] = arr[i];
                 arr[i] = min;
             }
+        }*/
+
+        for (int i = 0; i < arr.length - 1; i++) {
+            // 设置交换值
+            int min = arr[i];
+            int minIndex = i;
+
+            //从i+1索引开始循环,筛选出最小值，用于下面和min替换
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < min){
+                    minIndex = j;
+                    min = arr[j];
+                }
+            }
+            if (minIndex != i){
+                arr[minIndex] = arr[i];
+                arr[i] = min;
+            }
+
+
         }
+
 
     }
 }

@@ -155,6 +155,12 @@
             <artifactId>hutool-all</artifactId>
             <version>5.6.1</version>
         </dependency>
+        <!--谷歌的插件：用于json格式化-->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.2.4</version>
+        </dependency>
     </dependencies>
 
     <build>

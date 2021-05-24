@@ -10,6 +10,8 @@ import java.util.Arrays;
  * @Desc: 希尔排序
  */
 public class ShellSort {
+
+
     public static void main(String[] args) {
 
         int[] arr = {8, 9, 1, 7, 2, 3, 5, 4, 6, 0, 8, 9, 1, 7, 2, 3, 5, 4, 6, 0, 8, 9, 1, 7, 2, 3, 5, 4, 6, 0};
@@ -78,7 +80,7 @@ public class ShellSort {
      * <p>
      * 对交换式的希尔排序进行优化->移位法
      * // 使用逐步推导的方式来编写希尔排序
-     * // 希尔排序时， 对有序序列在插入时采用插入法,
+     * // 希尔排序时， 对有序 序列在插入时采用插入法,
      * // 思路(算法) ===> 代码
      *
      * @param arr
@@ -175,22 +177,26 @@ public class ShellSort {
             }
         }*/
 
-        //循环分组
+        // 增量gap，并逐步的缩小增量
         for (int gap = arr.length / NUM; gap > 0; gap /= NUM) {
-            // 从第gap元素，逐个对某所在组进行直接插入排序
+            //
             for (int i = gap; i < arr.length; i++) {
                 int j = i;
                 int temp = arr[j];
                 if (arr[j] < arr[j - gap]) {
-                    while (j - gap >= 0 && temp <arr[j - gap]) {
+                    while (j - gap >= 0 && temp < arr[j - gap]) {
+                        // 交换
                         arr[j] = arr[j - gap];
                         j -= gap;
                     }
-
+                    arr[j] = temp;
                 }
-                arr[j] = temp;
             }
+
+
         }
+
+
     }
 
 }

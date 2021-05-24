@@ -1,6 +1,8 @@
 package com.example.test;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
@@ -14,6 +16,9 @@ import java.util.Map;
  * @Date :2020/2/27 18:38
  */
 public class testString {
+    private static final String JSON_NO = "{\"_index\":\"book_shop\",\"_type\":\"it_book\",\"_id\":\"1\",\"_score\":1.0," +
+            "\"_source\":{\"name\": \"Java编程思想（第4版）\",\"author\": \"[美] Bruce Eckel\",\"category\": \"编程语言\"," +
+            "\"price\": 109.0,\"publisher\": \"机械工业出版社\",\"date\": \"2007-06-01\",\"tags\": [ \"Java\", \"编程语言\" ]}}";
 
     public static void getString() {
 
@@ -237,7 +242,16 @@ public class testString {
      */
     public static void main(String[] args) {
 //        testString001();
-        getSplitResult();
+//        getSplitResult();
+
+
+        System.out.println("格式化前：" + JSON_NO);
+        System.out.println("------------------------------------------------------------");
+
+        String pretty = JSON.toJSONString(JSON_NO, SerializerFeature.PrettyFormat, SerializerFeature.WriteMapNullValue,
+                SerializerFeature.WriteDateUseDateFormat);
+        System.out.println(pretty);
+        System.out.println("------------------------------------------------------------");
     }
 
 }

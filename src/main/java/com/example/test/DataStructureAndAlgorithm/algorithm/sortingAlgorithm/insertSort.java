@@ -9,6 +9,8 @@ import java.util.Arrays;
  * @Author ： Leo
  * @Date : 2021/5/18 16:16
  * @Desc: 插入排序
+ *
+ * 简单理解就是：经过嵌套循环，判断，交换，循环
  */
 public class insertSort {
     public static void main(String[] args) {
@@ -107,11 +109,9 @@ public class insertSort {
      */
     public static void test(int[] arr) {
 
-        for (int i = 0; i < arr.length - 1; i++) {
-
+       /* for (int i = 0; i < arr.length - 1; i++) {
             int insertValue = arr[i + 1];
             int insertIndex = i;
-
             while (insertIndex >= 0 && insertValue < arr[insertIndex]) {
                 // 符合 插入值 < 前面的值，就发生替换
                 arr[insertIndex + 1] = arr[insertIndex];
@@ -119,6 +119,18 @@ public class insertSort {
             }
             // 把插入值 赋值给前面的值
             arr[insertIndex + 1] = insertValue;
+        }*/
+
+        for (int i = 0; i < arr.length - 1; i++) {
+            // 设置插入值
+            int insertValue = arr[i + 1];
+            int insertIndex = i;
+            // 若插入值小于前面索引所代表的值，就发生交换
+            while(insertIndex>=0 && insertValue < arr[insertIndex]){
+                arr[insertIndex + 1] = arr[insertIndex];
+                insertIndex--;
+            }
+            arr[insertIndex+1] = insertValue;
 
         }
 

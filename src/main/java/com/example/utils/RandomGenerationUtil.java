@@ -17,7 +17,7 @@ public class RandomGenerationUtil {
         int[] arr = new int[length];
 
         for (int i = 0; i < length; i++) {
-            arr[i] = (int) (Math.random() * 10000);
+            arr[i] = (int) (Math.random() * 100000);
         }
         return arr;
     }

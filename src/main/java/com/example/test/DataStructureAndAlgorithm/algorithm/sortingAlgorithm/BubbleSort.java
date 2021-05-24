@@ -12,12 +12,16 @@ import java.util.Arrays;
  * （1）一共进行 数组的大小-1 次 大的循环
  * (2)每一趟排序的次数在逐渐的减少
  * (3) 如果我们发现在某趟排序中，没有发生一次交换， 可以提前结束冒泡排序。这个就是优化
- *
- *
+ * <p>
+ * <p>
  * 通过测试
  * 1.for循环比while循环速度更快，用时更短
  * 2.优化后冒泡排序 运行时间根据数组中的交换次数而定，有可能更少，有可能更多
  * 3.使用Arrays工具类排序用时最短（且数组的的长度越长，优势越明显）
+ *
+ *
+ *
+ * 简单理解就是：经过嵌套循环，把某个数组中素的最大值一个一个的从后面最后一个索引(arr.length-1)往前排序
  */
 public class BubbleSort {
     public static void main(String[] args) {
@@ -51,7 +55,7 @@ public class BubbleSort {
         long start = System.currentTimeMillis();
         bubbleSort(random1);
         long end = System.currentTimeMillis();
-        System.out.println("冒泡排序运行的时间为："+(end-start)+"ms");
+        System.out.println("冒泡排序运行的时间为：" + (end - start) + "ms");
 
         System.out.println("----------------------------------");
 
@@ -78,9 +82,9 @@ public class BubbleSort {
 */
 
         // 测试
-        System.out.println("测试前"+Arrays.toString(random5));
+        System.out.println("测试前" + Arrays.toString(random5));
         test(random5);
-        System.out.println("排序后"+Arrays.toString(random5));
+        System.out.println("排序后" + Arrays.toString(random5));
 
 
     }
@@ -89,6 +93,7 @@ public class BubbleSort {
      * 冒泡排序
      * 外for循环决定 几轮内部循环比较替换
      * 内for循环决定比较替换
+     *
      * @param arr
      */
     public static void bubbleSort(int[] arr) {
@@ -126,6 +131,7 @@ public class BubbleSort {
         }*/
 
     }
+
     /**
      * 冒泡排序 (while循环)
      *
@@ -152,6 +158,7 @@ public class BubbleSort {
         }
 
     }
+
     /**
      * 冒泡排序 (优化代码：如果哪一次没有进行交换)
      * 使用flag 参数判断
@@ -187,7 +194,8 @@ public class BubbleSort {
             }
         }
     }
- /**
+
+    /**
      * 冒泡排序 (优化代码：如果哪一次没有进行交换)
      * 使用flag 参数判断
      *
@@ -227,12 +235,13 @@ public class BubbleSort {
 
 
     /**
-     *      * 用于练习排序
+     * * 用于练习排序 :冒泡排序
+     *
      * @param arr
      */
-    public static void test(int[] arr){
+    public static void test(int[] arr) {
 
-        // 设置一个中专值
+       /* // 设置一个中专值
         int temp = 0;
 
         // 外部for循环，几轮比较
@@ -247,18 +256,18 @@ public class BubbleSort {
                 }
 
             }
+        }*/
+
+        int temp = 0;
+        for (int i = 1; i < arr.length; i++) {
+            for (int j = 0; j < arr.length - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
         }
-
-
-
-
-
-
-
-
-
-
-
 
 
     }

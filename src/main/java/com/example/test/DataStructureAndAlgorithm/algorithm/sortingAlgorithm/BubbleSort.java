@@ -21,7 +21,8 @@ import java.util.Arrays;
  *
  *
  *
- * 简单理解就是：经过嵌套循环，把某个数组中素的最大值一个一个的从后面最后一个索引(arr.length-1)往前排序
+ * 简单理解就是：
+ *  经过嵌套循环，把某个数组中素的最大值一个一个的从后面最后一个索引(arr.length-1)往前排序
  */
 public class BubbleSort {
     public static void main(String[] args) {

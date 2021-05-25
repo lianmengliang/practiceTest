@@ -11,7 +11,9 @@ import java.util.Map;
  * @Author ： Leo
  * @Date : 2021/5/18 14:19
  * @Desc: 选择排序：
- * 简单理解就是：经过嵌套循环，把某个数组中素的最小值一个一个的从前面第一个索引0往后排序
+ *
+ * 简单理解就是：
+ *  经过嵌套循环，把某个数组中素的最小值一个一个的从前面第一个索引0往后排序
  */
 public class SelectSort {
     public static void main(String[] args) {

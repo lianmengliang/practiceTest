@@ -11,13 +11,14 @@ import java.util.Random;
  */
 public class GenerateNameUtil {
     //常见单姓
-    private static String[] Surname = {"赵", "钱", "孙", "李", "周", "吴", "郑", "王", "冯", "陈", "褚", "卫", "蒋", "沈", "韩", "杨", "朱", "秦", "尤", "许",
+    private static String[] Surname = {"连", "宇文", "司徒","司空"};
+    /*private static String[] Surname = {"赵", "钱", "孙", "李", "周", "吴", "郑", "王", "冯", "陈", "褚", "卫", "蒋", "沈", "韩", "杨", "朱", "秦", "尤", "许",
             "何", "吕", "施", "张", "孔", "曹", "严", "华", "金", "魏", "陶", "姜", "戚", "谢", "邹", "喻", "柏", "水", "窦", "章", "云", "苏", "潘", "葛", "奚", "范", "彭", "郎",
             "鲁", "韦", "昌", "马", "苗", "凤", "花", "方", "俞", "任", "袁", "柳", "酆", "鲍", "史", "唐", "费", "廉", "岑", "薛", "雷", "贺", "倪", "汤", "滕", "殷",
             "罗", "毕", "郝", "邬", "安", "常", "乐", "于", "时", "傅", "皮", "卞", "齐", "康", "伍", "余", "元", "卜", "顾", "孟", "平", "黄", "和",
             "穆", "萧", "尹", "姚", "邵", "湛", "汪", "祁", "毛", "禹", "狄", "米", "贝", "明", "臧", "计", "伏", "成", "戴", "谈", "宋", "茅", "庞", "熊", "纪", "舒",
             "屈", "项", "祝", "董", "梁", "杜", "阮", "蓝", "闵", "席", "季", "连","欧阳", "端木", "上官", "司马", "东方", "独孤", "南宫","诸葛","公羊", "公孙", "慕容", "宇文", "司徒","司空"};
-    // 几乎所有复姓
+    */// 几乎所有复姓
     private static String[] COMPOUD_SURNAME ={"太史", "欧阳", "端木", "上官", "司马", "东方", "独孤", "南宫", "万俟", "闻人", "夏侯",
                 "诸葛", "尉迟", "公羊", "赫连", "澹台", "皇甫", "宗政", "濮阳", "公冶", "太叔", "申屠", "公孙", "慕容", "仲孙", "钟离",
                 "长孙", "宇文", "司徒", "鲜于", "司空", "闾丘", "子车", "亓官", "司寇", "巫马", "公西", "颛孙", "壤驷", "公良", "漆雕",
@@ -30,6 +31,7 @@ public class GenerateNameUtil {
 
     //常见男性名字
     private static String boy = "伟刚勇毅俊峰强军平保东文辉力明永健世广志义兴良海山仁波宁贵福生龙元全国胜学祥才发武新利清飞彬富顺信子杰涛昌成康星光天达安岩中茂进林有坚和彪博诚先敬震振壮会思群豪心邦承乐绍功松善厚庆磊民友裕河哲江超浩亮政谦亨奇固之轮翰朗伯宏言若鸣朋斌梁栋维启克伦翔旭鹏泽晨辰士以建家致树炎德行时泰盛雄琛钧冠策腾楠榕风航弘";
+    private static String LIAN = "连";
 
     private static Random random = new Random();
     /**
@@ -122,17 +124,18 @@ public class GenerateNameUtil {
      * @return
      */
     public static String getSurname(){
-        int index = random.nextInt(Surname.length - 1);
-        //获得一个随机的姓氏
-        String surname = Surname[index];
-        return surname ;
+//        int index = random.nextInt(Surname.length - 1);
+//        //获得一个随机的姓氏
+//        String surname = Surname[index];
+        return "连" ;
     }
 
     public static String getCompoundSurname(){
-        int index = random.nextInt(USUAL_COMPOUND_SURNAME.length - 1);
+        /*int index = random.nextInt(USUAL_COMPOUND_SURNAME.length - 1);
         //获得一个随机的姓氏
         String surname = USUAL_COMPOUND_SURNAME[index];
-        return surname ;
+        return surname ;*/
+        return LIAN;
     }
 
     public static void main(String[] args) {

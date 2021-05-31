@@ -31,7 +31,7 @@ import java.util.regex.Pattern;
  * 符号：\\D -->匹配单个非数字字符，相当于[^0-9]
  * 示例：\\d{3}(\\d)  ---> 123, 9876 ,a21b
  * 说明：包含3个或4个数字的字符串
- * 符号：\\w -->匹配单个数字，大小写字母字符，相当于[0-9a-zA-Z]
+ * 符号：\\w -->匹配单个数字，大小写字母字符和下划线_，相当于[0-9a-zA-Z_]
  * <p>
  * 符号：\\W -->匹配单个非数字，大小写字母字符，相当于[^0-9a-zA-Z] (相当于匹配特殊符号)
  * <p>
@@ -47,7 +47,7 @@ import java.util.regex.Pattern;
 public class RegExp01 {
     public static void main(String[] args) {
 
-        test001();
+        test002();
 
     }
 
@@ -210,6 +210,63 @@ public class RegExp01 {
             System.out.println("不满足格式：false");
         }
         System.out.println("-------------------------------------------------------");
+    }
+
+    /**
+     *
+     */
+    public static void test002() {
+
+        String con = "hop@souhu.com";
+        String reg = "^[\\w]+@([a-zA-Z]+\\.)+[a-zA-Z]+$";
+
+        con = "lian@shen.liang.com";
+
+        // 匹配163邮箱或者qq邮箱    18238691710@163.com   17123700499@qq.com
+        reg = "^\\d+@[a-zA-Z0-9]+\\.[a-z]+$";
+        con = "18238691710@163.com";
+
+
+        // 要求验证是不是整数或者小数
+        // 提示：这个题要考虑正数和负数 如： 123，-123，0.9，34.23 ,-2.4
+        // 思路分析： 1.先写简单的正则表达式  2.再逐步完善【根据各种情况修改完善】
+
+        con = "-0.1230";
+        reg = "^[-+]?([1-9]\\d*|0)(\\.\\d+)?$";
+
+
+        if (con.matches(reg)) {
+            System.out.println("匹配成功");
+        } else {
+            System.out.println("匹配失败");
+        }
+        /**
+         * 对一个url进行解析： 如：https://www.sohu.com:8080/abc/index.html
+         * a)要求得到的协议是什么？  http
+         * b)域名？  www.sohu.com
+         * c)端口？  8080
+         * d)文件名？ index.html
+         */
+        con = "https://www.sohu.com:8080/abc/index.html";
+//        reg = "^([a-zA-Z]+)://([a-zA-Z.]+):(\\d+)[\\w-/]*/([\\w.]+)$";
+        reg = "^([a-z]+)://([a-z.]+):(\\d+)/[\\w/]+/([\\w.]+)$";
+
+        Pattern compile = Pattern.compile(reg);
+        Matcher matcher = compile.matcher(con);
+
+        if (matcher.matches()){
+            System.out.println("匹配成功");
+            System.out.println("匹配内容："+matcher.group(0));
+            System.out.println("协议："+matcher.group(1));
+            System.out.println("域名："+matcher.group(2));
+            System.out.println("端口："+matcher.group(3));
+            System.out.println("文件名："+matcher.group(4));
+        }else{
+            System.out.println("匹配失败");
+
+        }
+
+
     }
 
 }

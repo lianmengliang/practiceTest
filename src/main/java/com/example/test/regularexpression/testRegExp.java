@@ -1,4 +1,4 @@
-package com.example.test.RegExpre;
+package com.example.test.regularexpression;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -154,7 +154,7 @@ public class testRegExp {
 
     // ^((http|https)://)([\\w-]+\\.)+
 
-    private String regString6 = "^((http|https)://)([\\w-]+\\.)+[\\w-]+(\\/[\\w-?=&/%.#]*)?$";
+    private String regString6 = "^((http|https)://)([\\w_]+\\.)+[\\w_]+(\\/[\\w-?=&/%.#]*)?$";
 
 
 }

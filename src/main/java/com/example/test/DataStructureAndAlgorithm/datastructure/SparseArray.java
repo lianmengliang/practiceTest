@@ -6,6 +6,8 @@ import java.io.*;
  * @Author ： Leo
  * @Date : 2021/4/25 12:14
  * @Desc: 原始复杂数组 转化为 稀疏数组 ，然后存储到本地，最后再从本地中读取，恢复到原数组
+ *
+ * 原始复杂数组 --> 稀疏数组
  */
 public class SparseArray {
     public static void main(String[] args) throws IOException {

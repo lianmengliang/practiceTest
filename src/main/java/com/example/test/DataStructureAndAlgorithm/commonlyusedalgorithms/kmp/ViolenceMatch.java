@@ -24,8 +24,6 @@ public class ViolenceMatch {
         System.out.println(i);*/
 
 
-
-
             String str1 = "BBC ABCDAB ABCDABCDABDE";
             String str2 = "ABCDABD";
             // String str2 = "BBC";A

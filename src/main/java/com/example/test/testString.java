@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @Author ： leo
@@ -173,7 +175,6 @@ public class testString {
     }
 
 
-
     /**
      * 工具类
      * 去除小数的百分号，然后再判断小数个数是否符合标准
@@ -210,14 +211,13 @@ public class testString {
         //先将两个字符串 转换未char数组
         char[] charArray1 = str1.toCharArray();
 
-        Map<Integer,String> map = new HashMap<>();
+        Map<Integer, String> map = new HashMap<>();
 
         for (int i = 0; i < charArray1.length; i++) {
-            map.put(i,String.valueOf(charArray1[i]));
+            map.put(i, String.valueOf(charArray1[i]));
         }
 
         char[] charArray2 = str2.toCharArray();
-
 
 
         //maxLength是出现最大的公共子串长度
@@ -226,7 +226,7 @@ public class testString {
     }
 
 
-    public static void getSplitResult(){
+    public static void getSplitResult() {
 
 
         String str = "爱奇艺游戏-8期";
@@ -238,6 +238,7 @@ public class testString {
 
     /**
      * 主方法
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -245,13 +246,102 @@ public class testString {
 //        getSplitResult();
 
 
-        System.out.println("格式化前：" + JSON_NO);
+        /*System.out.println("格式化前：" + JSON_NO);
         System.out.println("------------------------------------------------------------");
 
         String pretty = JSON.toJSONString(JSON_NO, SerializerFeature.PrettyFormat, SerializerFeature.WriteMapNullValue,
                 SerializerFeature.WriteDateUseDateFormat);
         System.out.println(pretty);
-        System.out.println("------------------------------------------------------------");
+        System.out.println("--------------------------------------------------------");*/
+
+        String str1 = "深圳鲸旗-御剑九州3期";
+        String str2 = "唐人捕鱼20期";
+        String str3 = "3j3游戏中心15期";
+        String str4 = "深圳3鲸旗";
+        String str5 = "深圳我";
+        String str6 = "6677李逵捕鱼";
+
+        /*System.out.println(isNumeric(str2));
+        System.out.println(isNumeric(str3));
+        System.out.println(isNumeric(str4));
+        System.out.println(isNumeric("123123"));*/
+
+
+        /*System.out.println(str3.substring(0, 3));
+        System.out.println(str3.substring(3));*/
+
+        System.out.println(splitStr(str1));
+        System.out.println(splitStr(str2));
+        System.out.println(splitStr(str3));
+        System.out.println(splitStr(str4));
+        System.out.println(splitStr(str5));
+        System.out.println(splitStr(str6));
+
     }
+
+    /**
+     * 深圳鲸旗-御剑九州3期 --> 深圳鲸旗  代码：this.name = str.split('-')[0]
+     * 唐人捕鱼20期		 --> 唐人捕鱼		 this.name = str.split("\\d)
+     * 3j3游戏中心15期		 --> 3j3游戏中心
+     * <p>
+     * 思路分析：
+     * 1.首先根据“-”切割字符串，获取索引为 0 的部分 str1
+     * 2. 判断str1是否含有数字，
+     * 不含有：直接返回
+     * 含有： 前三个字符可以含有数字，所以先分割出前三个字符，然后再以数字分割，取索引0 再与前面三个字符拼接
+     *
+     * @param str
+     * @return
+     */
+    public static String splitStr(String str) {
+        String s = str.split("-")[0];
+        // 判断是否含有数字
+        if (HasDigit(s)) {
+            // 获取前三个字符
+            String result = s.substring(0, 3);
+            String s1 = s.substring(3);
+            if (!StringUtils.isEmpty(s1)) {
+                result = result + s1.split("\\d")[0];
+            }
+            return result;
+        } else {
+            return s;
+        }
+
+
+    }
+
+    //用正则表达式
+
+    /**
+     * 判断一个字符串是否都为 数字
+     *
+     * @param str
+     * @return
+     */
+    public static boolean isNumeric(String str) {
+        Pattern pattern = Pattern.compile(INALLCLUDENUM);
+        return pattern.matcher(str).matches();
+    }
+
+
+    /**
+     * // 判断一个字符串是否含有数字
+     *
+     * @param content
+     * @return
+     */
+    public static boolean HasDigit(String content) {
+        boolean flag = false;
+        Pattern p = Pattern.compile(INCLUDENUM);
+        Matcher m = p.matcher(content);
+        if (m.matches()) {
+            flag = true;
+        }
+        return flag;
+    }
+    private final static String INCLUDENUM = ".*\\d+.*";
+
+    private final static String INALLCLUDENUM = "[0-9]*";
 
 }

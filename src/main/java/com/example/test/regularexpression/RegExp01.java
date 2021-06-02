@@ -1,5 +1,7 @@
 package com.example.test.regularexpression;
 
+import jdk.nashorn.internal.runtime.regexp.joni.Regex;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,7 +49,7 @@ import java.util.regex.Pattern;
 public class RegExp01 {
     public static void main(String[] args) {
 
-        test002();
+        test003();
 
     }
 
@@ -97,7 +99,7 @@ public class RegExp01 {
 
         // 命名分组 （<?name> patttren）
         regStr = "(?<g1>\\d\\d)(?<g2>\\d\\d)(\\d)";
-        patternGroup(content, regStr);
+        //patternGroup(content, regStr);
 
         //特别分组：非捕获分组
         // (?:pattren), 细节： 这里面的括号不是分组，不能mather.group(1);
@@ -154,8 +156,78 @@ public class RegExp01 {
 
         //"0?1\\d{10}";
         content = "https://www.bilibili.com/video/BV1qq4y1E7tp?spm_id_from=333.851.b_7265636f6d6d656e64.1";
-        regStr = "^((http|https)://)([\\w_]+\\.)+[\\w_]+(\\/[\\w-?=&/%.#]*)?$";
+        regStr = "^((http|https)://)([\\w]+\\.)+[\\w-]+(\\/[\\w-?=&/%.#]*)?$";
+//        regStr = "^(https|http)://([\\w]+\\.)+[\\w-]+(\\/[\\w-?=&/%.#]*)?$";
+        /**
+         * 思路分析：
+         * 1.先确定url的开始部分 http|https ://
+         */
         patternBoolean(content, regStr);
+
+
+        content = "92814,9101,8689,8431,8164,7975,7832,7625,7441,8906";
+        content = "92842";
+        // 需要考虑的情况是： 假如只有一个广告id  8721,  或者最后一个广告id 3892
+        regStr = "^([1-9]\\d{3,4},)*([1-9]\\d{3,4})$";
+        /*boolean matches = content.matches(regStr);
+        System.out.println(matches);*/
+        patternBoolean(content, regStr);
+
+        Pattern.matches(regStr, content);
+        content.matches(regStr);
+
+        // 分组： 有几对小括号就有几个分组，分组用matcher.group(0)获得
+        content = "126668882121299jkl";
+        regStr = "((\\d{2})(\\d{3}))(\\d)";
+
+        patternGroup(content, regStr);
+        /**
+         *
+         * strA.contains(strB)
+         * strA.indexOf(strB)
+         * strA.matches(strB)
+         * 测试结果发现，
+         * 1.如果strA中不包括strB，使用strA.Contains(strB)更优；
+         * 2.反之，如果strA中包括strB，使用strA.IndexOf(strB)更优。
+         * 3.(Regex.Match在此方法中貌似没有体现出任何优势，它更适用于模糊匹配)
+         */
+
+        /*content = "hello2131321hello333332";
+        regStr = "hello";
+        String leo = content.replaceAll(regStr, "Leo");
+        System.out.println(leo);*/
+
+        // 反向引用：内部反向引用\\分组号，外部反向引用$分组号
+        content = "21334488480660";
+        // 匹配2个连续相同的数字  (\\d)\\1
+        regStr = "(\\d)\\1";
+        pattern(content, regStr);
+        // 匹配5个连续相同的数字  (\\d)\\1{4}
+        regStr = "(\\d)\\1{4}";
+        pattern(content, regStr);
+        // 匹配个位与千位，十位与百位相同的数字 (\\d)(\\d)\\2\\1
+        regStr = "(\\d)(\\d)\\2\\1";
+        pattern(content, regStr);
+
+        /**
+         * 请在字符串中检索商品编号，形式如：12321-333666888这样的号码
+         * 要求满足前面是一个五位数，然后一个 - 特殊符号，后面是一个9位数，连续三位要相同
+         */
+        content = "45682-222666888";
+//        regStr = "\\d{5}-(\\d)\\1{2}(\\d)\\2{2}(\\d)\\3{2}";
+        regStr = "(\\d){5}-(\\d)\\2{2}(\\d)\\3{2}(\\d)\\4{2}";
+        pattern(content, regStr);
+
+        // 我...我我....要要要学...编编编程...java  -->我要学编程java
+        // 1.去掉...
+        content = "我...我我....要要要学学学...编程...java";
+        regStr = "\\.";
+        content = content.replaceAll(regStr, "");  // 我我我要要要学学学编程java
+        System.out.println(content);
+        // 2.找到重复的   (.)\\1
+        regStr = "(.)\\1+";
+        pattern(content, regStr);
+
 
     }
 
@@ -192,10 +264,14 @@ public class RegExp01 {
         while (matcher.find()) {
             System.out.println("找到：" + matcher.group(0));
             System.out.println("找到：" + matcher.group(1));
-            System.out.println("第一个分组：" + matcher.group("g1"));
+//            System.out.println("第一个分组：" + matcher.group("g1"));
             System.out.println("找到：" + matcher.group(2));
-            System.out.println("第二个分组：" + matcher.group("g2"));
+//            System.out.println("第二个分组：" + matcher.group("g2"));
             System.out.println("找到：" + matcher.group(3));
+            System.out.println("找到：" + matcher.group(4));
+//            System.out.println("找到：" + matcher.group(5));
+            System.out.println("++++++++++++++++++++++++++");
+            System.out.println(matcher.start() + "--->" + matcher.end() + "=" + content.substring(matcher.start(), matcher.end()));
         }
         System.out.println("-------------------------------------------------------");
     }
@@ -254,18 +330,45 @@ public class RegExp01 {
         Pattern compile = Pattern.compile(reg);
         Matcher matcher = compile.matcher(con);
 
-        if (matcher.matches()){
+        if (matcher.matches()) {
             System.out.println("匹配成功");
-            System.out.println("匹配内容："+matcher.group(0));
-            System.out.println("协议："+matcher.group(1));
-            System.out.println("域名："+matcher.group(2));
-            System.out.println("端口："+matcher.group(3));
-            System.out.println("文件名："+matcher.group(4));
-        }else{
+            System.out.println("匹配内容：" + matcher.group(0));
+            System.out.println("协议：" + matcher.group(1));
+            System.out.println("域名：" + matcher.group(2));
+            System.out.println("端口：" + matcher.group(3));
+            System.out.println("文件名：" + matcher.group(4));
+        } else {
             System.out.println("匹配失败");
 
         }
 
+
+    }
+
+    public static void test003() {
+        // 我...我我....要要要学...编编编程...java  -->我要学编程java
+        // 1.去掉...
+        content = "我...我我....要要要学学学...编程...java";
+        content = content.replaceAll("\\.","");  // 我我我要要要学学学编程java
+        System.out.println(content);
+        // 2.找到重复的   (.)\\1
+        regStr = "(.)\\1+";
+        Pattern pattern = Pattern.compile(regStr);
+        Matcher matcher = pattern.matcher(content);
+        content = matcher.replaceAll("$1");
+//        content = Pattern.compile("(.)\\1+").matcher(content).replaceAll("$1");
+        System.out.println(content);
+
+        // 总结一句话
+      /*  content = "我...我我....要要要学学学...编程...java";
+        Pattern pattern = Pattern.compile("\\.");
+        Matcher matcher = pattern.matcher(content);
+        content = matcher.replaceAll("");
+        System.out.println("content=" + content);
+       *//* pattern = Pattern.compile("(.)\\1+");
+        matcher = pattern.matcher(content);
+        content = matcher.replaceAll("$1");*//*
+        content = Pattern.compile("(.)\\1+").matcher(content).replaceAll("$1");*/
 
     }
 

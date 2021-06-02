@@ -31,8 +31,10 @@ public class UnicodeUtil {
 
     }
 
+    private static final String UNICODE_PATTERN ="(\\\\u(\\p{XDigit}{4}))";
+//    private static final Pattern pattern = Pattern.compile("(\\\\u(\\p{XDigit}{4}))");
 
-    private static final Pattern pattern = Pattern.compile("(\\\\u(\\p{XDigit}{4}))");
+    String regStr = "(\\\\u(\\p{XDigit}{4}))";
 
     /**
      * Unicode转 汉字字符串
@@ -42,6 +44,7 @@ public class UnicodeUtil {
      * @return
      */
     public static String unicodeToCN(String str) {
+        Pattern pattern = Pattern.compile(UNICODE_PATTERN);
         Matcher matcher = pattern.matcher(str);
         char ch;
         while (matcher.find()) {

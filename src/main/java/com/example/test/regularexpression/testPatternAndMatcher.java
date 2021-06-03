@@ -29,14 +29,13 @@ public class testPatternAndMatcher {
     /*匹配单词**/
     private static final Pattern Pattern_LETTER = Pattern.compile("[a-zA-Z]+");
     /*匹配数字**/
-    private static final Pattern Pattern_NUMBER = Pattern.compile("[0-9]+");
+    private static final Pattern Pattern_NUMBER = Pattern.compile("\\d+");
     /*匹配单词和数字**/
-    private static final Pattern Pattern_LETTER_AND_NUMBER = Pattern.compile("[a-zA-Z]+|[0-9]+");
+    private static final Pattern Pattern_LETTER_AND_NUMBER = Pattern.compile("[a-zA-Z]+|\\d+");
 
     /* private static final Pattern Pattern_TITLE = Pattern.compile("<a target=\"_blank\" title=\"(\\S*)\"");*/
     /*匹配ip地址**/
-    private static final Pattern Pattern_IP = Pattern.compile("\\d+\\.\\d+\\.\\d+");
-    Pattern pattern = Pattern.compile("(\\\\u(\\p{XDigit}{4}))");
+//    private static final Pattern Pattern_IP = Pattern.compile("\\d+\\.\\d+\\.\\d+");
 
     /**
      * 正则表达式的使用
@@ -45,11 +44,10 @@ public class testPatternAndMatcher {
      */
     public static void test(String str) {
         // 一、提取文章中所有的英文单词
-
-//        private final static String INALLCLUDENUM = "[0-9]*";
+        //   private final static String INALLCLUDENUM = "[0-9]*";
         // 1)创建一个Pattern对象
         // 2)创建一个匹配对象
-        Matcher matcher = Pattern_IP.matcher(str);
+        Matcher matcher = Pattern_LETTER_AND_NUMBER.matcher(str);
         // 3)可以循环匹配
         int num = 0;
         while (matcher.find()) {

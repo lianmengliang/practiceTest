@@ -7,12 +7,13 @@ import java.util.regex.Pattern;
  * @Author ： Leo
  * @Date : 2021/5/28 15:49
  * @Desc: 正则表达式 的操作
- *
+ * <p>
  * 正则表达式的原理
- * */
+ */
 public class RegTheory {
     public static void main(String[] args) {
-        test(CONTENT);
+//        test(CONTENT);
+        test001();
     }
 
 
@@ -30,17 +31,58 @@ public class RegTheory {
      * @param str
      */
     public static void test(String str) {
-      //1.
-        String regStr="\\d\\d\\d\\d";
-        String regStr1="\\d\\d\\d\\d";
+        //1.
+        String regStr = "\\d\\d\\d\\d";
+        String regStr1 = "\\d\\d\\d\\d";
         Pattern pattern = Pattern.compile(regStr1);
 
         Matcher matcher = pattern.matcher(CONTENT);
-        while (matcher.find()){
-            System.out.println("找到："+matcher.group(0));
+        while (matcher.find()) {
+            System.out.println("找到：" + matcher.group(0));
            /* System.out.println("第1组："+matcher.group(1));
             System.out.println("第2组："+matcher.group(2));
             System.out.println("第3组："+matcher.group(3));*/
+        }
+    }
+
+
+    /**
+     * 测试
+     */
+    public static void test001() {
+        /**
+         * 示例：
+         * <a href="https://sh.house.163.com">上海房产</a>
+         * <a href="http://news.163.com/photo">图片</a>
+         * <a href="https://reg.163.com/" class="ntes-nav-login-title" id="js_N_nav_login_title">登录</a>
+         * <a href="https://vip.open.163.com/#ftopnav5"> <span>付费精品课程</span>   </a>
+         * <a href="https://you.163.com/item/recommend?from=out_ynzy_xinrukou_5"> <span>人气好物</span>
+         * <a href="https://mail.163.com/dashi/dlpro.html?from=mail46"> <span>客户端下载</span> </a>
+         */
+
+        String content = " <a href=\"https://sh.house.163.com\">上海房产</a>\n" +
+                "         * <a href=\"http://news.163.com/photo\">图片</a>\n" +
+                "         * <a href=\"https://reg.163.com/\" class=\"ntes-nav-login-title\" id=\"js_N_nav_login_title\">登录</a>\n" +
+                "         * <a href=\"https://vip.open.163.com/#ftopnav5\"> <span>付费精品课程</span>   </a>\n" +
+                "         * <a href=\"https://you.163.com/item/recommend?from=out_ynzy_xinrukou_5\"> <span>人气好物</span>\n" +
+                "         <a href=\"https://mail.163.com/dashi/dlpro.html?from=mail46\"> <span>客户端下载</span> </a>";
+        String regStr = "<a[\\w\\s\\S]+?</a>";
+
+
+       /* content = " * <a href=\"https://sh.house.163.com\">上海房产</a>\n" +
+                "         * <a href=\"http://news.163.com/photo\">图片</a>\n" +
+                "         * <a href=\"https://reg.163.com/\" class=\"ntes-nav-login-title\" id=\"js_N_nav_login_title\">登录</a>\n" +
+                "         * <a href=\"https://vip.open.163.com/#ftopnav5\"> <span>付费精品课程</span>   </a>\n" +
+                "         * <a href=\"https://you.163.com/item/recommend?from=out_ynzy_xinrukou_5\"> <span>人气好物</span>\n" +
+                "         * <a href=\"https://mail.163.com/dashi/dlpro.html?from=mail46\"> <span>客户端下载</span> </a>";
+
+        regStr = "<a[\\s](href=\"(https|http)://[\\w\\S\\s]+?)>(<([a-z]{4})>)*([\\u0391-\\uffe5]+)(</([a-z]{4})>)*</a>";*/
+
+        Pattern pattern = Pattern.compile(regStr);
+        Matcher matcher = pattern.matcher(content);
+
+        while (matcher.find()) {
+            System.out.println(matcher.group(0));
         }
     }
 

@@ -2,6 +2,12 @@ package com.example.test.regularexpression;
 
 import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -48,9 +54,7 @@ import java.util.regex.Pattern;
  */
 public class RegExp01 {
     public static void main(String[] args) {
-
-        test003();
-
+        test005();
     }
 
     /**
@@ -169,8 +173,8 @@ public class RegExp01 {
         content = "92842";
         // 需要考虑的情况是： 假如只有一个广告id  8721,  或者最后一个广告id 3892
         regStr = "^([1-9]\\d{3,4},)*([1-9]\\d{3,4})$";
-        /*boolean matches = content.matches(regStr);
-        System.out.println(matches);*/
+        boolean matches = content.matches(regStr);
+        System.out.println("----------->"+matches);
         patternBoolean(content, regStr);
 
         Pattern.matches(regStr, content);
@@ -295,9 +299,7 @@ public class RegExp01 {
 
         String con = "hop@souhu.com";
         String reg = "^[\\w]+@([a-zA-Z]+\\.)+[a-zA-Z]+$";
-
         con = "lian@shen.liang.com";
-
         // 匹配163邮箱或者qq邮箱    18238691710@163.com   17123700499@qq.com
         reg = "^\\d+@[a-zA-Z0-9]+\\.[a-z]+$";
         con = "18238691710@163.com";
@@ -306,10 +308,8 @@ public class RegExp01 {
         // 要求验证是不是整数或者小数
         // 提示：这个题要考虑正数和负数 如： 123，-123，0.9，34.23 ,-2.4
         // 思路分析： 1.先写简单的正则表达式  2.再逐步完善【根据各种情况修改完善】
-
         con = "-0.1230";
         reg = "^[-+]?([1-9]\\d*|0)(\\.\\d+)?$";
-
 
         if (con.matches(reg)) {
             System.out.println("匹配成功");
@@ -349,7 +349,7 @@ public class RegExp01 {
         // 我...我我....要要要学...编编编程...java  -->我要学编程java
         // 1.去掉...
         content = "我...我我....要要要学学学...编程...java";
-        content = content.replaceAll("\\.","");  // 我我我要要要学学学编程java
+        content = content.replaceAll("\\.", "");  // 我我我要要要学学学编程java
         System.out.println(content);
         // 2.找到重复的   (.)\\1
         regStr = "(.)\\1+";
@@ -370,6 +370,129 @@ public class RegExp01 {
         content = matcher.replaceAll("$1");*//*
         content = Pattern.compile("(.)\\1+").matcher(content).replaceAll("$1");*/
 
+    }
+
+    /**
+     * 正则表达式 零宽断言
+     */
+    public static void test004() {
+
+        String str = "abcdLeo同学ILoveLeo老师javaLeo帅哥";
+
+        // 零宽度 正向先行断言
+        // 匹配 后面是Leo的4个字符 （或：匹配Leo前的4个字符）
+        String regStr = ".{4}(?=Leo)";
+        pattern(str, regStr);
+        /** 结果:
+         * 找到：1--> abcd
+         * 找到：2--> Love
+         * 找到：3--> java
+         */
+
+        // 零宽度 正向后行断言
+        // 匹配 前面是Leo的 2个字符 （或：匹配Leo后的两个字符）
+        regStr = "(?<=Leo).{2}";
+        pattern(str, regStr);
+        /** 结果:
+         * 找到：1--> 同学
+         * 找到：2--> 老师
+         * 找到：3--> 帅哥
+         */
+
+
+        str = "Leo34同学Leo56老师Leo88帅哥java66Leo教育99Leo";
+        // 零宽度 正向后行断言
+        // 匹配后面不是Leo的2个数字
+        regStr = "\\d{2}(?!Leo)";
+        pattern(str, regStr);
+        /** 结果:
+         * 找到：1--> 34
+         * 找到：2--> 56
+         * 找到：3--> 88
+         */
+
+        // 零宽度 负向后行断言
+        // 匹配前面不是Leo的2个数字
+        regStr = "(?<!Leo)\\d{2}";
+        pattern(str, regStr);
+        /** 结果:
+         * 找到：1--> 66
+         * 找到：2--> 99
+         */
+    }
+
+    /**
+     * 网络爬虫 :Internet worm
+     */
+    public static void test005() {
+
+        String url = getURL("https://news.163.com/","gbk");
+        System.out.println(url);
+        /**
+         * 示例：
+         * <a href="https://sh.house.163.com">上海房产</a>
+         * <a href="https://reg.163.com/" class="ntes-nav-login-title" id="js_N_nav_login_title">登录</a>
+         * <a href="https://vip.open.163.com/#ftopnav5"> <span>付费精品课程</span>   </a>
+         * <a href="https://you.163.com/item/recommend?from=out_ynzy_xinrukou_5"> <span>人气好物</span></a>
+         * <a href="javascript:;" target="_self" class="ad_hover_href"></a>
+         * <a href="https://news.163.com/special/2021chj/"><img ne-lazy="effect:fadeIn;slideIndex:0;" data-original="https://cms-bucket.ws.12.net/2021/0205/e87fdd44j00qo12ch001nc0008c002ic.jpg?imageView&thumbnail=300y90" width="300" height="90" alt="2021年春节春运"></a>
+         */
+        String regStr = "<a[\\w\\s\\S]+?>([\\w\\s\\S]+?)</a>";
+
+        regStr = "<a[\\w\\s\\S]+?]>[\\u0391-\\uffe5]+</a>";
+        /**
+         * href="https://jiankang.163.com/21/0526/11/GATU99FO0038804U.html"
+         * href="https://jiankang.163.com/photoview/5S400038/10433.html"
+         * href="<%=newrow.relatedActionLinks[0].url%>"
+         * href="<%=newrow.relatedActionLinks[0].url%>"
+         */
+        /**
+         *group(0): href="https://jiankang.163.com/21/0602/23/GBH9BMI00038804U.html"
+         *  或： href="javascript:;"
+         *      href="<%=vhouse.houselink%>"
+         *         href="javascript:void(0);"
+         *
+         */
+//        regStr = "href=\"(.+?)\"";
+
+        /**
+         * group(0):href="https://corp.163.com/gb/job/job.html"
+         * group(1):https://corp.163.com/gb/job/job.html
+         */
+//        regStr = "href=\"(https:[\\w\\s./]+?)\"";
+        Pattern pattern = Pattern.compile(regStr);
+        Matcher matcher = pattern.matcher(url);
+
+        while (matcher.find()){
+            System.out.println(matcher.group(0));
+//            System.out.println(matcher.group(1));
+        }
+
+
+
+
+        // 分组 或  零宽断言
+    }
+
+    /**
+     * 获取url的 网页内容
+     *
+     * @param urlStr
+     * @return
+     */
+    public static String getURL(String urlStr,String codingFormat) {
+        StringBuilder sb = new StringBuilder();
+        try {
+            URL url = new URL(urlStr);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), Charset.forName(codingFormat)));
+            String temp = "";
+            while ((temp = reader.readLine()) != null) {
+                sb.append(temp);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
     }
 
 }

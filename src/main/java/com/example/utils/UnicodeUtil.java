@@ -32,7 +32,6 @@ public class UnicodeUtil {
     }
 
     private static final String UNICODE_PATTERN ="(\\\\u(\\p{XDigit}{4}))";
-//    private static final Pattern pattern = Pattern.compile("(\\\\u(\\p{XDigit}{4}))");
 
     String regStr = "(\\\\u(\\p{XDigit}{4}))";
 

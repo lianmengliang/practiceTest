@@ -1,11 +1,14 @@
 package com.example.test.regularexpression;
 
+import jdk.nashorn.internal.ir.IfNode;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -70,11 +73,14 @@ public class InternetWormDemo {
          * url 分析：
          *
          */
-        PATTERN = "<a[\\s]href=\"(http|https)[\\w\\s\\S]+\">([\\u0391-\\uffe5]+)</a>";
+//        PATTERN = "<a[\\w\\s\\S]+?</a>";
+        PATTERN = "href=\"((https|http):[\\w\\s./]+?)\"";
+
         List<String> list = getResultByPattern(content, PATTERN);
         for (String url : list) {
             System.out.println(url);
         }
+
     }
 
 
@@ -93,6 +99,74 @@ public class InternetWormDemo {
      */
     private static String GBK_FORMAT = "gbk";
     private static String UTF_FORMAT = "utf";
+
+    /**
+     * 一些常见网址后缀
+     */
+    private static final String COM_SUFFIX = ".com";
+    private static final String CN_SUFFIX = ".cn";
+    private static final String HTML_SUFFIX = ".html";
+    private static final String HTM_SUFFIX = ".htm";
+    private static final String NET_SUFFIX = ".net";
+    /**
+     * 图片后缀
+     */
+    private static final String PNG_SUFFIX = ".png";
+    private static final String JPG_SUFFIX = ".jpg";
+
+
+    /**
+     * 获取中文
+     */
+    public static void getChinese(){
+        // 获取爬取内容
+        String content = getStringByURL(URL, GBK_FORMAT);
+        PATTERN = "([\\u0391-\\uffe5]+)";
+        List<String> list = getResultByPattern(content, PATTERN);
+
+        list.forEach(System.out::println);
+    }
+
+    /**
+     * 获取各种格式网址
+     */
+    public static void getAllKindsURLList() {
+        // 获取爬取内容
+        String content = getStringByURL(URL, GBK_FORMAT);
+        PATTERN = "(http|https)://[\\w+\\.?/?]+\\.[a-zA-Z]+";
+        List<String> list = getResultByPattern(content, PATTERN);
+        ArrayList<String> cnList = new ArrayList<>();
+        ArrayList<String> comList = new ArrayList<>();
+        ArrayList<String> pictureList = new ArrayList<>();
+        ArrayList<String> htmlList = new ArrayList<>();
+        ArrayList<String> otherList = new ArrayList<>();
+        list.forEach(e -> {
+            if (e.endsWith(COM_SUFFIX)) {
+                comList.add(e);
+            } else if (e.endsWith(CN_SUFFIX)) {
+                cnList.add(e);
+            } else if (e.endsWith(JPG_SUFFIX) || e.endsWith(PNG_SUFFIX)) {
+                pictureList.add(e);
+            } else if (e.endsWith(HTML_SUFFIX) || e.endsWith(HTM_SUFFIX)) {
+                htmlList.add(e);
+            } else {
+                otherList.add(e);
+            }
+        });
+
+
+        System.out.println("cnList------------------------------------------------------------");
+        cnList.forEach(System.out::println);
+        System.out.println("comList------------------------------------------------------------");
+        comList.forEach(System.out::println);
+        System.out.println("pictureList--------------------------------------------------------");
+        pictureList.forEach(System.out::println);
+        System.out.println("htmlList--------------------------------------------------------");
+        htmlList.forEach(System.out::println);
+        System.out.println("otherList-----------------------------------------------------------");
+        otherList.forEach(System.out::println);
+
+    }
 
 
     /**
@@ -136,5 +210,9 @@ public class InternetWormDemo {
             e.printStackTrace();
         }
         return sb.toString();
+    }
+
+    public static void getList(String e){
+
     }
 }

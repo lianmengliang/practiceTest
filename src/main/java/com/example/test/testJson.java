@@ -7,10 +7,7 @@ import com.example.domain.IpAddress;
 import com.example.domain.User;
 import com.example.utils.JsonFormatUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+
 
 
 import java.awt.*;
@@ -83,9 +80,9 @@ public class testJson {
         String pretty = jsonStringFormat(object);
         System.out.println("SerializerFeature格式后：" + pretty);
         System.out.println("------------------------------------------------------------");
-        String format = toPrettyFormat(JSON_NO);
+       /* String format = toPrettyFormat(JSON_NO);
         System.out.println("Format:" + format);
-        System.out.println("----------------------------------------------------------------");
+        System.out.println("----------------------------------------------------------------");*/
         String s = JsonFormatUtil.formatJson(JSON_NO);
         System.out.println(s);
 
@@ -165,12 +162,12 @@ public class testJson {
      * @param json
      * @return
      */
-    private static String toPrettyFormat(String json) {
+   /* private static String toPrettyFormat(String json) {
         JsonParser jsonParser = new JsonParser();
         JsonObject jsonObject = jsonParser.parse(json).getAsJsonObject();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         return gson.toJson(jsonObject);
-    }
+    }*/
 
 
     public static void getJson() {

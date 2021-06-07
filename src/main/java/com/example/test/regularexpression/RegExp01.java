@@ -453,8 +453,9 @@ public class RegExp01 {
          *         href="javascript:void(0);"
          *
          */
-//        regStr = "href=\"(.+?)\"";
+        regStr = "href=\"(.+?)\"";
 
+        regStr = "(http|https)://[\\w+\\.?/?]+\\.[a-zA-Z]+";
         /**
          * group(0):href="https://corp.163.com/gb/job/job.html"
          * group(1):https://corp.163.com/gb/job/job.html

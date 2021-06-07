@@ -29,8 +29,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public int register(User user) {
 
-
-        
         int register = userMapper.register(user);
         return register ;
     }

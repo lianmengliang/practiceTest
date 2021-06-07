@@ -60,29 +60,31 @@ public class RegTheory {
          * <a href="https://mail.163.com/dashi/dlpro.html?from=mail46"> <span>客户端下载</span> </a>
          */
 
-        String content = " <a href=\"https://sh.house.163.com\">上海房产</a>\n" +
-                "         * <a href=\"http://news.163.com/photo\">图片</a>\n" +
-                "         * <a href=\"https://reg.163.com/\" class=\"ntes-nav-login-title\" id=\"js_N_nav_login_title\">登录</a>\n" +
-                "         * <a href=\"https://vip.open.163.com/#ftopnav5\"> <span>付费精品课程</span>   </a>\n" +
-                "         * <a href=\"https://you.163.com/item/recommend?from=out_ynzy_xinrukou_5\"> <span>人气好物</span>\n" +
-                "         <a href=\"https://mail.163.com/dashi/dlpro.html?from=mail46\"> <span>客户端下载</span> </a>";
+        String content = " <a href=\"https://sh.house.163.com\">上海房产</a>" +
+                "          <a href=\"http://news.163.com/photo\">图片</a>" +
+                "          <a href=\"https://reg.163.com/\" class=\"ntes-nav-login-title\" id=\"js_N_nav_login_title\">登录</a>" +
+                "          <a href=\"https://vip.open.163.com/#ftopnav5\"> <span>付费精品课程</span>   </a>" +
+                "          <a href=\"https://you.163.com/item/recommend?from=out_ynzy_xinrukou_5\"> <span>人气好物</span></a>" +
+                "          <a href=\"https://mail.163.com/dashi/dlpro.html?from=mail46\"> <span>客户端下载</span> </a>";
         String regStr = "<a[\\w\\s\\S]+?</a>";
 
+        regStr = "\\d{4}-\\d{7}|\\d{3}-\\d{8}";
+        regStr ="\\d{4}-\\d{7}|\\d{3}-\\d{8}";
 
-       /* content = " * <a href=\"https://sh.house.163.com\">上海房产</a>\n" +
-                "         * <a href=\"http://news.163.com/photo\">图片</a>\n" +
-                "         * <a href=\"https://reg.163.com/\" class=\"ntes-nav-login-title\" id=\"js_N_nav_login_title\">登录</a>\n" +
-                "         * <a href=\"https://vip.open.163.com/#ftopnav5\"> <span>付费精品课程</span>   </a>\n" +
-                "         * <a href=\"https://you.163.com/item/recommend?from=out_ynzy_xinrukou_5\"> <span>人气好物</span>\n" +
-                "         * <a href=\"https://mail.163.com/dashi/dlpro.html?from=mail46\"> <span>客户端下载</span> </a>";
+        /*regStr = "<a[\\s]href=\"((https|http)://[\\w\\s\\S]+?)>([\\w\\s\\S]+)*(.)*([\\u0391-\\uffe5]+)(.{7,11})*</a>";*/
 
-        regStr = "<a[\\s](href=\"(https|http)://[\\w\\S\\s]+?)>(<([a-z]{4})>)*([\\u0391-\\uffe5]+)(</([a-z]{4})>)*</a>";*/
 
         Pattern pattern = Pattern.compile(regStr);
         Matcher matcher = pattern.matcher(content);
 
         while (matcher.find()) {
             System.out.println(matcher.group(0));
+           /* System.out.println("group1--->"+matcher.group(1));
+            System.out.println("group2--->"+matcher.group(2));
+            System.out.println("group3--->"+matcher.group(3));
+            System.out.println("group4--->"+matcher.group(4));
+            System.out.println("group5--->"+matcher.group(5));
+            System.out.println("group6--->"+matcher.group(6));*/
         }
     }
 

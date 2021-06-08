@@ -8,6 +8,7 @@ import java.io.IOException;
  * lianmengliang
  * <p>
  * 2021-06-07 22:36
+ * Desc: 演示字节输出流 程序 ---> 文件
  */
 public class FileOutStreamDemo {
     public static void main(String[] args) {

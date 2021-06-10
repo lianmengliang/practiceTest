@@ -1,11 +1,11 @@
-package com.example.test.iostream.output;
+package com.example.test.iostream.intputandout;
 
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 /**
  * @Author ： Leo
+ * * <p>顺序：6
  * @Date : 2021/6/8 17:32
  * @Desc: 字节写入流
  */

@@ -7,8 +7,9 @@ import java.io.IOException;
 
 /**
  * lianmengliang
- * <p>
+ * <p> 顺序：1
  * 2021-06-06 11:40
+ * 文件的创建
  */
 public class FileCreate {
     public static void main(String[] args) {
@@ -89,7 +90,7 @@ public class FileCreate {
     }
 
     /**
-     * 文件夹的操作： 创建和删除
+     * 文件夹的操作： 创建和删除 （目录）
      */
     public static void directoryOperations() {
         String filePath = "/Users/lianmengliang/Desktop/testIo/demo2";

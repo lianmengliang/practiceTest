@@ -1,12 +1,11 @@
-package com.example.test.iostream.output;
+package com.example.test.iostream.intputandout;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
  * lianmengliang
- * <p>
+ * <p>顺序：3
  * 2021-06-07 22:36
  * Desc: 演示字节输出流 程序 ---> 文件
  */

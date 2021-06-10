@@ -1,13 +1,12 @@
-package com.example.test.iostream.intput;
+package com.example.test.iostream.intputandout;
 
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 /**
  * @Author ： Leo
+ * * <p>顺序：5
  * @Date : 2021/6/8 17:04
  * @Desc:  文件 --> 程序
  */

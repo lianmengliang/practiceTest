@@ -1,14 +1,12 @@
-package com.example.test.iostream.intput;
+package com.example.test.iostream.intputandout;
 
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Arrays;
 
 /**
  * lianmengliang
- * <p>
+ * <p> 顺序：2
  * 2021-06-07 22:01
  * <p>
  * Desc: 演示字节输入流 文件 ---> 程序

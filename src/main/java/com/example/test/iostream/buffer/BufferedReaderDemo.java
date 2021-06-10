@@ -1,12 +1,10 @@
 package com.example.test.iostream.buffer;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * @Author ： Leo
+ * * <p>顺序：7
  * @Date : 2021/6/9 12:14
  * @Desc:
  */

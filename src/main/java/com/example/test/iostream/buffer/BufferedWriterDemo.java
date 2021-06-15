@@ -29,6 +29,7 @@ public class BufferedWriterDemo {
             bw = new BufferedWriter(new FileWriter(filePath,true));
 //            bw.write(str,0,str.length());
             bw.write("hello，Leo");
+
             // 换行
             bw.newLine();
             bw.write("hello，Leo1");

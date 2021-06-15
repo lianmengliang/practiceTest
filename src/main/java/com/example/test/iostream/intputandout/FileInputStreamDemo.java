@@ -28,11 +28,9 @@ public class FileInputStreamDemo {
 
         try {
             fileInputStream = new FileInputStream(filePath);
-
             while ((readData = fileInputStream.read()) != -1) {
                 System.out.print((char) readData);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }finally {
@@ -51,7 +49,6 @@ public class FileInputStreamDemo {
      */
     public static void readFile02() {
         String filePath = "/Users/lianmengliang/Desktop/testIo/hello.txt";
-
         // 字节数组
         byte[] buf = new byte[8];
         int readLen = 0;
@@ -64,7 +61,6 @@ public class FileInputStreamDemo {
             while ((readLen=fileInputStream.read(buf)) != -1) {
 //                System.out.print(Arrays.toString(buf));
                 System.out.print(new String(buf,0,readLen));
-
             }
 
         } catch (IOException e) {

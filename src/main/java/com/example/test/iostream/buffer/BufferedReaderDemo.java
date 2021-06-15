@@ -16,14 +16,12 @@ public class BufferedReaderDemo {
     public static void bufferedReadFile() throws IOException {
         String filePath = "G:\\testIO\\story.txt";
 
-        BufferedReader br = null;
-
-        br = new BufferedReader(new FileReader(filePath));
-
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
         // 读取
         String line;
         // 说明
         // 1.按行读取，表示
+        // 2.按字符读取
         while ((line = br.readLine()) != null) {
             System.out.println(line);
         }

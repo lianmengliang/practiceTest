@@ -81,13 +81,10 @@ public class PropertiesDemo {
         //public void store(OutputStream out, String comments)方法
         // comments是指 properties文件注释
         // 将k-v 存储文件中即可
-        /*properties.store(new FileOutputStream("src\\mysql2.properties"),"userAndpwd");*/
+        properties.store(new FileOutputStream("src\\mysql2.properties"),"userAndpwd");
 
         // 將文件保存成 XML格式
         properties.storeToXML(new FileOutputStream("src\\mysql3.xml"),"userAndpwd");
-
-
-
 
 
         System.out.println("保存成功");

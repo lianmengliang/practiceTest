@@ -8,7 +8,7 @@ import java.io.IOException;
  * @Author ： Leo
  * * <p>顺序：5
  * @Date : 2021/6/8 17:04
- * @Desc:  文件 --> 程序
+ * @Desc:  字符输入流： 文件 --> 程序
  */
 public class FileReaderDemo {
     public static void main(String[] args) {
@@ -21,9 +21,7 @@ public class FileReaderDemo {
     public static void fileReader() {
         String filePath = "G:\\testIO\\story.txt";
         FileReader reader = null;
-
         int data = 0;
-
         try {
             reader = new FileReader(filePath);
             //循环读取，使用read，单个字符读取

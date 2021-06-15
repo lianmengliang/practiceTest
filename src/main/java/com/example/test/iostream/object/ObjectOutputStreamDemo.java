@@ -8,7 +8,7 @@ import java.io.*;
  * @Date : 2021/6/9 15:47
  * @Desc:
  * 1.使用ObjectOutputStream 序列化保存信息 文件 到本地磁盘上
- * 2.使用ObjectOutputStream 反列化本地文件 到程序中
+ * 2.使用ObjectInputStream 反序列化本地文件 到程序中
  *
  * 需要注意点：
  * 1)读写顺序要求一致
@@ -53,7 +53,7 @@ public class ObjectOutputStreamDemo {
     }
 
     /**
-     * 使用ObjectOutputStream 反列化本地文件 到程序中
+     * 使用ObjectInputStream 反列化本地文件 到程序中
      */
     private static void objectIntputStream() throws IOException, ClassNotFoundException {
         String filePath = "E:\\data.dat";
@@ -62,7 +62,6 @@ public class ObjectOutputStreamDemo {
 
         // 读取
         // 1. 读取（反序列化）的顺序需要和你保存数据（序列化）的顺序一致
-
         System.out.println(ois.readInt());
         System.out.println(ois.readBoolean());
         System.out.println(ois.readChar());
@@ -84,10 +83,7 @@ public class ObjectOutputStreamDemo {
 
         // 关闭 外层流
         ois.close();
-
     }
-
-
 }
 
 class Dog implements Serializable {
@@ -96,7 +92,7 @@ class Dog implements Serializable {
 
     /**
      * 序列化对象时：
-     * 默认将里面所有属性都进行序列化，但除了static和transient修饰的成员变量
+     * 默认将里面所有属性都进行序列化，但除了static和 transient修饰的成员变量
      */
     private static String nation;
     private static String color;

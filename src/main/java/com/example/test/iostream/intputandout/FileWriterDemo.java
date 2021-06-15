@@ -7,7 +7,7 @@ import java.io.IOException;
  * @Author ： Leo
  * * <p>顺序：6
  * @Date : 2021/6/8 17:32
- * @Desc: 字节写入流
+ * @Desc: 字符输出流  程序 --> 磁盘文件
  */
 public class FileWriterDemo {
     public static void main(String[] args) {
@@ -17,7 +17,6 @@ public class FileWriterDemo {
     public static void fileWrite() {
         String filePath = "G:\\testIO\\a.txt";
         FileWriter writer = null;
-        int readLen = 0;
         String targetStr = " 你好，IO流";
         char[] chars = new char[]{'L', 'O', 'V', 'E'};
         try {
@@ -40,8 +39,8 @@ public class FileWriterDemo {
             if (writer != null) {
                 try {
                     //关闭文件流 close()等价于 flush() + 关闭
-                    writer.flush();
-//                    writer.close();
+//                    writer.flush();
+                    writer.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

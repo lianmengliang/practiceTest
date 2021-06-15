@@ -24,7 +24,7 @@ public class CodeQuestion {
 
     }
     /**
-     * 转换流实现文件的读取：
+     * 转换流实现文件的写入：
      *
      * 1.转换为字符输出流，并指定编码格式
      * 2.根据字符输出流，创建缓冲输出流
@@ -37,6 +37,7 @@ public class CodeQuestion {
         // 2.根据字符输出流，创建缓冲输出流
         BufferedWriter bw = new BufferedWriter(os);
         bw.write("hello,Leo打怪兽");
+
         bw.close();
         System.out.println("保存文件成功");
 

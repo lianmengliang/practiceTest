@@ -21,7 +21,7 @@ import java.io.*;
  *
  *
  *
- * BufferedInputStream和BufferedOutputStream
+ * BufferedInputStream和 BufferedOutputStream
  * 常用来 处理二进制文件 ，也就是字节文件，比如图片，音乐，视频等
  * 当然也可以来 操作字符文件，比如 .txt，.java文件
  *

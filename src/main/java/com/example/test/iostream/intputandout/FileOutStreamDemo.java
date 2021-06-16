@@ -33,7 +33,7 @@ public class FileOutStreamDemo {
             // 2.多个字节写入 （字符串写入）
             // 3.多个字节写入,可以按照要求写入，比如只写入前3个字节
 
-//            outputStream.write('H');
+            outputStream.write('H');
             String str = "hello,world?";
 //            outputStream.write(str.getBytes());
 

@@ -1,9 +1,6 @@
 package com.example.test.iostream.exercises;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * @Author ： Leo
@@ -12,8 +9,8 @@ import java.io.IOException;
  * @Desc: 文件拷贝
  */
 public class FileCopy {
-    public static void main(String[] args) {
-        copyFile1();
+    public static void main(String[] args) throws IOException {
+        copyByReaderAndWriter();
     }
 
 
@@ -104,6 +101,28 @@ public class FileCopy {
                 e.printStackTrace();
             }
         }
+
+    }
+
+    /**
+     * 使用FileReader 和 FileWriter进行文件的拷贝
+     */
+    public static void copyByReaderAndWriter() throws IOException {
+        String srcFilePath = "G:\\testIO\\story.txt";
+        String descFilePath = "E:\\666.txt";
+
+        FileReader reader = new FileReader(srcFilePath);
+        FileWriter writer = new FileWriter(descFilePath);
+
+        char[] buff = new char[8];
+        int readLen = 0;
+        while((readLen = reader.read(buff))!=-1){
+            writer.write(buff,0,readLen);
+        }
+
+        // 先关读，再关写
+        reader.close();
+        writer.close();
 
     }
 }

@@ -21,8 +21,8 @@ public class FileInputStreamDemo {
      * 使用read()方法读取
      */
     public static void readFile01() {
-        String filePath = "/Users/lianmengliang/Desktop/testIo/hello.txt";
-
+//        String filePath = "/Users/lianmengliang/Desktop/testIo/hello.txt";
+        String filePath = "G:\\testIO\\story.txt";
         int readData = 0;
         FileInputStream fileInputStream = null;
 
@@ -33,7 +33,7 @@ public class FileInputStreamDemo {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 fileInputStream.close();
             } catch (IOException e) {
@@ -48,7 +48,8 @@ public class FileInputStreamDemo {
      * 使用 read(byte[] byte)
      */
     public static void readFile02() {
-        String filePath = "/Users/lianmengliang/Desktop/testIo/hello.txt";
+//        String filePath = "/Users/lianmengliang/Desktop/testIo/hello.txt";
+        String filePath = "G:\\testIO\\story.txt";
         // 字节数组
         byte[] buf = new byte[8];
         int readLen = 0;
@@ -57,15 +58,14 @@ public class FileInputStreamDemo {
 
         try {
             fileInputStream = new FileInputStream(filePath);
-
-            while ((readLen=fileInputStream.read(buf)) != -1) {
-//                System.out.print(Arrays.toString(buf));
-                System.out.print(new String(buf,0,readLen));
+            while ((readLen = fileInputStream.read(buf)) != -1) {
+            //  System.out.print(Arrays.toString(buf));
+                System.out.print(new String(buf, 0, readLen));
             }
 
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 fileInputStream.close();
             } catch (IOException e) {

@@ -70,6 +70,7 @@ public class ObjectOutputStreamDemo {
 
         // dog的编译类型是Object， dog的运行类型是Dog
         Object dog = ois.readObject();
+//        dog.notify();
         System.out.println("运行类型=" + dog.getClass());
         System.out.println("dog信息" + dog);
 

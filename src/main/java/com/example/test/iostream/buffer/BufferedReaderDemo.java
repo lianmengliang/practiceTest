@@ -19,6 +19,7 @@ public class BufferedReaderDemo {
         BufferedReader br = new BufferedReader(new FileReader(filePath));
         // 读取
         String line;
+
         // 说明
         // 1.按行读取，表示
         // 2.按字符读取

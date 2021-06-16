@@ -1,4 +1,4 @@
-package com.example.test.iostream.intputandout;
+package com.example.test.javaBasis.iostream.intputandout;
 
 import java.io.FileWriter;
 import java.io.IOException;

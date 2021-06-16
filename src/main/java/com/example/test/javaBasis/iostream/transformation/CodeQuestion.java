@@ -1,4 +1,4 @@
-package com.example.test.iostream.transformation;
+package com.example.test.javaBasis.iostream.transformation;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

@@ -1,4 +1,4 @@
-package com.example.test.iostream.iohomework;
+package com.example.test.javaBasis.iostream.iohomework;
 
 
 import java.io.*;

@@ -1,6 +1,4 @@
-package com.example.test.iostream.file;
-
-import org.junit.Test;
+package com.example.test.javaBasis.iostream.file;
 
 import java.io.File;
 import java.io.IOException;

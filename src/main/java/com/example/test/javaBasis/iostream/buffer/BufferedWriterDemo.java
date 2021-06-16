@@ -1,4 +1,4 @@
-package com.example.test.iostream.buffer;
+package com.example.test.javaBasis.iostream.buffer;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

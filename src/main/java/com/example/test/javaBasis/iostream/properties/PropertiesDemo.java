@@ -1,4 +1,4 @@
-package com.example.test.iostream.properties;
+package com.example.test.javaBasis.iostream.properties;
 
 import java.io.*;
 import java.util.Properties;

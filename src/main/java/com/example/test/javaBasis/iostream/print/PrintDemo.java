@@ -1,4 +1,4 @@
-package com.example.test.iostream.print;
+package com.example.test.javaBasis.iostream.print;
 
 import java.io.FileWriter;
 import java.io.IOException;

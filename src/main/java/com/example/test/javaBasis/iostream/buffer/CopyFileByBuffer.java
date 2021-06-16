@@ -1,6 +1,5 @@
-package com.example.test.iostream.buffer;
+package com.example.test.javaBasis.iostream.buffer;
 
-import javax.persistence.Id;
 import java.io.*;
 
 /**

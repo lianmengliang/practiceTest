@@ -1,4 +1,4 @@
-package com.example.test.iostream.standard;
+package com.example.test.javaBasis.iostream.standard;
 
 import java.util.Scanner;
 

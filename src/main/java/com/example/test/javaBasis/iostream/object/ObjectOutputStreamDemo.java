@@ -1,4 +1,4 @@
-package com.example.test.iostream.object;
+package com.example.test.javaBasis.iostream.object;
 
 import java.io.*;
 

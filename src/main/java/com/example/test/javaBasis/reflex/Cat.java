@@ -6,25 +6,40 @@ package com.example.test.javaBasis.reflex;
  * @Desc:
  */
 public class Cat {
-    private String name = "招财猫";
+    public String name = "招财猫";
 
     public String color = "白色";
 
-   /* public Cat(String name, String color) {
+    private Cat(String name, String color) {
         this.name = name;
         this.color = color;
-    }*/
+    }
 
-//    public Cat() {
-//    }
+    public Cat() {
+    }
 
-    public void hi(){
+    public Cat(String name) {
+        this.name = name;
+    }
+
+    public void hi() {
 //        System.out.println("Hi,招财猫");
     }
 
-    public void cry(){
+    public void cry() {
         System.out.println("招财猫在喵喵叫~~");
     }
 
 
+    private static String say(int a, String s) {
+        return a + s + "-----";
+    }
+
+    @Override
+    public String toString() {
+        return "Cat{" +
+                "name='" + name + '\'' +
+                ", color='" + color + '\'' +
+                '}';
+    }
 }

@@ -168,11 +168,11 @@ public class ClassDemo {
         Class<Deprecated> cls5 = Deprecated.class;
         // 枚举
         Class<Thread.State> cls6 = Thread.State.class;
-
+        // 基本数据类型
         Class<Long> cls7 = long.class;
-
+        // void对象
         Class<Void> cls8 = void.class;
-
+        // Class类对象
         Class<Class> cls9 = Class.class;
 
         System.out.println(cls1);
@@ -220,7 +220,6 @@ public class ClassDemo {
         for (Field declaredField : declaredFields) {
             System.out.println("所有属性" + (++a) + "：" + declaredField.getName());
         }
-
 
         System.out.println("所有public的构造器,不包括父类：" + Arrays.toString(personClass.getConstructors()));
         System.out.println("所有构造器：" + Arrays.toString(personClass.getDeclaredConstructors()));

@@ -58,7 +58,7 @@ public class ReflectionQuestion {
         Field colorName = cls.getField("color");
         System.out.println(colorName.get(o));
 
-        // 获取构造器 ()中可以指定狗仔参数类型，返回无参构造器
+        // 获取构造器 ()中可以指定构造参数类型，返回无参构造器
         Constructor constructor = cls.getConstructor();
         System.out.println(constructor);
 

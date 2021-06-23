@@ -137,9 +137,9 @@ public class ClassDemo {
         Class<Double> type2 = Double.TYPE;
         Class<Double> type3 = Double.class;
         System.out.println(type);
-        System.out.println(type1);
+        System.out.println(type1.getName());
         System.out.println(type2);
-        System.out.println(type3);
+        System.out.println(type3.getName());
 
         System.out.println(cls5.hashCode());
         System.out.println(type.hashCode());
@@ -367,7 +367,7 @@ public class ClassDemo {
      * @throws {} Exception
      */
     public static void main(String[] args) throws Exception {
-        class09();
+        class03();
     }
 }
 

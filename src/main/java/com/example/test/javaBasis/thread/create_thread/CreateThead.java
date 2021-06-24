@@ -38,13 +38,6 @@ public class CreateThead {
     }
 
 
-    /**
-     *
-     */
-    public static void thead021() {
-
-    }
-
 }
 
 /**
@@ -82,13 +75,11 @@ class Dog implements Runnable {
         int times = 0;
         while (true) {
             System.out.println("hi：" + (++times) + "  " + Thread.currentThread().getName());
-
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
             if (times == 50) {
                 break;
             }

@@ -36,6 +36,7 @@ class A implements Runnable {
         money -= 100;
         System.out.println(Thread.currentThread().getName() + "线程取走100元，余额为" + money + "元");
 
+
         try {
             Thread.sleep(200);
         } catch (InterruptedException e) {

@@ -8,6 +8,7 @@ import com.example.domain.User;
  */
 public interface UserService {
 
+
     User Sel(int id);
 
     User login(String userName, String passWord);

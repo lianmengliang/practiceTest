@@ -32,6 +32,7 @@ public class Student implements Serializable {
     @Column(name = "sex")
     private String sex;
 
+
     /**
      * 地址
      */

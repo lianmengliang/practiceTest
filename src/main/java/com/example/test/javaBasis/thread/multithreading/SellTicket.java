@@ -33,18 +33,17 @@ public class SellTicket {
         thread2.start();
         thread3.start();*/
 
-        System.out.println("第2种方式售票");
+        // 测试的时候注意以下问题：
+        // 1.只new一个卖票类，保证只有100张票
+        // 2.多个线程共享一个资源,也就是票的数量
+        // 3.可以把票的数量多加点，才能看出效果
+        System.out.println("同步方式售票：解决超卖问题");
         SellTicketDemo1 sellTicket01 = new SellTicketDemo1();
-        SellTicketDemo1 sellTicket02 = new SellTicketDemo1();
-        SellTicketDemo1 sellTicket03 = new SellTicketDemo1();
 
-        Thread thread1 = new Thread(sellTicket01);
-        Thread thread2 = new Thread(sellTicket02);
-        Thread thread3 = new Thread(sellTicket03);
+        new Thread(sellTicket01).start();
+        new Thread(sellTicket01).start();
+        new Thread(sellTicket01).start();
 
-        thread1.start();
-        thread2.start();
-        thread3.start();
 
     }
 }
@@ -100,41 +99,9 @@ class SellTicket02 implements Runnable {
     }
 }
 
-/**
- * 第一种方式：继承Thread类
- */
-class SellTicketDemo extends Thread {
-    private static int ticket = 60;
-
-    private boolean loop = true;
-
-    public synchronized void sell() {
-        if (ticket <= 0) {
-            System.out.println("---售票结束---");
-            loop = false;
-            return;
-        }
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(Thread.currentThread().getName() + "售出票数一张,还剩" + (--ticket) + "张");
-    }
-
-    @Override
-    public void run() {
-        while (loop) {
-            sell();
-        }
-    }
-
-}
-
 
 class SellTicketDemo1 implements Runnable {
-    private static int ticket = 60;
+    private static int ticket = 100;
 
     private static boolean loop = true;
 

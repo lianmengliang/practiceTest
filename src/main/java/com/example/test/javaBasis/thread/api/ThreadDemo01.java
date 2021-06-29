@@ -4,6 +4,8 @@ package com.example.test.javaBasis.thread.api;
  * @Author ： Leo
  * @Date : 2021/6/23 16:46
  * @Desc: 守护线程
+ *
+ * 虚拟机等待所有线程都执行完毕，自己才会停止
  */
 public class ThreadDemo01 {
     public static void main(String[] args) throws InterruptedException {
@@ -13,7 +15,6 @@ public class ThreadDemo01 {
         t2.setDaemon(true);
         // 启动线程
         t2.start();
-
 
 
         for (int i = 1; i <= 20; i++) {

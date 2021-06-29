@@ -13,11 +13,11 @@ public class CreateThead {
     public static void main(String[] args) throws InterruptedException {
 
         // 创建一个Cat对象，可以当线程使用
-       /* Cat cat = new Cat();
+        Cat cat = new Cat();
         // 启动线程 -> 最终会执行cat的run方法
-        cat.start();*/
+        cat.start();
 
-        // cat.run(); // 就是普通的方法：没有真正启动一个线程，就会把run方法执行完毕,才向下执行。 会阻塞
+         cat.run(); // 就是普通的方法：没有真正启动一个线程，就会把run方法执行完毕,才向下执行。 会阻塞
 
         Dog dog = new Dog();
         // dog.start() 这里不能调用start

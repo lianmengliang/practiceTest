@@ -30,6 +30,7 @@ public class CoTest02 {
 class Player  extends Thread{
     private TV tv;
 
+
     public Player(TV tv) {
         this.tv = tv;
     }

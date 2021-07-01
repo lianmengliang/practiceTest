@@ -1,13 +1,11 @@
-package com.example.test.scheduler.quartz;
+package com.example.test.javaBasis.thread.improve.scheduler.quartz;
 
-import com.example.test.scheduler.ScheduledDemo;
-import org.quartz.spi.JobFactory;
+import com.example.test.javaBasis.thread.improve.scheduler.ScheduledDemo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
-import org.springframework.scheduling.quartz.SimpleTriggerFactoryBean;
 
 /**
  * @Author ： Leo

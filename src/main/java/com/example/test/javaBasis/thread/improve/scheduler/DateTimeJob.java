@@ -1,8 +1,7 @@
-package com.example.test.scheduler;
+package com.example.test.javaBasis.thread.improve.scheduler;
 
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
-import org.springframework.stereotype.Component;
 
 /**
  * @Author ： Leo

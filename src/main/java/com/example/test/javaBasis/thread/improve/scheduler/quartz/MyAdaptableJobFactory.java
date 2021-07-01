@@ -1,11 +1,9 @@
-package com.example.test.scheduler.quartz;
+package com.example.test.javaBasis.thread.improve.scheduler.quartz;
 
-import org.quartz.TriggerBuilder;
 import org.quartz.spi.TriggerFiredBundle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.scheduling.quartz.AdaptableJobFactory;
-import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.stereotype.Component;
 
 /**

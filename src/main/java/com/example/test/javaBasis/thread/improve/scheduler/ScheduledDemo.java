@@ -1,13 +1,10 @@
-package com.example.test.scheduler;
+package com.example.test.javaBasis.thread.improve.scheduler;
 
 import com.example.service.impl.AddUserService;
 import org.quartz.Job;
-import org.quartz.JobBuilder;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;

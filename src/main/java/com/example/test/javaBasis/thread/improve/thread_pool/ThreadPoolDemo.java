@@ -1,8 +1,6 @@
 package com.example.test.javaBasis.thread.improve.thread_pool;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.*;
 
 import static java.util.concurrent.Executors.newFixedThreadPool;
 
@@ -10,6 +8,8 @@ import static java.util.concurrent.Executors.newFixedThreadPool;
  * @Author ： Leo
  * @Date : 2021/7/2 18:04
  * @Desc:
+ *
+ * 博客参考：{@url https://blog.csdn.net/u010723709/article/details/50377543}
  */
 public class ThreadPoolDemo {
     public static void main(String[] args) {
@@ -18,8 +18,9 @@ public class ThreadPoolDemo {
 //
         // 设置线程的属性
         ThreadPoolExecutor service1 = (ThreadPoolExecutor) service;
-
         service1.setCorePoolSize(15);
+        service1.setMaximumPoolSize(30);
+        service1.setKeepAliveTime(1, TimeUnit.MINUTES);
 //        service1.se
 
         // 2.执行指定的线程的操作，需要提供实现Runnable/Callable接口实现类的对象

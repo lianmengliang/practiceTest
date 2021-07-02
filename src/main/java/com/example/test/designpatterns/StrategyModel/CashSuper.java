@@ -1,4 +1,4 @@
-package com.example.test.StrategyModel;
+package com.example.test.designpatterns.StrategyModel;
 
 /**
  * @Author ： Leo

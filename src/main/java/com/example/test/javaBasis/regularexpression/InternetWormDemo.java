@@ -154,15 +154,15 @@ public class InternetWormDemo {
 
 
         System.out.println("cnList------------------------------------------------------------");
-        cnList.forEach(System.out::println);
+//        cnList.forEach(System.out::println);
         System.out.println("comList------------------------------------------------------------");
-        comList.forEach(System.out::println);
+//        comList.forEach(System.out::println);
         System.out.println("pictureList--------------------------------------------------------");
         pictureList.forEach(System.out::println);
         System.out.println("htmlList--------------------------------------------------------");
-        htmlList.forEach(System.out::println);
+//        htmlList.forEach(System.out::println);
         System.out.println("otherList-----------------------------------------------------------");
-        otherList.forEach(System.out::println);
+//        otherList.forEach(System.out::println);
 
     }
 

@@ -21,9 +21,9 @@ public class CallableDemo {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
         // 1. 创建目标对象
-        JPGDownloader j1 = new JPGDownloader("http://img3.cache.netease.com/news/2016/7/21/20160721131401d35e2.jpg", "j1");
-        JPGDownloader j2 = new JPGDownloader("http://img3.cache.netease.com/news/2016/7/21/201607211319466e84e.jpg", "j2");
-        JPGDownloader j3 = new JPGDownloader("http://img5.cache.netease.com/news/2016/7/21/20160721132119ef59b.jpg", "j3");
+        JPGDownloader j1 = new JPGDownloader("http://static.ws.126.net/f2e/news/res/img/cloudapp_8.png", "j1");
+        JPGDownloader j2 = new JPGDownloader("http://static.ws.126.net/f2e/news/index2015/img/newsapp.png", "j2");
+        JPGDownloader j3 = new JPGDownloader("http://static.ws.126.net/f2e/news/res/img/cloudapp.png", "j3");
 
         // 2.创建执行服务
         ExecutorService ser = newFixedThreadPool(3);

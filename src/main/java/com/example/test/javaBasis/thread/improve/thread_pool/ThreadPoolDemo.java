@@ -17,11 +17,10 @@ public class ThreadPoolDemo {
         ExecutorService service = newFixedThreadPool(10);
 //
         // 设置线程的属性
-        ThreadPoolExecutor service1 = (ThreadPoolExecutor) service;
+       /* ThreadPoolExecutor service1 = (ThreadPoolExecutor) service;
         service1.setCorePoolSize(15);
         service1.setMaximumPoolSize(30);
-        service1.setKeepAliveTime(1, TimeUnit.MINUTES);
-//        service1.se
+        service1.setKeepAliveTime(1, TimeUnit.MINUTES);*/
 
         // 2.执行指定的线程的操作，需要提供实现Runnable/Callable接口实现类的对象
         // 说明service.execute() 适用于 实现Runnable接口的实例

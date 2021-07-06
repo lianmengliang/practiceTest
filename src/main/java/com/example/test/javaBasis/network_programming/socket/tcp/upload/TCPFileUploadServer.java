@@ -28,7 +28,7 @@ public class TCPFileUploadServer {
         // 把文件转到byte[]数组中
         byte[] bytes = StreamUtils.streamToByteArray(bis);
 
-        String path = "src/abc.png";
+        String path = "src/b.png";
         BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(path));
         // 把文件写入到指定路径下
         bos.write(bytes);

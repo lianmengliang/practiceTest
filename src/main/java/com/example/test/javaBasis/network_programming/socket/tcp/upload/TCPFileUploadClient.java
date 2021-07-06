@@ -9,7 +9,7 @@ import java.net.Socket;
 /**
  * @Author ： Leo
  * @Date : 2021/7/6 15:34
- * @Desc:  客户端
+ * @Desc: 客户端
  */
 @SuppressWarnings({"all"})
 public class TCPFileUploadClient {
@@ -31,18 +31,26 @@ public class TCPFileUploadClient {
         bis.close();
         socket.shutdownOutput(); // 设置写入数据的结束标志
 
+       /* 使用下面方法，会报错 Exception in thread "main" java.net.SocketException: Socket is closed
+       BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream());
+        int readLen = 0;
+        byte[] bytes = new byte[1024];
+        while ((readLen = bis.read(bytes)) != -1) {
+            bos.write(bytes,0,readLen);
+        }
+        bis.close();
+        socket.shutdownOutput();*/
 
         // 接收服务端回复的信息
         InputStream inputStream = socket.getInputStream();
         String stream = StreamUtils.streamToString(inputStream);
-        System.out.println("接收到服务端回复的信息："+ stream);
+        System.out.println("接收到服务端回复的信息：" + stream);
 
         // 关闭资源
         inputStream.close();
         bos.close();
         socket.close();
         System.out.println("退出客户端...");
-
 
 
     }

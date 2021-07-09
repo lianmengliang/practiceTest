@@ -13,7 +13,21 @@ public class FileCreate {
     public static void main(String[] args) {
 //        newFile3();
 //        commonOperationsForFile();
-        directoryOperations1();
+//        directoryOperations1();
+
+        file01();
+    }
+
+    private static void file01() {
+
+        File file = new File("src/");
+        String[] list = file.list();
+        for (String s : list) {
+            System.out.println(s.split("\\.")[0]);
+        }
+        System.out.println(file.isFile());
+        System.out.println(file.exists());
+
     }
 
 

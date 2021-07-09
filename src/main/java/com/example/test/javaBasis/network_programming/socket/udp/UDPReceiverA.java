@@ -37,7 +37,7 @@ public class UDPReceiverA {
 //        socket.send(packet);
 
         data = "好的，明天见".getBytes();
-        packet = new DatagramPacket(data, data.length, InetAddress.getByName("192.168.10.98"), 9998);
+        packet = new DatagramPacket(data, data.length, InetAddress.getByName("192.168.10.104"), 9998);
         socket.send(packet);
 
 

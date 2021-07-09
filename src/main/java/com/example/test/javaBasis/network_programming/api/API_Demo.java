@@ -13,10 +13,11 @@ public class API_Demo {
 
         InetAddress localHost = InetAddress.getLocalHost();
         // DESKTOP-UQOUO2U/192.168.10.97
-        System.out.println("本机ip地址：" + localHost);
+        System.out.println("本机ip：" + localHost);
+        System.out.println("本机ip地址：" + localHost.getHostAddress());
 
         InetAddress host1 = InetAddress.getByName("DESKTOP-UQOUO2U");
-        System.out.println("主机名：" + host1);
+        System.out.println("主机名：" + host1.getHostName());
 
         //根据域名返回InetAddress对象
         InetAddress host2 = InetAddress.getByName("www.baidu.com");

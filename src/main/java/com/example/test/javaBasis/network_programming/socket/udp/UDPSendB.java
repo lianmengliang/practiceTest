@@ -22,8 +22,7 @@ public class UDPSendB {
 
         //2.需要发送的数据，封装到DatagramPacket对象中
         byte[] data = "hello，明天吃火锅".getBytes();
-
-        DatagramPacket packet = new DatagramPacket(data,data.length, InetAddress.getByName("192.168.10.98"),9999);
+        DatagramPacket packet = new DatagramPacket(data,data.length, InetAddress.getByName("192.168.10.104"),9999);
         socket.send(packet);
 
         //========接收回信

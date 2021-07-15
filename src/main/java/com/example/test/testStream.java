@@ -1,5 +1,6 @@
 package com.example.test;
 
+import cn.hutool.system.oshi.OshiUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.domain.Student;
@@ -7,16 +8,8 @@ import com.example.domain.User;
 import com.example.utils.OkHttpUtil;
 import com.example.utils.XmlTool;
 import com.google.common.collect.Lists;
-import com.sun.org.apache.xpath.internal.operations.Or;
 import lombok.Data;
-import lombok.Value;
-import sun.reflect.generics.tree.Tree;
 
-import java.awt.*;
-import java.awt.event.ActionListener;
-import java.nio.charset.StandardCharsets;
-import java.security.PublicKey;
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -25,7 +18,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.toList;
 
 /**
  * @Author ： leo
@@ -363,6 +355,7 @@ public class testStream {
         Order order5 = new Order(5L, 193L, "125453", "调料", null, 51.0f, 125);
         Order order6 = new Order(6L, 138L, "124543", "首饰", 200.0f, 106.0f, 133);
         Order order7 = new Order(6L, 138L, "124543", "首饰", 100.0f, 126.0f, 133);
+
         // 设置数据
         orders.add(order1);
         orders.add(order2);
@@ -371,6 +364,9 @@ public class testStream {
         orders.add(order5);
         orders.add(order6);
         orders.add(order7);
+
+
+       list.forEach(System.out::println);
 
 
         // 1.筛选总金额大于1000的订单
@@ -481,6 +477,50 @@ public class testStream {
 
     }
 
+    /**
+     *
+     */
+    public static void test006(){
+        List<Order> orders = Lists.newArrayList();
+
+        // 创建数据
+        Order order1 = new Order(1L, 125L, "12.21813", "服饰", 100.0f, 13.0f, 123);
+        Order order2 = new Order(1L, 143L, "1212313", "水果", 1001.0f, 50.0f, 124);
+        Order order3 = new Order(3L, 123L, "122313", "蔬菜", 300.0f, 113.0f, 145);
+        Order order4 = new Order(3L, 113L, "12.12813", "服饰", 1500.0f, 26.0f, 126);
+        Order order5 = new Order(5L, 193L, "125453", "调料", null, 51.0f, 125);
+        Order order6 = new Order(6L, 138L, "124543", "首饰", 200.0f, 106.0f, 133);
+        Order order7 = new Order(6L, 138L, "124.543", "首饰", 100.0f, 126.0f, 133);
+
+        // 设置数据
+        orders.add(order1);
+        orders.add(order2);
+        orders.add(order3);
+        orders.add(order4);
+        orders.add(order5);
+        orders.add(order6);
+        orders.add(order7);
+
+
+        orders.forEach(item->{
+            if (item.getNum().contains(".")){
+                item.setNum(item.getNum().replace(".", "_"));
+            }
+            System.out.println(item);
+        });
+
+       // java实现
+//        orders.forEach(item->item.setNum(item.getNum().replace(".", "_")));
+
+
+        String a =  "123.23w123";
+        String replace = a.replace(".", "_");
+        System.out.println(replace);
+    }
+    /**
+     * 主方法
+     * @param args
+     */
     public static void main(String[] args) {
        /* String TOKEN = "419a9d3c203176c05f6081c703c715fd";
         String format = "xml";
@@ -503,7 +543,7 @@ public class testStream {
         System.out.println(decoded);*/
 
 
-        listFilter();
+        test006();
 
     }
 

@@ -1,8 +1,7 @@
-package com.server.qqclient.service;
+package com.client.qqclient.service;
 
-import com.server.common.Message;
+import com.client.common.Message;
 
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
@@ -13,7 +12,9 @@ import java.net.Socket;
  */
 public class ClientConnectServerThread extends Thread {
 
-    // 该线程需要持有Socket
+    /**
+     * 该线程需要持有Socket
+     */
     private Socket socket;
 
     /**

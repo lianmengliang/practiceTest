@@ -1,7 +1,7 @@
-package com.server.qqclient.view;
+package com.client.qqclient.view;
 
 import com.example.utils.InputControlUtil;
-import com.server.qqclient.service.UserClientService;
+import com.client.qqclient.service.UserClientService;
 
 /**
  * @Author ： Leo
@@ -38,7 +38,7 @@ public class QQView {
                 case "1":
                     System.out.print("请输入用户ID：");
                     String userId = InputControlUtil.readString(50);
-                    System.out.print("请输入用户密 码：");
+                    System.out.print("请输入用户密码：");
                     String pwd = InputControlUtil.readString(50);
                     // 这里需要构建用户对象，并且验证用户是否合法
                     // 编写一个类UserClientService[用户登录验证]
@@ -47,9 +47,10 @@ public class QQView {
                     //假如 合法
                     if (userClientService.checkUser(userId, pwd)) {
                         //显示二级菜单
-                        System.out.println("=============网络通信系统二级菜单（用户" + userId + "）=============");
+                        System.out.println("=============欢迎（用户" + userId + "登陆成功）=============");
 
                         while (loop) {
+                            System.out.println("=============网络通信系统二级菜单（用户" + userId + "）=============");
                             System.out.println("\t\t 1 显示在线用户列表");
                             System.out.println("\t\t 2 群发消息");
                             System.out.println("\t\t 3 私聊消息");

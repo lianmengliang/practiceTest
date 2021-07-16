@@ -1,6 +1,4 @@
-package com.server.qqclient.service;
-
-import org.openxmlformats.schemas.officeDocument.x2006.math.CTOMathJc;
+package com.client.qqclient.service;
 
 import java.util.HashMap;
 

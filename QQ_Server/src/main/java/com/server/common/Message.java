@@ -15,7 +15,7 @@ public class Message implements Serializable {
     private String sender;
 
     /**
-     * 接收者
+     * 接受者
      */
     private String getter;
 

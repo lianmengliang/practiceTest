@@ -1,4 +1,4 @@
-package com.client.common;
+package com.server.common;
 
 /**
  * @Author ： Leo

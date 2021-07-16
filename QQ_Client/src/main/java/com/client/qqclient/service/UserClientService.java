@@ -1,8 +1,8 @@
-package com.server.qqclient.service;
+package com.client.qqclient.service;
 
-import com.server.common.Message;
-import com.server.common.MessageType;
-import com.server.common.User;
+import com.client.common.Message;
+import com.client.common.MessageType;
+import com.client.common.User;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

@@ -1,8 +1,9 @@
-package com.client.qqclient.service;
+package com.test.qqclient.service;
 
-import com.client.common.Message;
-import com.client.common.MessageType;
-import com.client.common.User;
+
+import com.test.common.Message;
+import com.test.common.MessageType;
+import com.test.common.User;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -37,7 +38,7 @@ public class UserClientService {
 
         //创建User对象
         user.setUserId(userId);
-        user.setPasswoed(pwd);
+        user.setPassword(pwd);
 
         // 连接服务器，发送user对象
         try{

@@ -1,14 +1,16 @@
-package com.server.service;
+package com.test.service;
 
-import com.server.common.Message;
-import com.server.common.MessageType;
-import com.server.common.User;
+import com.test.common.Message;
+import com.test.common.MessageType;
+import com.test.common.User;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @Author ： Leo
@@ -19,6 +21,70 @@ public class QQServer {
 
     private ServerSocket ss = null;
 
+    /**
+     * 该集合用于存放多个用户，如果是这些用户登录，就是合法，反之不合法
+     * 这里我们也可以使用 ConcurrentHashMap，可以处理并发的集合
+     * HashMap 没有处理线程安全，因此多线程情况下是不安全的
+     * ConcurrentHashMap处理的线程安全，即线程同步处理，在多线程情况下是安全的
+     */
+    private static ConcurrentHashMap<String, User> validUsers = new ConcurrentHashMap<>();
+
+    /**
+     * 静态代码块，初始化 validUsers对象
+     */
+    static {
+        validUsers.put("100", new User("100", "123456"));
+        validUsers.put("200", new User("200", "123456"));
+        validUsers.put("300", new User("300", "123456"));
+        validUsers.put("leo", new User("leo", "888888"));
+        validUsers.put("kevin", new User("kevin", "666666"));
+    }
+
+    /**
+     * 用于校验用户是否合法
+     *
+     * @param userId
+     * @param pwd
+     */
+    public static boolean checkUser(String userId, String pwd) {
+      
+        User user = validUsers.get(userId);
+        /*if (user != null) {
+            if (user.getPassword().equals(pwd)) {
+                result = true;
+            }
+        }*/
+        
+        //也可采用过关方法验证用户，这样方便判断是用户id还是用户密码出错
+        if (user == null){
+            System.out.println("用户id有误");
+            return false;
+        }
+        if (!user.getPassword().equals(pwd)){
+            System.out.println("用户密码有误");
+            return false;
+        }
+        
+        return true;
+    }
+
+    /**
+     * 添加用户---> 注册新用户
+     *
+     * @param userId
+     * @param pwd
+     * @return
+     */
+    public static void addUser(String userId, String pwd) {
+        // 注意该用户已存在的情况
+        if (validUsers.get(userId) != null) {
+            System.out.println(userId + "该用户已存在");
+            return ;
+        }
+        // 添加用户
+        validUsers.put(userId,new User(userId,pwd));
+
+    }
 
     public QQServer() {
         // 端口可以写到配置文件中，方便改动端口
@@ -39,7 +105,7 @@ public class QQServer {
                 // 准备回复一个客户端
                 Message message = new Message();
                 // 验证用户合法性
-                if (userId.equals("100") && user.getPasswoed().equals("123456")) {
+                if (QQServer.checkUser(userId, user.getPassword())) {
                     // 验证通过，登录成功
                     message.setMessageType(MessageType.MESSAGE_LOGIN_SUCCEED);
                     oos.writeObject(message);
@@ -52,7 +118,7 @@ public class QQServer {
 
                 } else {
                     // 验证失败，登录失败
-                    System.out.println("用户" + userId + "登录失败");
+                    System.out.println("用户" + userId + "登录失败---(验证失败)");
                     message.setMessageType(MessageType.MESSAGE_LOGIN_FAIL);
                     oos.writeObject(message);
                     // 关闭socket

@@ -1,4 +1,4 @@
-package com.client.common;
+package com.test.common;
 
 
 import java.io.Serializable;
@@ -10,16 +10,18 @@ import java.io.Serializable;
  */
 public class User implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     private String userId;
 
-    private String passwoed;
+    private String password;
 
     public User() {
     }
 
-    public User(String userId, String passwoed) {
+    public User(String userId, String password) {
         this.userId = userId;
-        this.passwoed = passwoed;
+        this.password = password;
     }
 
     public String getUserId() {
@@ -30,11 +32,11 @@ public class User implements Serializable {
         this.userId = userId;
     }
 
-    public String getPasswoed() {
-        return passwoed;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswoed(String passwoed) {
-        this.passwoed = passwoed;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -1,4 +1,4 @@
-package com.server.common;
+package com.example.small_projects.qq.common;
 
 /**
  * @Author ： Leo
@@ -6,7 +6,6 @@ package com.server.common;
  * @Desc:
  */
 public interface MessageType {
-    /*定义一些常量：不同的常量的值，表示不同的消息类型 */
     /**
      * 登录成功
      */

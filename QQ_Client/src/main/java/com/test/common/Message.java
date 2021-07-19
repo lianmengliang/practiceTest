@@ -1,4 +1,4 @@
-package com.server.common;
+package com.test.common;
 
 import java.io.Serializable;
 
@@ -15,7 +15,7 @@ public class Message implements Serializable {
     private String sender;
 
     /**
-     * 接受者
+     * 接收者
      */
     private String getter;
 

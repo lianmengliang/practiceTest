@@ -1,6 +1,7 @@
-package com.server.service;
+package com.test.service;
 
-import com.server.common.Message;
+
+import com.test.common.Message;
 
 import java.io.ObjectInputStream;
 import java.net.Socket;
@@ -30,7 +31,7 @@ public class ServerConnectClientThread extends Thread {
         // 这里的线程处于run状态，可以发送/接收消息
         while (true) {
             try {
-                System.out.println("服务端和客户端" + userId + "保持通信...");
+                System.out.println("服务端和客户端-" + userId + "-保持通信...");
                 ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
                 // 读取消息
                 Message ms = (Message) ois.readObject();

@@ -1,6 +1,6 @@
-package com.server.qqframe;
+package com.test.qqframe;
 
-import com.server.service.QQServer;
+import com.test.service.QQServer;
 
 /**
  * @Author ： Leo

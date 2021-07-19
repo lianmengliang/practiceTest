@@ -1,4 +1,4 @@
-package com.client.common;
+package com.test.common;
 
 /**
  * @Author ： Leo
@@ -6,6 +6,7 @@ package com.client.common;
  * @Desc:
  */
 public interface MessageType {
+    /*定义一些常量：不同的常量的值，表示不同的消息类型 */
     /**
      * 登录成功
      */

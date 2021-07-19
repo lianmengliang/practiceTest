@@ -1,4 +1,4 @@
-package com.server.service;
+package com.test.service;
 
 import java.util.HashMap;
 
@@ -31,7 +31,7 @@ public class ManagerServerConnectClientThread {
     public static ServerConnectClientThread getServerConnectClientThread(String userId){
 
         ServerConnectClientThread thread = threadManager.get(userId);
-        return thread;
 
+        return thread;
     }
 }

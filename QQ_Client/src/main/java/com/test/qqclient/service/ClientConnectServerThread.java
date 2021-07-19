@@ -1,6 +1,10 @@
-package com.client.qqclient.service;
+package com.test.qqclient.service;
 
-import com.client.common.Message;
+
+
+
+
+import com.test.common.Message;
 
 import java.io.ObjectInputStream;
 import java.net.Socket;

@@ -1,7 +1,7 @@
-package com.client.qqclient.view;
+package com.test.qqclient.view;
 
 import com.example.utils.InputControlUtil;
-import com.client.qqclient.service.UserClientService;
+import com.test.qqclient.service.UserClientService;
 
 /**
  * @Author ： Leo
@@ -47,7 +47,7 @@ public class QQView {
                     //假如 合法
                     if (userClientService.checkUser(userId, pwd)) {
                         //显示二级菜单
-                        System.out.println("=============欢迎（用户" + userId + "登陆成功）=============");
+                        System.out.println("=============欢迎（用户-" + userId + "-登录成功）=============");
 
                         while (loop) {
                             System.out.println("=============网络通信系统二级菜单（用户" + userId + "）=============");

@@ -1,4 +1,4 @@
-package com.client.common;
+package com.example.small_projects.qq.common;
 
 import java.io.Serializable;
 

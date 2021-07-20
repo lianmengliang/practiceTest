@@ -3,6 +3,8 @@ package com.test.qqclient.view;
 import com.example.utils.InputControlUtil;
 import com.test.qqclient.service.UserClientService;
 
+import java.io.IOException;
+
 /**
  * @Author ： Leo
  * @Date : 2021/7/12 18:29
@@ -23,7 +25,7 @@ public class QQView {
     private UserClientService userClientService = new UserClientService();
 
     /*** 主菜单展示*/
-    private void mainMenu() {
+    private void mainMenu() throws IOException {
         while (loop) {
             // 显示一级菜单
             System.out.println("=============欢迎登录网络通信系统=============");
@@ -60,7 +62,9 @@ public class QQView {
                             key = InputControlUtil.readString(1);
                             switch (key) {
                                 case "1":
-                                    System.out.println("显示在线用户列表");
+                                    //这里写一个方法获取在线用户列表
+//                                    System.out.println("显示在线用户列表");
+                                    userClientService.onlineFriendList();
                                     break;
                                 case "2":
                                     System.out.println("群发消息");
@@ -73,6 +77,8 @@ public class QQView {
                                     System.out.println("发送文件");
                                     break;
                                 case "9":
+                                    // 调用一个方法，给服务器发送一个退出线程的message
+                                    userClientService.logout();
                                     loop = false;
                                     System.out.println("退出系统...");
                                     break;
@@ -96,7 +102,7 @@ public class QQView {
      *
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new QQView().mainMenu();
     }
 

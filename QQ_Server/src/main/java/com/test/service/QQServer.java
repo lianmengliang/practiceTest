@@ -9,7 +9,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -36,8 +35,8 @@ public class QQServer {
         validUsers.put("100", new User("100", "123456"));
         validUsers.put("200", new User("200", "123456"));
         validUsers.put("300", new User("300", "123456"));
-        validUsers.put("leo", new User("leo", "888888"));
-        validUsers.put("kevin", new User("kevin", "666666"));
+        validUsers.put("leo", new User("leo", "888"));
+        validUsers.put("kevin", new User("kevin", "666"));
     }
 
     /**
@@ -92,7 +91,7 @@ public class QQServer {
             System.out.println("服务器在9999端口监听...");
             ss = new ServerSocket(9999);
 
-            // 党和某个客户端连接后，会继续监听，因此需要用到while循环
+            // 当和某个客户端连接后，会继续监听，因此需要用到while循环
             while (true) {
                 Socket socket = ss.accept();
                 // 获取对象的输入流

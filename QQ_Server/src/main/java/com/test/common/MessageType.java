@@ -34,4 +34,8 @@ public interface MessageType {
      */
     String MESSAGE_CLIENT_EXIT = "6";
 
+    /**
+     * 群发消息
+     */
+    String MESSAGE_MASS_MESSAGE = "7";
 }

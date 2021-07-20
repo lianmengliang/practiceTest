@@ -55,6 +55,10 @@ public class ClientConnectServerThread extends Thread {
                     for (String useId : userIdArray) {
                         System.out.println("用户：" + useId);
                     }
+                } else if (ms.getMessageType().equals(MessageType.MESSAGE_COMM_MES)) {
+                    System.out.println("\n" + ms.getSender() + "对" + ms.getGetter() + "说" + ms.getContent() + "  " + ms.getSendTime());
+                } else if (ms.getMessageType().equals(MessageType.MESSAGE_MASS_MESSAGE)) {
+                    System.out.println("\n" + ms.getSender() + "的群发消息：" + ms.getContent() + "  " + ms.getSendTime());
                 } else {
                     System.out.println("其他类型message，暂时不处理");
                 }

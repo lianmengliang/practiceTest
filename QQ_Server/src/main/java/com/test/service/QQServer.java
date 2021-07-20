@@ -34,9 +34,9 @@ public class QQServer {
     static {
         validUsers.put("100", new User("100", "123456"));
         validUsers.put("200", new User("200", "123456"));
-        validUsers.put("300", new User("300", "123456"));
-        validUsers.put("leo", new User("leo", "888"));
-        validUsers.put("kevin", new User("kevin", "666"));
+        validUsers.put("Alice", new User("Alice", "686"));
+        validUsers.put("Leo", new User("leo", "888"));
+        validUsers.put("Kevin", new User("kevin", "666"));
     }
 
     /**

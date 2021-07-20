@@ -1,6 +1,7 @@
 package com.test.qqclient.view;
 
 import com.example.utils.InputControlUtil;
+import com.test.qqclient.service.MessageClientService;
 import com.test.qqclient.service.UserClientService;
 
 import java.io.IOException;
@@ -23,6 +24,11 @@ public class QQView {
      * 用于登录服务器
      */
     private UserClientService userClientService = new UserClientService();
+    /**
+     *
+     */
+    private MessageClientService messageClientService = new MessageClientService();
+
 
     /*** 主菜单展示*/
     private void mainMenu() throws IOException {
@@ -44,9 +50,6 @@ public class QQView {
                     String pwd = InputControlUtil.readString(50);
                     // 这里需要构建用户对象，并且验证用户是否合法
                     // 编写一个类UserClientService[用户登录验证]
-                    // ...................
-
-                    //假如 合法
                     if (userClientService.checkUser(userId, pwd)) {
                         //显示二级菜单
                         System.out.println("=============欢迎（用户-" + userId + "-登录成功）=============");
@@ -62,17 +65,21 @@ public class QQView {
                             key = InputControlUtil.readString(1);
                             switch (key) {
                                 case "1":
-                                    //这里写一个方法获取在线用户列表
-//                                    System.out.println("显示在线用户列表");
+                                    // 获取在线用户列表
                                     userClientService.onlineFriendList();
                                     break;
                                 case "2":
-                                    System.out.println("群发消息");
+                                    System.out.println("请输入群发的消息:");
+                                    String massMessasge = InputControlUtil.readString(100);
+                                    messageClientService.sendMessageToAll(userId,massMessasge);
                                     break;
                                 case "3":
-                                    System.out.println("私聊消息");
+                                    System.out.println("请输入想聊天的用户id(在线):");
+                                    String getter = InputControlUtil.readString(50);
+                                    System.out.println("请输入想说的话:");
+                                    String contentToOne = InputControlUtil.readString(100);
+                                    messageClientService.sendMessageToOne(userId, contentToOne, getter);
                                     break;
-
                                 case "4":
                                     System.out.println("发送文件");
                                     break;

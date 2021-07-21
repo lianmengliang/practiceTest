@@ -1,5 +1,6 @@
 package com.test.qqclient.service;
 
+import com.example.utils.DateUtil;
 import com.test.common.Message;
 import com.test.common.MessageType;
 
@@ -28,7 +29,7 @@ public class MessageClientService {
         // 普通的聊天消息
         ms.setMessageType(MessageType.MESSAGE_COMM_MES);
         // 发送时间
-        ms.setSendTime(new Date().toString());
+        ms.setSendTime(DateUtil.getCurrentTime(DateUtil.DATE_TIME_FORMAT));
         System.out.println(senderId+"对"+getterId+"说：“"+content+"”。");
 
         // 发送消息
@@ -52,7 +53,7 @@ public class MessageClientService {
         ms.setSender(senderId);
         ms.setContent(content);
         ms.setMessageType(MessageType.MESSAGE_MASS_MESSAGE);
-        ms.setSendTime(new Date().toString());
+        ms.setSendTime(DateUtil.getCurrentTime(DateUtil.DATE_TIME_FORMAT));
         System.out.println(senderId+"的群发消息："+content);
 
         try {

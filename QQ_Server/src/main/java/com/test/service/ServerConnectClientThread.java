@@ -82,12 +82,19 @@ public class ServerConnectClientThread extends Thread {
                     String[] userIds = onlineUsers.split(",");
                     for (String userId : userIds) {
                         // 排除发送者
-                        if (userId.equals(ms.getSender())){
+                        if (userId.equals(ms.getSender())) {
                             ObjectOutputStream oos = new ObjectOutputStream(ManagerServerConnectClientThread.getServerConnectClientThread(userId).getSocket().getOutputStream());
                             oos.writeObject(ms);
                         }
                     }
-                } else {
+                } else if (ms.getMessageType().equals(MessageType.MESSAGE_FILE)) {
+                    //根据getter获取相对应的线程
+                    ServerConnectClientThread thread = ManagerServerConnectClientThread.getServerConnectClientThread(ms.getGetter());
+                    ObjectOutputStream oos = new ObjectOutputStream(thread.getSocket().getOutputStream());
+                    System.out.println("\n" + ms.getSender() + "给" + ms.getGetter() + "发送了文件" + ms.getSrc() + "到对方的电脑目录" + ms.getDest());
+                    // 转发
+                    oos.writeObject(ms);
+                }else {
                     System.out.println("其他类型的业务，暂时不处理...");
                 }
             } catch (Exception e) {

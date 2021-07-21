@@ -51,4 +51,8 @@ public interface MessageType {
      * 发送文件
      */
     String MESSAGE_FILE = "10";
+    /**
+     * 服务器推送新闻/消息
+     */
+    String MESSAGE_NEWS_MSG = "11";
 }

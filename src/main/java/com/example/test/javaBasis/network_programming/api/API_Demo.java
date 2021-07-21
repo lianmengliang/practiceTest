@@ -1,5 +1,6 @@
 package com.example.test.javaBasis.network_programming.api;
 
+import java.io.File;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -32,5 +33,26 @@ public class API_Demo {
         // 通过InetAddress对象，获取对应的主机名/域名
         String hostName = host2.getHostName();
         System.out.println("获取的主机名/域名: " + hostName);
+
+
+        testFile();
+    }
+
+    /**
+     *
+     */
+    public static void testFile(){
+        //判断 客户端发送的内容(判断的前提是得知道自己都有哪些文件)
+        File file = new File("g:\\8.jpg");
+        if (file.isFile()){
+            System.out.println("文件存在");
+        }else{
+            System.out.println("文件不存在");
+
+        }
+       /* String[] list = file.list();
+        for (String s : list) {
+            System.out.println(s);
+        }*/
     }
 }

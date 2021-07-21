@@ -36,6 +36,7 @@ public class QQView {
             // 显示一级菜单
             System.out.println("=============欢迎登录网络通信系统=============");
             System.out.println("\t\t 1 登录系统");
+            System.out.println("\t\t 2 注册系统");
             System.out.println("\t\t 9 退出系统");
             System.out.print("请输入你的数字：");
 
@@ -50,7 +51,7 @@ public class QQView {
                     String pwd = InputControlUtil.readString(50);
                     // 这里需要构建用户对象，并且验证用户是否合法
                     // 编写一个类UserClientService[用户登录验证]
-                    if (userClientService.checkUser(userId, pwd)) {
+                    if (userClientService.signInOrResgister(userId, pwd,1)) {
                         //显示二级菜单
                         System.out.println("=============欢迎（用户-" + userId + "-登录成功）=============");
 
@@ -93,6 +94,18 @@ public class QQView {
                         }
                     } else { // 登录服务器失败
                         System.out.println("======>登录失败<========");
+                    }
+                    break;
+                case "2":
+                    //注册新用户 逻辑
+                    System.out.print("请输入新用户ID：");
+                    String newUserId = InputControlUtil.readString(50);
+                    System.out.print("请输入新用户密码：");
+                    String newPwd = InputControlUtil.readString(50);
+                    if (userClientService.signInOrResgister(newUserId, newPwd,2)) {
+                        System.out.println("=======>注册成功<======");
+                    }else{
+                        System.out.println("=======>注册失败<======");
                     }
                     break;
                 case "9":

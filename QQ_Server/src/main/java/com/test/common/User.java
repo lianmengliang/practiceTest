@@ -15,7 +15,25 @@ public class User implements Serializable {
     private String userId;
 
     private String password;
+    /**
+     * 1： 登录
+     * 2： 注册
+     */
+    private Integer signInOrRegister;
 
+    public Integer getSignInOrRegister() {
+        return signInOrRegister;
+    }
+
+    public void setSignInOrRegister(Integer signInOrRegister) {
+        this.signInOrRegister = signInOrRegister;
+    }
+
+    public User(String userId, String password, Integer signInOrRegister) {
+        this.userId = userId;
+        this.password = password;
+        this.signInOrRegister = signInOrRegister;
+    }
     public User() {
     }
 

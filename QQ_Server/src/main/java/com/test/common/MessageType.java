@@ -38,4 +38,19 @@ public interface MessageType {
      * 群发消息
      */
     String MESSAGE_MASS_MESSAGE = "7";
+
+    /**
+     * 注册成功
+     */
+    String MESSAGE_REGISTER_SUCCEED = "8";
+    /**
+     * 注册失败
+     */
+    String MESSAGE_REGISTER_FAIL = "9";
+
+    /**
+     * 发送文件
+     */
+    String MESSAGE_FILE = "10";
+
 }

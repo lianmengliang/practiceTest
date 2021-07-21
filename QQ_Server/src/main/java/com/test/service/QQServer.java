@@ -46,24 +46,24 @@ public class QQServer {
      * @param pwd
      */
     public static boolean checkUser(String userId, String pwd) {
-      
+
         User user = validUsers.get(userId);
         /*if (user != null) {
             if (user.getPassword().equals(pwd)) {
                 result = true;
             }
         }*/
-        
+
         //也可采用过关方法验证用户，这样方便判断是用户id还是用户密码出错
-        if (user == null){
+        if (user == null) {
             System.out.println("用户id有误");
             return false;
         }
-        if (!user.getPassword().equals(pwd)){
+        if (!user.getPassword().equals(pwd)) {
             System.out.println("用户密码有误");
             return false;
         }
-        
+
         return true;
     }
 
@@ -74,15 +74,15 @@ public class QQServer {
      * @param pwd
      * @return
      */
-    public static void addUser(String userId, String pwd) {
+    public static boolean addUser(String userId, String pwd) {
         // 注意该用户已存在的情况
         if (validUsers.get(userId) != null) {
             System.out.println(userId + "该用户已存在");
-            return ;
+            return false;
         }
         // 添加用户
-        validUsers.put(userId,new User(userId,pwd));
-
+        validUsers.put(userId, new User(userId, pwd));
+        return true;
     }
 
     public QQServer() {
@@ -103,23 +103,43 @@ public class QQServer {
                 ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
                 // 准备回复一个客户端
                 Message message = new Message();
-                // 验证用户合法性
-                if (QQServer.checkUser(userId, user.getPassword())) {
-                    // 验证通过，登录成功
-                    message.setMessageType(MessageType.MESSAGE_LOGIN_SUCCEED);
-                    oos.writeObject(message);
-                    // 创建一个线程，和客户端保持通信，该线程应该持有socket对象
-                    ServerConnectClientThread serverConnectClientThread = new ServerConnectClientThread(socket, userId);
-                    // 启动该线程
-                    serverConnectClientThread.start();
-                    // 把该线程对象放入到集合中进行管理
-                    ManagerServerConnectClientThread.addServerConnectClientThreadToMap(userId, serverConnectClientThread);
+                if (user.getSignInOrRegister() == 1) {
+                    // 用户登录
+                    // 验证用户合法性
+                    if (QQServer.checkUser(userId, user.getPassword())) {
+                        // 验证通过，登录成功
+                        message.setMessageType(MessageType.MESSAGE_LOGIN_SUCCEED);
+                        oos.writeObject(message);
+                        // 创建一个线程，和客户端保持通信，该线程应该持有socket对象
+                        ServerConnectClientThread serverConnectClientThread = new ServerConnectClientThread(socket, userId);
+                        // 启动该线程
+                        serverConnectClientThread.start();
+                        // 把该线程对象放入到集合中进行管理
+                        ManagerServerConnectClientThread.addServerConnectClientThreadToMap(userId, serverConnectClientThread);
 
+                    } else {
+                        // 验证失败，登录失败
+                        System.out.println("用户" + userId + "登录失败---(验证失败)");
+                        message.setMessageType(MessageType.MESSAGE_LOGIN_FAIL);
+                        oos.writeObject(message);
+                        // 关闭socket
+                        socket.close();
+                    }
                 } else {
-                    // 验证失败，登录失败
-                    System.out.println("用户" + userId + "登录失败---(验证失败)");
-                    message.setMessageType(MessageType.MESSAGE_LOGIN_FAIL);
-                    oos.writeObject(message);
+                    // 用户注册
+                    if (QQServer.addUser(userId, user.getPassword())) {
+                        // 注册成功
+                        System.out.println("用户" + userId + "注册成功");
+                        message.setMessageType(MessageType.MESSAGE_REGISTER_SUCCEED);
+                        oos.writeObject(message);
+
+                    } else {
+                        // 注册失败
+                        System.out.println("用户" + userId + "注册失败");
+                        message.setMessageType(MessageType.MESSAGE_REGISTER_FAIL);
+                        message.setContent("该用户id已存在");
+                        oos.writeObject(message);
+                    }
                     // 关闭socket
                     socket.close();
                 }

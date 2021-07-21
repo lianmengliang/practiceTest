@@ -32,6 +32,48 @@ public class Message implements Serializable {
      * 消息类型： 可以在接口中定义消息类型
      */
     private String messageType;
+    /**
+     *     //扩展 和 文件相关的成员变量
+     */
+    private byte[] fileBytes;
+
+    private int fileLen = 0;
+
+    private String dest;
+
+    private String src;
+
+    public byte[] getFileBytes() {
+        return fileBytes;
+    }
+
+    public void setFileBytes(byte[] fileBytes) {
+        this.fileBytes = fileBytes;
+    }
+
+    public int getFileLen() {
+        return fileLen;
+    }
+
+    public void setFileLen(int fileLen) {
+        this.fileLen = fileLen;
+    }
+
+    public String getDest() {
+        return dest;
+    }
+
+    public void setDest(String dest) {
+        this.dest = dest;
+    }
+
+    public String getSrc() {
+        return src;
+    }
+
+    public void setSrc(String src) {
+        this.src = src;
+    }
 
     public String getSender() {
         return sender;

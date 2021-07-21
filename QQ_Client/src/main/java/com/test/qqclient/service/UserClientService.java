@@ -34,20 +34,23 @@ public class UserClientService {
      *
      * @param userId
      * @param pwd
+     * @param num    1:登录，2，注册
      * @return
      */
-    public boolean checkUser(String userId, String pwd) {
+    public boolean signInOrResgister(String userId, String pwd, Integer num) {
         boolean variable = false;
 
         //创建User对象
         user.setUserId(userId);
         user.setPassword(pwd);
+        user.setSignInOrRegister(num);
 
         // 连接服务器，发送user对象
         try {
             socket = new Socket(InetAddress.getByName("127.0.0.1"), 9999);
             // 得到Object的 OutputStream的对象
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+
             oos.writeObject(user);
 
             //读取从服务器回复的Message对象
@@ -64,6 +67,12 @@ public class UserClientService {
                 // 为了后面客户端的扩展，我们将线程放入集合管理
                 ManagerClientConnectServerThread.addClientConnectServerThreadToMap(userId, ccst);
                 variable = true;
+            } else if (ms.getMessageType().equals(MessageType.MESSAGE_REGISTER_SUCCEED)) {
+                System.out.println("用户" + userId + "注册成功");
+                socket.close();
+            } else if (ms.getMessageType().equals(MessageType.MESSAGE_REGISTER_FAIL)) {
+                System.out.println(userId + "注册失败，原因：" + ms.getContent());
+                socket.close();
             } else {
                 // 如果登录失败，不能启动和服务器通信的线程，关闭Socket
                 socket.close();
@@ -106,10 +115,9 @@ public class UserClientService {
 
         //发送message
         try {
-//            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-            // 也可以使用下面这种方式获取socket，然后再发送信息
+            // 可以使用下面这种方式获取socket，然后再发送信息
             // 下面这种方式也适合  多个socket
-            ObjectOutputStream oos = new ObjectOutputStream( ManagerClientConnectServerThread.getClientConnectServerThreadByUserId(user.getUserId()).getSocket().getOutputStream());
+            ObjectOutputStream oos = new ObjectOutputStream(ManagerClientConnectServerThread.getClientConnectServerThreadByUserId(user.getUserId()).getSocket().getOutputStream());
             oos.writeObject(message);
             System.out.println(user.getUserId() + "退出系统");
             // 结束进程

@@ -56,4 +56,17 @@ public interface MessageType {
      * 服务器推送新闻/消息
      */
     String MESSAGE_NEWS_MSG = "11";
+    /**
+     * 离线留言消息
+     */
+    String MESSAGE_OFFLINE_MSG = "12";
+
+    /**
+     * 离线发送文件
+     */
+    String MESSAGE_OFFLINE_FILE = "13";
+    /**
+     * 获取离线消息/文件
+     */
+    String GET_OFFLINE_MESSAGE = "14";
 }

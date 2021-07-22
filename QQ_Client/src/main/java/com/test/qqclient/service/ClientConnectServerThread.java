@@ -3,8 +3,8 @@ package com.test.qqclient.service;
 
 import com.test.common.Message;
 import com.test.common.MessageType;
+import lombok.Data;
 
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
@@ -14,6 +14,7 @@ import java.net.Socket;
  * @Date : 2021/7/15 17:46
  * @Desc:
  */
+@Data
 public class ClientConnectServerThread extends Thread {
 
     /**
@@ -63,13 +64,14 @@ public class ClientConnectServerThread extends Thread {
                     System.out.println("\n" + ms.getSender() + "的群发消息：" + ms.getContent() + "  " + ms.getSendTime());
                 } else if (ms.getMessageType().equals(MessageType.MESSAGE_FILE)) {
                     System.out.println("\n" + ms.getSender() + "给" + ms.getGetter() + "发送了文件" + ms.getSrc() + "到对方的电脑目录" + ms.getDest());
-
                     //取出ms中文件字节数组，通过字节输出流写到磁盘中
                     FileOutputStream fos = new FileOutputStream(ms.getDest());
                     fos.write(ms.getFileBytes());
                     fos.close();
                     System.out.println("文件保存成功...");
-                } else {
+                } else if(ms.getMessageType().equals(MessageType.GET_OFFLINE_MESSAGE)){
+                    System.out.println("\n" + ms.getGetter() + "收到："+ms.getSender()+"留言消息：" + ms.getContent() + "  " + ms.getSendTime());
+                }else {
                     System.out.println("其他类型message，暂时不处理");
                 }
 

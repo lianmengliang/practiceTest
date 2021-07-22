@@ -3,11 +3,15 @@ package com.test.service;
 
 import com.test.common.Message;
 import com.test.common.MessageType;
+import org.apache.catalina.Server;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @Author ： Leo
@@ -94,7 +98,31 @@ public class ServerConnectClientThread extends Thread {
                     System.out.println("\n" + ms.getSender() + "给" + ms.getGetter() + "发送了文件" + ms.getSrc() + "到对方的电脑目录" + ms.getDest());
                     // 转发
                     oos.writeObject(ms);
-                }else {
+                } else if (ms.getMessageType().equals(MessageType.MESSAGE_OFFLINE_MSG) || ms.getMessageType().equals(MessageType.MESSAGE_OFFLINE_FILE)) {
+                    // 服务端接收到离线消息或文件
+                    System.out.println("服务端接收到" + ms.getSender() + "对" + ms.getGetter() + "的离线消息或文件");
+                    ms.setMessageType(MessageType.GET_OFFLINE_MESSAGE);
+                    QQServer.addOfflineMessage(ms.getGetter(), ms);
+
+                } else if (ms.getMessageType().equals(MessageType.GET_OFFLINE_MESSAGE)) {
+                    ConcurrentHashMap<String, ArrayList<Message>> offlineMessages = QQServer.getOfflineMessage();
+                    // 获取离线消息
+                    List<Message> messages = offlineMessages.get(ms.getSender());
+                    ObjectOutputStream oos = new ObjectOutputStream(ManagerServerConnectClientThread.getServerConnectClientThread(ms.getSender()).getSocket().getOutputStream());
+                    // 判断用户 是否离线消息
+                    if (messages != null && !messages.isEmpty()) {
+                        for (Message message : messages) {
+                            // 向用户发送别人的离线消息
+                            oos.writeObject(message);
+                            System.out.println(ms.getSender() + "获取离线消息：" + message);
+                        }
+                        //移除 该用户的离线消息/文件
+                        offlineMessages.remove(userId);
+                    } else {
+                        System.out.println(ms.getSender() + "没有离线消息");
+                    }
+
+                } else {
                     System.out.println("其他类型的业务，暂时不处理...");
                 }
             } catch (Exception e) {

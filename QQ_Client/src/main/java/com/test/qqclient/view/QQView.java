@@ -57,16 +57,18 @@ public class QQView {
                     String pwd = InputControlUtil.readString(50);
                     // 这里需要构建用户对象，并且验证用户是否合法
                     // 编写一个类UserClientService[用户登录验证]
-                    if (userClientService.signInOrResgister(userId, pwd,1)) {
+                    if (userClientService.signInOrResgister(userId, pwd, 1)) {
                         //显示二级菜单
                         System.out.println("=============欢迎（用户-" + userId + "-登录成功）=============");
-
+                        //获取离线消息
+                        messageClientService.getOfflineMessage(userId);
                         while (loop) {
                             System.out.println("=============网络通信系统二级菜单（用户" + userId + "）=============");
                             System.out.println("\t\t 1 显示在线用户列表");
                             System.out.println("\t\t 2 群发消息");
                             System.out.println("\t\t 3 私聊消息");
                             System.out.println("\t\t 4 发送文件");
+                            System.out.println("\t\t 5 发送离线消息/文件");
                             System.out.println("\t\t 9 退出系统");
                             System.out.print("请输入你的选择：");
                             key = InputControlUtil.readString(1);
@@ -78,7 +80,7 @@ public class QQView {
                                 case "2":
                                     System.out.println("请输入群发的消息:");
                                     String massMessasge = InputControlUtil.readString(100);
-                                    messageClientService.sendMessageToAll(userId,massMessasge);
+                                    messageClientService.sendMessageToAll(userId, massMessasge);
                                     break;
                                 case "3":
                                     System.out.println("请输入想聊天的用户id(在线):");
@@ -94,7 +96,7 @@ public class QQView {
                                     System.out.println("请输入发送文件的路径(格式:d:\\xx.jpg)");
                                     String src = InputControlUtil.readString(100);
                                     File file = new File(src);
-                                    while (!file.isFile()){
+                                    while (!file.isFile()) {
                                         System.out.println("该文件不存在！！！");
                                         System.out.println("请重新输入发送文件的路径(格式:d:\\xx.jpg):");
                                         src = InputControlUtil.readString(100);
@@ -102,7 +104,30 @@ public class QQView {
                                     }
                                     System.out.println("请输入接收文件的路径(格式:d:\\xx.jpg)");
                                     String dest = InputControlUtil.readString(100);
-                                    fileClientService.sendFileToOne(src,dest,userId,getter);
+                                    fileClientService.sendFileToOne(src, dest, userId, getter);
+                                    break;
+                                case "5":
+                                    System.out.println("请输入接收离线消息/文件的用户id(离线):");
+                                    getter = InputControlUtil.readString(50);
+                                    while (true){
+                                        System.out.println("请输入文件发送的类型：1-消息，2-文件");
+                                        String type = InputControlUtil.readString(1);
+                                        if (type.equals("1")){
+                                            System.out.println("请输入想留言的话:");
+                                            String offlineMessage = InputControlUtil.readString(100);
+                                            messageClientService.sendOfflineMessageToOne(userId,offlineMessage,getter);
+                                            break;
+                                        }else if (type.equals("2")){
+                                            System.out.println("请输入离线文件的路径(格式:d:\\xx.jpg)");
+                                            src = InputControlUtil.readString(100);
+                                            System.out.println("请输入接收离线文件的路径(格式:d:\\xx.jpg)");
+                                            dest = InputControlUtil.readString(100);
+                                            fileClientService.sendOfflineFileToOne(userId,src,dest,getter,0);
+                                            break;
+                                        }else {
+                                            System.out.println("输入数字有误，请重新输入");
+                                        }
+                                    }
                                     break;
                                 case "9":
                                     // 调用一个方法，给服务器发送一个退出线程的message
@@ -122,9 +147,9 @@ public class QQView {
                     String newUserId = InputControlUtil.readString(50);
                     System.out.print("请输入新用户密码：");
                     String newPwd = InputControlUtil.readString(50);
-                    if (userClientService.signInOrResgister(newUserId, newPwd,2)) {
+                    if (userClientService.signInOrResgister(newUserId, newPwd, 2)) {
                         System.out.println("=======>注册成功<======");
-                    }else{
+                    } else {
                         System.out.println("=======>注册失败<======");
                     }
                     break;

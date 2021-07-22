@@ -1,6 +1,7 @@
 package com.test.common;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * @Author ： Leo
@@ -113,5 +114,20 @@ public class Message implements Serializable {
 
     public void setMessageType(String messageType) {
         this.messageType = messageType;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "sender='" + sender + '\'' +
+                ", getter='" + getter + '\'' +
+                ", content='" + content + '\'' +
+                ", sendTime='" + sendTime + '\'' +
+                ", messageType='" + messageType + '\'' +
+                ", fileBytes=" + Arrays.toString(fileBytes) +
+                ", fileLen=" + fileLen +
+                ", dest='" + dest + '\'' +
+                ", src='" + src + '\'' +
+                '}';
     }
 }

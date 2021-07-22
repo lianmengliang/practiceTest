@@ -3,12 +3,15 @@ package com.test.service;
 import com.test.common.Message;
 import com.test.common.MessageType;
 import com.test.common.User;
+import com.test.utils.DateUtil;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -29,6 +32,14 @@ public class QQServer {
     private static ConcurrentHashMap<String, User> validUsers = new ConcurrentHashMap<>();
 
     /**
+     * 用于存放用户之间的离线消息/文件
+     * K - String：接收消息的用户id（getterId）
+     * V - List<Message>: 存放多条离线的消息/文件
+     */
+    private static ConcurrentHashMap<String, ArrayList<Message>> offlineMessage = new ConcurrentHashMap<>();
+
+
+    /**
      * 静态代码块，初始化 validUsers对象
      */
     static {
@@ -37,6 +48,18 @@ public class QQServer {
         validUsers.put("Alice", new User("Alice", "686"));
         validUsers.put("Leo", new User("leo", "888"));
         validUsers.put("Kevin", new User("kevin", "666"));
+
+        Message message = new Message();
+        message.setGetter("100");
+        message.setSender("Leo");
+        message.setContent("我们都是好孩子");
+        message.setMessageType(MessageType.GET_OFFLINE_MESSAGE);
+        message.setSendTime(DateUtil.getCurrentTime(DateUtil.DATE_TIME_FORMAT));
+
+        ArrayList<Message> messages = new ArrayList<>();
+        messages.add(message);
+        offlineMessage.put(message.getGetter(),messages);
+
     }
 
     /**
@@ -83,6 +106,20 @@ public class QQServer {
         // 添加用户
         validUsers.put(userId, new User(userId, pwd));
         return true;
+    }
+
+    /**
+     * 添加离线留言 信息/文件
+     * @param getterId
+     * @param ms
+     */
+    public static void addOfflineMessage(String getterId,Message ms){
+
+        ArrayList<Message> messages = new ArrayList<>();
+        messages.add(ms);
+
+        offlineMessage.put(getterId,messages);
+
     }
 
     public QQServer() {
@@ -157,5 +194,13 @@ public class QQServer {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static ConcurrentHashMap<String, User> getValidUsers() {
+        return validUsers;
+    }
+
+    public static ConcurrentHashMap<String, ArrayList<Message>> getOfflineMessage() {
+        return offlineMessage;
     }
 }

@@ -55,10 +55,10 @@ public class QQServer {
         message.setContent("我们都是好孩子");
         message.setMessageType(MessageType.GET_OFFLINE_MESSAGE);
         message.setSendTime(DateUtil.getCurrentTime(DateUtil.DATE_TIME_FORMAT));
-
+        message.setDesc("离线消息");
         ArrayList<Message> messages = new ArrayList<>();
         messages.add(message);
-        offlineMessage.put(message.getGetter(),messages);
+        offlineMessage.put(message.getGetter(), messages);
 
     }
 
@@ -110,16 +110,20 @@ public class QQServer {
 
     /**
      * 添加离线留言 信息/文件
+     *
      * @param getterId
      * @param ms
      */
-    public static void addOfflineMessage(String getterId,Message ms){
-
-        ArrayList<Message> messages = new ArrayList<>();
-        messages.add(ms);
-
-        offlineMessage.put(getterId,messages);
-
+    public static void addOfflineMessage(String getterId, Message ms) {
+        ArrayList<Message> messageArrayList = offlineMessage.get(getterId);
+        if (messageArrayList == null && messageArrayList.isEmpty()) {
+            ArrayList<Message> messages = new ArrayList<>();
+            messages.add(ms);
+            offlineMessage.put(getterId, messages);
+            return;
+        }
+        messageArrayList.add(ms);
+        offlineMessage.put(getterId, messageArrayList);
     }
 
     public QQServer() {

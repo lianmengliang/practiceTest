@@ -44,6 +44,19 @@ public class Message implements Serializable {
 
     private String src;
 
+    /**
+     * 消息描述
+     */
+    private String desc;
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
     public byte[] getFileBytes() {
         return fileBytes;
     }
@@ -128,6 +141,7 @@ public class Message implements Serializable {
                 ", fileLen=" + fileLen +
                 ", dest='" + dest + '\'' +
                 ", src='" + src + '\'' +
+                ", desc='" + desc + '\'' +
                 '}';
     }
 }

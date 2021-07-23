@@ -101,20 +101,21 @@ public class ServerConnectClientThread extends Thread {
                 } else if (ms.getMessageType().equals(MessageType.MESSAGE_OFFLINE_MSG) || ms.getMessageType().equals(MessageType.MESSAGE_OFFLINE_FILE)) {
                     // 服务端接收到离线消息或文件
                     System.out.println("服务端接收到" + ms.getSender() + "对" + ms.getGetter() + "的离线消息或文件");
-                    ms.setMessageType(MessageType.GET_OFFLINE_MESSAGE);
+                    if (ms.getMessageType().equals(MessageType.MESSAGE_OFFLINE_MSG)){
+                        ms.setMessageType(MessageType.GET_OFFLINE_MESSAGE);
+                    }
                     QQServer.addOfflineMessage(ms.getGetter(), ms);
-
                 } else if (ms.getMessageType().equals(MessageType.GET_OFFLINE_MESSAGE)) {
                     ConcurrentHashMap<String, ArrayList<Message>> offlineMessages = QQServer.getOfflineMessage();
                     // 获取离线消息
                     List<Message> messages = offlineMessages.get(ms.getSender());
-                    ObjectOutputStream oos = new ObjectOutputStream(ManagerServerConnectClientThread.getServerConnectClientThread(ms.getSender()).getSocket().getOutputStream());
-                    // 判断用户 是否离线消息
+                    // 判断用户 是否有离线消息
                     if (messages != null && !messages.isEmpty()) {
                         for (Message message : messages) {
+                            ObjectOutputStream oos = new ObjectOutputStream(ManagerServerConnectClientThread.getServerConnectClientThread(ms.getSender()).getSocket().getOutputStream());
                             // 向用户发送别人的离线消息
                             oos.writeObject(message);
-                            System.out.println(ms.getSender() + "获取离线消息：" + message);
+                            System.out.println(ms.getSender() + "获取" + message.getDesc());
                         }
                         //移除 该用户的离线消息/文件
                         offlineMessages.remove(userId);

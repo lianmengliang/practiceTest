@@ -69,4 +69,12 @@ public interface MessageType {
      * 获取离线消息/文件
      */
     String GET_OFFLINE_MESSAGE = "14";
+    /**
+     * 统一返回失败的信息
+     */
+    String MESSAGE_WRONG_MSG = "15";
+    /**
+     * 向客户端获取文件下载的地址
+     */
+    String MESSAGE_GET_PATH = "16";
 }

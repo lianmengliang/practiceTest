@@ -60,6 +60,7 @@ public class ClientConnectServerThread extends Thread {
                     }
                 } else if (ms.getMessageType().equals(MessageType.MESSAGE_COMM_MES)) {
                     System.out.println("\n" + ms.getSender() + "对" + ms.getGetter() + "说" + ms.getContent() + "  " + ms.getSendTime());
+                    System.out.println("请输入接收文件的路径(格式:d:\\xx.jpg)");
                 } else if (ms.getMessageType().equals(MessageType.MESSAGE_MASS_MESSAGE)) {
                     System.out.println("\n" + ms.getSender() + "的群发消息：" + ms.getContent() + "  " + ms.getSendTime());
                 } else if (ms.getMessageType().equals(MessageType.MESSAGE_FILE)) {
@@ -71,10 +72,16 @@ public class ClientConnectServerThread extends Thread {
                     System.out.println("文件保存成功...");
                 } else if(ms.getMessageType().equals(MessageType.GET_OFFLINE_MESSAGE)){
                     System.out.println("\n" + ms.getGetter() + "收到："+ms.getSender()+"留言消息：" + ms.getContent() + "  " + ms.getSendTime());
+                } else if(ms.getMessageType().equals(MessageType.MESSAGE_OFFLINE_FILE)){
+                    System.out.println("\n" + ms.getSender() + "给" + ms.getGetter() + "发送了离线文件" + ms.getSrc() + "到对方的电脑目录" + ms.getDest());
+                    //取出ms中文件字节数组，通过字节输出流写到磁盘中
+                    FileOutputStream fos = new FileOutputStream(ms.getDest());
+                    fos.write(ms.getFileBytes());
+                    fos.close();
+                    System.out.println("离线文件保存成功...");
                 }else {
                     System.out.println("其他类型message，暂时不处理");
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -27,6 +27,7 @@ public class MessageClientService {
         ms.setSender(senderId);
         ms.setGetter(getterId);
         ms.setContent(content);
+        ms.setDesc("在线消息");
         // 普通的聊天消息
         ms.setMessageType(MessageType.MESSAGE_COMM_MES);
         // 发送时间
@@ -80,6 +81,7 @@ public class MessageClientService {
         Message ms = new Message();
         ms.setSender(senderId);
         ms.setContent(content);
+        ms.setDesc("离线消息");
         ms.setGetter(getterId);
         ms.setMessageType(MessageType.MESSAGE_OFFLINE_MSG);
         ms.setSendTime(DateUtil.getCurrentTime(DateUtil.DATE_TIME_FORMAT));

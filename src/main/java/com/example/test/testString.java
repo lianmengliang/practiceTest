@@ -3,6 +3,7 @@ package com.example.test;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.example.utils.InputControlUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
@@ -236,6 +237,14 @@ public class testString {
 
     }
 
+
+    public static void test001(){
+        System.out.println("请输入接收文件的路径(格式:d:\\xx.jpg)");
+        String dest = InputControlUtil.readString(100);
+
+        System.out.println(dest);
+    }
+
     /**
      * 主方法
      *
@@ -276,6 +285,8 @@ public class testString {
         System.out.println(splitStr(str4));
         System.out.println(splitStr(str5));
         System.out.println(splitStr(str6));
+
+        test001();
 
     }
 

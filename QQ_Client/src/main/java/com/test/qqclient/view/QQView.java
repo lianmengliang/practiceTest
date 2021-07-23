@@ -104,7 +104,7 @@ public class QQView {
                                     }
                                     System.out.println("请输入接收文件的路径(格式:d:\\xx.jpg)");
                                     String dest = InputControlUtil.readString(100);
-                                    fileClientService.sendFileToOne(src, dest, userId, getter);
+                                    fileClientService.sendOnlineOrOfflineFileToOne(userId,src, null,getter,1);
                                     break;
                                 case "5":
                                     System.out.println("请输入接收离线消息/文件的用户id(离线):");
@@ -122,7 +122,7 @@ public class QQView {
                                             src = InputControlUtil.readString(100);
                                             System.out.println("请输入接收离线文件的路径(格式:d:\\xx.jpg)");
                                             dest = InputControlUtil.readString(100);
-                                            fileClientService.sendOfflineFileToOne(userId,src,dest,getter,0);
+                                            fileClientService.sendOnlineOrOfflineFileToOne(userId,src,dest,getter,0);
                                             break;
                                         }else {
                                             System.out.println("输入数字有误，请重新输入");

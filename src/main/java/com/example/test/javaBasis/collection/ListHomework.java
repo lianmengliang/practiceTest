@@ -65,6 +65,11 @@ public class ListHomework {
             System.out.println("书名：" + listBook.getName() + "   价格："+listBook.getPrice() +"    作者："+ listBook.getAuthor());
         }*/
 
+
+        for (int i1 = 6; i1 <= 12; i1++) {
+            System.out.println("hello"+i1);
+        }
+
     }
 
 }

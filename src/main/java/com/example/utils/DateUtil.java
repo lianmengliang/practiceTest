@@ -9,8 +9,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -19,6 +21,7 @@ import java.util.concurrent.TimeUnit;
  * @author ReveeWu
  */
 @Slf4j
+@SuppressWarnings("all")
 public abstract class DateUtil extends DateUtils {
     public static final String DAY = "yyyyMMdd";
     public static final String DATE_DAY = "MMdd";
@@ -37,10 +40,6 @@ public abstract class DateUtil extends DateUtils {
     public static final String[] WEEKS = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
     public static final String[] DEFAULT_FORMATS = {TIMESTAMP_FORMAT, DATE_TIME_FORMAT, DATE_FORMAT, TIME_FORMAT, DATE_PRECISE_TO_MINUTE};
 
-    public static void main(String[] args) {
-        System.out.println(weekStart());
-        System.out.println(weekEnd());
-    }
 
     /**
      * 时间计算
@@ -422,4 +421,108 @@ public abstract class DateUtil extends DateUtils {
         return day1.equals(day2);
     }
 
+
+    /**
+     * 根据时间制定时间段，按照月份分割指定时间段
+     *
+     * @param startTime 格式如： 2020-01-04
+     * @param endTime
+     * @return
+     */
+    public static List<String> monthGroup(String startTime, String endTime) {
+        List<String> dateList = new ArrayList<>();
+
+        Date startDate = parseDate(startTime);
+        Calendar startCal = Calendar.getInstance();
+        startCal.setTime(startDate);
+
+        int startYear = startCal.get(Calendar.YEAR);//获取年份
+        int startMonth = startCal.get(Calendar.MONTH) + 1;//获取月份
+
+        System.out.println(startMonth);
+        System.out.println(startYear);
+
+        Date endDate = parseDate(endTime);
+        Calendar endCal = Calendar.getInstance();
+        endCal.setTime(endDate);
+        int endYear = endCal.get(Calendar.YEAR);//获取年份
+        int endMonth = endCal.get(Calendar.MONTH) + 1;//获取月份
+
+        System.out.println(endMonth);
+        System.out.println(endYear);
+
+        int isSameYear = endYear - startYear;
+        //逻辑开始
+        if (isSameYear == 0) {
+            for (int i = startMonth; i < endMonth + 1; i++) {
+                dateHandle(dateList, startYear, 0, i);
+            }
+            return dateList;
+        } else {
+            //外循环
+            for (int i = 0; i < isSameYear + 1; i++) {
+                if (i == 0) {
+                    //第一次赋值
+                    for (int i1 = startMonth; i1 <= 12; i1++) {
+                        /*if (i1 < 10) {
+                            String date = (startYear+i) + "-0" + i1;
+                            dateList.add(date);
+                        } else {
+                            String date = (startYear+i) + "-" + i1;
+                            dateList.add(date);
+                        }*/
+                        dateHandle(dateList, startYear, i, i1);
+                    }
+
+                } else if (0 < i && i < isSameYear) {
+                    //中间赋值
+                    for (int i1 = 1; i1 <= 12; i1++) {
+                        dateHandle(dateList, startYear, i, i1);
+                    }
+                } else {
+                    //最后一次赋值
+                    for (int i1 = 1; i1 <= endMonth; i1++) {
+                        dateHandle(dateList, startYear, i, i1);
+                    }
+                }
+            }
+            return dateList;
+        }
+
+    }
+
+    public static void dateHandle(List<String> list, int param, int addValue, int judgmentValue) {
+        if (judgmentValue < 10) {
+            String date = (param + addValue) + "-0" + judgmentValue;
+            list.add(date);
+        } else {
+            String date = (param + addValue) + "-" + judgmentValue;
+            list.add(date);
+        }
+    }
+
+    /**
+     * 主方法 用于测试
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        /*System.out.println(weekStart());
+        System.out.println(weekEnd());*/
+
+       /* List<String> strings2 = monthGroup("2019-06-10", "2021-07-10");
+        System.out.println(strings2);
+
+        System.out.println("-----------------------------------");*/
+
+        List<String> strings = monthGroup("2020-06-10", "2021-07-10");
+        System.out.println(strings);
+
+        System.out.println("-----------------------------------");
+
+        List<String> strings1 = monthGroup("2021-01-10", "2021-07-10");
+        System.out.println(strings1);
+
+
+    }
 }

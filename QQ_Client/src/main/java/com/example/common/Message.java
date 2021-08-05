@@ -1,6 +1,5 @@
-package com.test.common;
+package com.example.common;
 
-import java.io.PipedReader;
 import java.io.Serializable;
 import java.util.Arrays;
 

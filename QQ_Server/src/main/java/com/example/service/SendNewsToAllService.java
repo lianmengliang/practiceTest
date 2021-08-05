@@ -1,9 +1,9 @@
-package com.test.service;
+package com.example.service;
 
-import com.test.common.Message;
-import com.test.common.MessageType;
-import com.test.utils.DateUtil;
-import com.test.utils.InputControlUtil;
+import com.example.common.Message;
+import com.example.common.MessageType;
+import com.example.utils.DateUtil;
+import com.example.utils.InputControlUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;

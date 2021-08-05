@@ -1,15 +1,13 @@
-package com.test.service;
+package com.example.service;
 
 
-import com.test.common.Message;
-import com.test.common.MessageType;
-import org.apache.catalina.Server;
+import com.example.common.Message;
+import com.example.common.MessageType;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 

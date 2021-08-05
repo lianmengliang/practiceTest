@@ -1,9 +1,9 @@
-package com.test.service;
+package com.example.service;
 
-import com.test.common.Message;
-import com.test.common.MessageType;
-import com.test.common.User;
-import com.test.utils.DateUtil;
+import com.example.common.Message;
+import com.example.common.MessageType;
+import com.example.common.User;
+import com.example.utils.DateUtil;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -11,7 +11,6 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**

@@ -1,12 +1,11 @@
-package com.test.qqclient.service;
+package com.example.qqclient.service;
 
+import com.example.common.Message;
+import com.example.common.MessageType;
 import com.example.utils.DateUtil;
-import com.test.common.Message;
-import com.test.common.MessageType;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.Date;
 
 /**
  * @Author ： Leo
@@ -93,7 +92,7 @@ public class MessageClientService {
     /**
      * 发送消息
      */
-    public void sendMessage(String userId,Message ms){
+    public void sendMessage(String userId, Message ms){
         try {
             // 向服务端发送消息
             ObjectOutputStream oos = new ObjectOutputStream(ManagerClientConnectServerThread.getClientConnectServerThreadByUserId(userId).getSocket().getOutputStream());

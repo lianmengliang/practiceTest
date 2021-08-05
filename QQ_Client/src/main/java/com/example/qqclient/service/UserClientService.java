@@ -1,14 +1,13 @@
-package com.test.qqclient.service;
+package com.example.qqclient.service;
 
 
-import com.test.common.Message;
-import com.test.common.MessageType;
-import com.test.common.User;
+import com.example.common.Message;
+import com.example.common.MessageType;
+import com.example.common.User;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 

@@ -5,9 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.example.domain.IpAddress;
 import com.example.domain.User;
-import com.example.utils.JsonFormatUtil;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 
 
 import java.awt.*;
@@ -74,31 +71,19 @@ public class testJson {
         JSONObject jsonObject = JSON.parseObject(TEST_STR);
         System.out.println(jsonObject);*/
         /*System.out.println(TEST_STR);*/
-        System.out.println("格式化前：" + JSON_NO);
+      /*  System.out.println("格式化前：" + JSON_NO);
         System.out.println("------------------------------------------------------------");
         JSONObject object = JSONObject.parseObject(JSON_NO);
         String pretty = jsonStringFormat(object);
         System.out.println("SerializerFeature格式后：" + pretty);
         System.out.println("------------------------------------------------------------");
-       /* String format = toPrettyFormat(JSON_NO);
-        System.out.println("Format:" + format);
-        System.out.println("----------------------------------------------------------------");*/
+
         String s = JsonFormatUtil.formatJson(JSON_NO);
         System.out.println(s);
-
-        /*User user = new User();
-        user.setId(1);
-        user.setUserName("leo");
-        user.setRealName("MrLian");
-        user.setPassWord("123");
-        System.out.println(user);
-        String s = JSON.toJSONString(user);
-        System.out.println(s);
-        String format1 = jsonStringFormat(JSON.parseObject(s));
-        System.out.println(format1);*/
+*/
 
 
-
+        testJson(TEST_STR);
     }
 
     /**
@@ -112,6 +97,10 @@ public class testJson {
                 SerializerFeature.WriteDateUseDateFormat);
     }
 
+    /**
+     * json字符串的各种操作方法
+     * @param json
+     */
     public static void testJson(String json) {
 
         JSONObject jsonObject = JSON.parseObject(json);

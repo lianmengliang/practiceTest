@@ -1,5 +1,6 @@
 package com.example.test.javaBasis.thread.improve.scheduler.quartz;
 
+
 import org.quartz.spi.TriggerFiredBundle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
@@ -14,9 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyAdaptableJobFactory extends AdaptableJobFactory {
 
-    /*public Object createJobInstance(){
 
-    }*/
     @Autowired
     private AutowireCapableBeanFactory autowireCapableBeanFactory;
     /**

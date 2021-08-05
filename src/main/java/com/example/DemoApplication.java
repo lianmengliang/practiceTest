@@ -6,9 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 
-@SpringBootApplication
+/**
+ * @author Leo
+ */
 @MapperScan("com.example.dao")
 @EnableScheduling  // 用于启动任务调度过程
+@SpringBootApplication
 public class DemoApplication {
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);

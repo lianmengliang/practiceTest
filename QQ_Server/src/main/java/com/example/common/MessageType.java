@@ -1,4 +1,4 @@
-package com.test.common;
+package com.example.common;
 
 /**
  * @Author ： Leo
@@ -6,6 +6,7 @@ package com.test.common;
  * @Desc:
  */
 public interface MessageType {
+    /*定义一些常量：不同的常量的值，表示不同的消息类型 */
     /**
      * 登录成功
      */
@@ -25,11 +26,11 @@ public interface MessageType {
      */
     String MESSAGE_GET_ONLINE_FRIEND = "4";
     /**
-     *  返回在线用户列表
+     * // 返回在线用户列表
      */
     String MESSAGE_RET_ONLINE_FRIEND = "5";
     /**
-     * 客户端请求退出
+     * // 客户端请求退出
      */
     String MESSAGE_CLIENT_EXIT = "6";
 
@@ -55,7 +56,6 @@ public interface MessageType {
      * 服务器推送新闻/消息
      */
     String MESSAGE_NEWS_MSG = "11";
-
     /**
      * 离线留言消息
      */
@@ -65,17 +65,14 @@ public interface MessageType {
      * 离线发送文件
      */
     String MESSAGE_OFFLINE_FILE = "13";
-
     /**
      * 获取离线消息/文件
      */
     String GET_OFFLINE_MESSAGE = "14";
-
     /**
      * 统一返回失败的信息
      */
     String MESSAGE_WRONG_MSG = "15";
-
     /**
      * 向客户端获取文件下载的地址
      */

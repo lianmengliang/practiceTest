@@ -1,9 +1,9 @@
-package com.test.qqclient.view;
+package com.example.qqclient.view;
 
+import com.example.qqclient.service.FileClientService;
+import com.example.qqclient.service.MessageClientService;
+import com.example.qqclient.service.UserClientService;
 import com.example.utils.InputControlUtil;
-import com.test.qqclient.service.FileClientService;
-import com.test.qqclient.service.MessageClientService;
-import com.test.qqclient.service.UserClientService;
 
 import java.io.File;
 import java.io.IOException;

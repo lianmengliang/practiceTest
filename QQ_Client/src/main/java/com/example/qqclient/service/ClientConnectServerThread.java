@@ -1,8 +1,8 @@
-package com.test.qqclient.service;
+package com.example.qqclient.service;
 
 
-import com.test.common.Message;
-import com.test.common.MessageType;
+import com.example.common.Message;
+import com.example.common.MessageType;
 import lombok.Data;
 
 import java.io.FileOutputStream;

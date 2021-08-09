@@ -408,11 +408,10 @@ public class testStream {
 
         //1. -1 或者 1是判定o值为空的时候排在首位还是末位， -1就是首位， 1就是末位
         //2. o1.compareTo(o2) 这就是升序，否则就是降序
-        /*orders.sort(Comparator.comparing(Order::getAllAmt, (o1, o2) -> o1 == null ? -1 : (o2 == null ? 1 : o1.compareTo(o2))));
+        orders.sort(Comparator.comparing(Order::getAllAmt, (o1, o2) -> o1 == null ? -1 : (o2 == null ? 1 : o1.compareTo(o2))));
         orders.stream().sorted((o1, o2) -> o1.getAllAmt().compareTo(o2.getAllAmt()));
 
         orders.stream().sorted(Comparator.comparing(Order::getAllAmt, (o1, o2) -> o1 == null ? -1 : (o2 == null ? 1 : o1.compareTo(o2))));
-*/
         // 方式三:(allAmt 字段不能为 null， null 会导致排序失败) 升序排列， 加上.reversed()方法就是降序排列
 //        orders.sort(Comparator.comparing(Order::getAllAmt));
 

@@ -7,6 +7,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.example.domain.IpAddress;
 import com.example.domain.User;
 import com.example.test.model.ReportClass;
+import com.example.utils.CollectionUtil;
 import com.example.utils.JsonFormatUtil;
 import jdk.nashorn.internal.ir.IfNode;
 import org.apache.commons.lang.StringUtils;
@@ -234,7 +235,7 @@ public class testJson {
          */
 
         //把封装好的数据，转化为类
-        ArrayList<ReportClass> dataList = new ArrayList<>();
+        List<ReportClass> dataList = new ArrayList<>();
         //循环 转化为实体类，并且添加到集合中
         for (Object o : list) {
             ReportClass reportClass = JSON.parseObject(o.toString(), ReportClass.class);
@@ -266,8 +267,29 @@ public class testJson {
 
         String substring = date.substring(0, 7);
         System.out.println(substring);*/
+        /*dataList.forEach(item -> {
+                    DateTime dateTime = new DateTime(item.getDate());
+                    int year = dateTime.getYear();
+                    int currentMonth = dateTime.getMonthOfYear();
+                    int currentQuarter = currentMonth % 3 == 0 ? (currentMonth / 3) : (currentMonth / 3 + 1);
+                    item.setDate(String.format("%s年%s季度", year, currentQuarter));
 
-        sortCollection(dataList);
+
+                }
+        );*/
+
+       /* dataList.forEach(item -> item.setDate(item.getDate().substring(0, 4)));
+        dataList.forEach(System.out::println);*/
+        //按月份对 集合中的类 进行处理
+
+//        List<ReportClass> dataList1 = new ArrayList<>(dataList);
+//        dataList1.forEach(System.out::println);
+       /* sortCollectionByDateType(dataList, 3);
+        sortCollectionByDateType(dataList, 1);
+        sortCollectionByDateType(dataList, 2);
+*/
+        System.out.println("handleList(dataList)----------------------------------------");
+        handleList(dataList);
     }
 
 
@@ -290,19 +312,46 @@ public class testJson {
      * 根据条件进行排序
      *
      * @param list
+     * @param dateType 日期分类： 0就是按日，1：按月份，2：按季度，3：按年份
      */
-    public static void sortCollection(ArrayList<ReportClass> list) {
-        // 先分组，然后再进行合并
+    public static void sortCollectionByDateType(List<ReportClass> list, int dateType) {
+        // 深拷贝，保证处理的同一个集合中 元素 不会改变
+        /**
+         * 需要Address实现cloneable接口和重写clone方法，该方法有限制性，
+         *  例如要先声明List是保存的什么对象，并且当碰到对象里面还持有List集合的时候
+         *  就不管用的，所以建议使用第一种方法
+         */
+        /*List<ReportClass> dataList = new ArrayList<>();
+        list.forEach(item->dataList.add((ReportClass) item.clone()));*/
 
-        //按月份对 集合中的类 进行处理
-        /*list.forEach(item -> item.setDate(item.getDate().substring(0, 7)));
-        list.forEach(System.out::println);
+        // 深拷贝
+        List<ReportClass> dataList = CollectionUtil.deoCopy(list);
 
-        System.out.println(list.size() + "----------------------------------------------------------------");
+
+        // 根据日期类型处理list
+        if (dateType == 1) {
+            dataList.forEach(item -> item.setDate(item.getDate().substring(0, 7)));
+        } else if (dateType == 2) {
+            dataList.forEach(item -> {
+                        DateTime dateTime = new DateTime(item.getDate());
+                        int year = dateTime.getYear();
+                        int currentMonth = dateTime.getMonthOfYear();
+                        int currentQuarter = currentMonth % 3 == 0 ? (currentMonth / 3) : (currentMonth / 3 + 1);
+                        item.setDate(String.format("%s年%s季度", year, currentQuarter));
+                    }
+            );
+        } else if (dateType == 3) {
+            dataList.forEach(item -> item.setDate(item.getDate().substring(0, 4) + "年"));
+        } else {
+            return;
+        }
+
+
+        System.out.println(dataList.size() + "----------------------------------------------------------------");
         System.out.println("-------------转化为Map<String, ReportClass>集合");
         //合并求和
         Map<String, ReportClass> map = new HashMap<>();
-        list.forEach(item -> {
+        dataList.forEach(item -> {
             //首先判断item，是否存在，
             ReportClass reportClass = map.get(item.getDate());
             if (reportClass == null || StringUtils.isEmpty(reportClass.getDate())) {
@@ -317,60 +366,111 @@ public class testJson {
             }
         });
         map.forEach((k, v) -> System.out.println(k + "：" + v));
-
         System.out.println("-------------转化为List<ReportClass>集合");
-
         ArrayList<ReportClass> reportClasses = new ArrayList<>();
         map.forEach((k, v) -> reportClasses.add(v));
 
         // 下面2种方法都是降序 排序
 //      reportClasses.sort(Comparator.comparing(ReportClass::getDate, Comparator.reverseOrder()));
         // 使用 流 stream
-        reportClasses.stream().sorted((o1,o2)->o2.getDate().compareTo(o1.getDate()));
+        reportClasses.stream().sorted((o1, o2) -> o2.getDate().compareTo(o1.getDate()));
 
         // 下面4种方法都是升序 排序  （默认方法就是升序排序）
-        reportClasses.sort(Comparator.comparing(ReportClass::getDate, Comparator.naturalOrder()));
+       /* reportClasses.sort(Comparator.comparing(ReportClass::getDate, Comparator.naturalOrder()));
         reportClasses.sort(Comparator.comparing(ReportClass::getDate, String::compareTo));
         reportClasses.sort(Comparator.comparing(ReportClass::getDate));
         // 使用流 stream
-        reportClasses.stream().sorted(Comparator.comparing(ReportClass::getDate));
+        reportClasses.stream().sorted(Comparator.comparing(ReportClass::getDate));*/
 
+        // 打印輸出
+        reportClasses.forEach(System.out::println);
 
-        reportClasses.forEach(System.out::println);*/
-
-
-       /* for (ReportClass item : list) {
-            if (reportClasses.size() == 0) {
-                reportClasses.add(item);
-                continue;
-            }
-            for (ReportClass item1 : reportClasses) {
-                if (item1.getDate().equals(item.getDate())) {
-                    item1.setAdNum(item1.getAdNum() + item.getAdNum());
-                    item1.setDownloadNum(item1.getDownloadNum() + item.getDownloadNum());
-                    item1.setChannelNum(item1.getChannelNum() + item.getChannelNum());
-                }
-            }
-
-        }
-
-        reportClasses.forEach(System.out::println);*/
 
         System.out.println("-----------------------------------------------------------");
 
         System.out.println("-----------------------------------------------------------");
 
         // 分组
-        Map<String, List<ReportClass>> collect = list.stream().collect(Collectors.groupingBy(ReportClass::getDate));
-
+       /* Map<String, List<ReportClass>> collect = list.stream().collect(Collectors.groupingBy(ReportClass::getDate));
         //,Collectors.toMap(Collectors.groupingBy(ReportClass::getDate))
 
-        list.stream().forEach(item->item.setDate(item.getDate().substring(0, 7)));
-        collect.forEach((k, v) -> System.out.println(k + "：" + v));
+        list.stream().forEach(item -> item.setDate(item.getDate().substring(0, 7)));
+        collect.forEach((k, v) -> System.out.println(k + "：" + v));*/
 
         /*list.stream().collect(Collectors.groupingBy(ReportClass::getDate, Collectors.summarizingInt(ReportClass::getAdNum)));
         System.out.println(list);
 */
+
+    }
+
+    /**
+     * 集合处理
+     *
+     * @param list
+     */
+    public static void handleList(List<ReportClass> list) {
+
+        // 先处理集合
+        // 按月份处理
+//        list.forEach(item -> item.setDate(item.getDate().substring(0, 7)));
+
+        //按季度处理
+        list.forEach(item -> {
+            DateTime dateTime = new DateTime(item.getDate());
+            int currentYear = dateTime.getYear();
+            int currentMonth = dateTime.getMonthOfYear();
+            int currentQuarter = currentMonth % 3 == 0 ? (currentMonth / 3) : (currentMonth / 3 + 1);
+            item.setDate(String.format("%s年%s季度", currentYear, currentQuarter));
+        });
+
+        // 按年份处理
+//        list.forEach(item -> item.setDate(item.getDate().substring(0, 4) + "年"));
+        // 创建一个新集合
+        ArrayList<ReportClass> reportList = new ArrayList<>();
+
+        list.forEach(item -> {
+            if (reportList.size() == 0) {
+                reportList.add(item);
+            } else {
+                // 判断目标集合中是否有原集合的元素
+                boolean isContain = false;
+                for (ReportClass item1 : reportList) {
+                    if (item1.getDate().equals(item.getDate())) {
+                        item1.setAdNum(item1.getAdNum() + item.getAdNum());
+                        item1.setDownloadNum(item1.getDownloadNum() + item.getDownloadNum());
+                        item1.setChannelNum(item1.getChannelNum() + item.getChannelNum());
+                        isContain = true;
+                    }
+                }
+                if (!isContain) {
+                    reportList.add(item);
+                }
+            }
+        });
+
+       /* for (ReportClass item : list) {
+            if (reportList.size() == 0) {
+                reportList.add(item);
+            } else {
+                // 判断目标集合中是否有原集合的元素
+                boolean isContain = false;
+                for (ReportClass item1 : reportList) {
+                    if (item1.getDate().equals(item.getDate())) {
+                        item1.setAdNum(item1.getAdNum() + item.getAdNum());
+                        item1.setDownloadNum(item1.getDownloadNum() + item.getDownloadNum());
+                        item1.setChannelNum(item1.getChannelNum() + item.getChannelNum());
+                        isContain = true;
+                    }
+                }
+                if (!isContain) {
+                    reportList.add(item);
+                }
+            }
+        }
+*/
+        reportList.sort(Comparator.comparing(ReportClass::getDate, Comparator.reverseOrder()));
+        reportList.forEach(System.out::println);
+
 
     }
 

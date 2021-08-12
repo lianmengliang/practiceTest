@@ -8,17 +8,14 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.test</groupId>
-    <artifactId>server</artifactId>
-
-    <!--<dependencies>
+    <artifactId>QQ_Server</artifactId>
+    <dependencies>
         <dependency>
             <groupId>com.example</groupId>
-            <artifactId>demo</artifactId>
+            <artifactId>demo-basics-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
-    </dependencies>-->
+    </dependencies>
 
 </project>

@@ -11,14 +11,6 @@
 
     <groupId>com.test</groupId>
     <artifactId>client</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>demo</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
     <!--<dependencies>
         <dependency>
             <groupId>com.example</groupId>

@@ -20,6 +20,7 @@
     <modules>
         <module>QQ_Server</module>
         <module>QQ_Client</module>
+        <module>demo-basics-api</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>

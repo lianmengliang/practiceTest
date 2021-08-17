@@ -31,7 +31,11 @@ public class HashSetStructure {
         System.out.println(node);
         System.out.println(Arrays.toString(table));
 
+        System.out.println("-----------------------");
+        Node john1 = new Node("john", null);
+        table[4] = john1;
 
+        System.out.println(Arrays.toString(table));
     }
 }
 

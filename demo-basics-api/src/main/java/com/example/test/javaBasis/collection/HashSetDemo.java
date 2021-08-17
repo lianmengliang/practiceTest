@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Stream;
 
 /**
  * @Author ： Leo
@@ -16,7 +15,29 @@ public class HashSetDemo {
     public static void main(String[] args) {
 
 
-        basicPratices();
+        debugHashsetCode001();
+    }
+
+
+    /**
+     *
+     * 源码解读
+     */
+    private static void debugHashsetCode001() {
+        Set set = new HashSet();
+
+        /*for (int i = 1; i <= 100; i++) {
+            set.add(i);
+        }
+        */
+
+        /**
+         * 同一hash值下 向HashSet中 添加元素
+         */
+        for (int i = 1; i <= 100; i++) {
+            set.add(new A(i));
+        }
+        System.out.println(set);
     }
 
     /**
@@ -125,7 +146,6 @@ public class HashSetDemo {
         // 删除
         set.remove(123);
 
-
         System.out.println("set：" + set);
 
         ArrayList<String> list = new ArrayList<String>();
@@ -153,5 +173,25 @@ class Dog{
         return "Dog{" +
                 "name='" + name + '\'' +
                 '}';
+    }
+
+
+    @Override
+    public int hashCode(){
+        return 0;
+    }
+}
+
+class A{
+    private int num;
+
+
+    public A(int num) {
+        this.num = num;
+    }
+
+    @Override
+    public int hashCode(){
+        return 0;
     }
 }

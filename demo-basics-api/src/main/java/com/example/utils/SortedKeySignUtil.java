@@ -1,6 +1,7 @@
 package com.example.utils;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.cglib.beans.BeanMap;
 
 import java.util.*;
@@ -72,7 +73,6 @@ public class SortedKeySignUtil {
             List<Map.Entry<String, String>> infoIds = new ArrayList<>(map.entrySet());
             //请求参数中的各个键值对 按照key的字符串顺序升序
             infoIds.sort(Comparator.comparing(Map.Entry<String, String>::getKey));
-
             // 构造签名键值对的格式
             StringBuilder sb = new StringBuilder();
             for (Map.Entry<String, String> item : infoIds) {
@@ -83,7 +83,6 @@ public class SortedKeySignUtil {
                     }
                 }
             }
-
             //拼接后 MD5加密
             result = Md5Encrypt.MD5(sb.toString() + appKey);
         } catch (Exception e) {
@@ -112,6 +111,61 @@ public class SortedKeySignUtil {
             }
         }
         return map;
+    }
+
+    /**
+     * 验签 : TreeMap
+     *
+     * @param appKey
+     * @param bean
+     * @return
+     */
+    public static boolean checkSignByTreeMap(String appKey, Object bean) {
+        // 根据实体类 转化为Map集合
+        Map<String, String> params = beanToMap(bean);
+
+        Map<String, String> map = new TreeMap<>();
+        params.forEach((k, v) -> {
+            if (!k.equalsIgnoreCase(SIGN_FIELD)) {
+                map.put(k, params.get(k));
+            }
+        });
+        String sign = getSign1(appKey, map);
+        if (!sign.isEmpty()) {
+            if (sign.equalsIgnoreCase(params.get(SIGN_FIELD))) {
+                log.info("验签成功");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 生成签名
+     *
+     * @param appKey
+     * @param map
+     * @return
+     */
+    public static String getSign1(String appKey, Map<String, String> map) {
+
+        String result = "";
+        try {
+            //请求参数中的各个键值对 按照key的字符串顺序升序
+            // 构造签名键值对的格式
+            StringBuilder sb = new StringBuilder();
+            map.forEach((k, v) -> {
+                if (!StringUtils.isEmpty(v)) {
+                    sb.append(v);
+                }
+            });
+            //拼接后 MD5加密
+            result = Md5Encrypt.MD5(sb.toString() + appKey);
+        } catch (Exception e) {
+            log.error("获取签名错误", e);
+            return null;
+        }
+        return result;
     }
 
 }

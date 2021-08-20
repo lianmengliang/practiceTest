@@ -1,5 +1,8 @@
 package com.example.test.javaBasis.collection.homework;
 
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+
 /**
  * @Author ： Leo
  * @Date : 2021/8/17 18:32
@@ -15,6 +18,18 @@ package com.example.test.javaBasis.collection.homework;
  */
 public class HashSetHomeWork002 {
     public static void main(String[] args) {
+
+        //  LinkedHashSet的练习
+        LinkedHashSet<Integer> integers = new LinkedHashSet<>();
+
+        integers.add(1);
+        integers.remove(2);
+
+
+        Iterator<Integer> iterator = integers.iterator();
+        while (iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
 
     }
 }

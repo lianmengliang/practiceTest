@@ -1,0 +1,88 @@
+package com.example.test.javaBasis.collection;
+
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+
+/**
+ * @Author ： Leo
+ * @Date : 2021/8/18 17:52
+ * @Desc:
+ */
+public class MapDemo {
+    public static void main(String[] args) {
+        tsetMap001();
+        tsetMap002();
+    }
+
+    /**
+     * 测试HashMap
+     */
+    private static void tsetMap001() {
+
+        List list = new ArrayList();
+
+        Map<String, Object> hashMap = new HashMap<>(16);
+
+
+        hashMap.put("Leo",123);
+
+        Object leo = hashMap.get("Leo");
+        Object a = hashMap.get("123");
+        System.out.println(leo);
+        System.out.println(a);
+    }
+
+    /**
+     * 测试HashTable
+     */
+    private static void tsetMap002() {
+
+
+//        HashMap<Integer, String> treeMap = new HashMap<>();
+
+
+        TreeMap<Integer, Object> treeMap = new TreeMap<>(Comparator.reverseOrder());
+
+
+        treeMap.put(2, "leo");
+        treeMap.put(34, "Kevin");
+        treeMap.put(12, "Jane");
+        treeMap.put(46, "Tom");
+        treeMap.put(10, "Alice");
+
+
+        System.out.println(treeMap.toString());
+
+     /*   treeMap.forEach((k, v) -> System.out.println(k + "--" + v));
+
+        StringBuilder sb = new StringBuilder();
+
+        treeMap.forEach((k,v)-> sb.append(v).append("   "));
+
+        System.out.println(sb.toString());*/
+
+
+    }
+
+
+    /**
+     * 测试HashTable
+     */
+    private static void tsetMap003() {
+
+
+        Map<String,Object> currentHashMap = new ConcurrentHashMap<>();
+
+
+        currentHashMap.put("leo",123);
+
+        currentHashMap.get("leo");
+
+        LinkedHashSet<Object> set = new LinkedHashSet<>();
+
+        LinkedHashMap<Object, Object> map = new LinkedHashMap<>();
+
+
+    }
+
+}

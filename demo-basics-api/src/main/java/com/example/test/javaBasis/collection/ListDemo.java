@@ -1,9 +1,6 @@
 package com.example.test.javaBasis.collection;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Vector;
+import java.util.*;
 
 /**
  * @Author ： Leo
@@ -19,14 +16,21 @@ public class ListDemo {
         List<String> list3 = new LinkedList<>();
 
 
+        TreeSet<Object> set = new TreeSet<>();
+        set.add(12);
+
+        TreeMap<Object, Object> objectObjectTreeMap = new TreeMap<>();
+
         list1.add("宫保鸡丁");
         list1.add("回锅肉");
         list1.add("辣子鸡丁");
+        list1.add("小炒肉");
         list1.add("小炒肉");
 
         list2.add("宫保鸡丁");
         list2.add("回锅肉");
         list2.add("辣子鸡丁");
+        list2.add("小炒肉");
         list2.add("小炒肉");
 
 
@@ -34,11 +38,12 @@ public class ListDemo {
         list3.add("回锅肉");
         list3.add("辣子鸡丁");
         list3.add("小炒肉");
+        list3.add("小炒肉");
 
 
         listDemo(list1);
         vectorDemo(list2);
-        vectorDemo(list3);
+        linkedListdemo(list3);
     }
 
 
@@ -61,6 +66,8 @@ public class ListDemo {
         for (Object o : list) {
             System.out.println(o);
         }
+
+        /*list.forEach(System.out::println);*/
         System.out.println("-----------------------------");
     }
 }

@@ -45,6 +45,7 @@ public class SetDemo {
         set.add("kevin");
         set.add("Tom");
         set.add("ios");
+        set.add("ios");
 
         System.out.println(set);
 
@@ -64,13 +65,25 @@ public class SetDemo {
         Set<Integer> set2 = new TreeSet<>(Comparator.comparingInt(o->o));
 
         set2.add(3);
-        set2.add(2);
         set2.add(5);
-        set2.add(6);
+        set2.add(2);
         set2.add(7);
+        set2.add(6);
 
 
         System.out.println("set2："+set2.toString());
+
+
+        Set<Integer> set3 = new LinkedHashSet<>();
+        set3.add(5);
+        set3.add(2);
+        set3.add(3);
+        set3.add(6);
+        set3.add(6);
+        set3.add(7);
+        set3.add(7);
+
+        System.out.println("set3: "+set3.toString());
 
 
     }

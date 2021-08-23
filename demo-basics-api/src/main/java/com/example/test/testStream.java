@@ -59,6 +59,10 @@ public class testStream {
 
         ArrayList<Integer> intList = new ArrayList<>(arrayInt.length);
         Collections.addAll(intList, arrayInt);
+
+
+
+
     }
 
     /**
@@ -366,7 +370,8 @@ public class testStream {
         orders.add(order7);
 
 
-       list.forEach(System.out::println);
+        list.forEach(System.out::println);
+
 
 
         // 1.筛选总金额大于1000的订单
@@ -466,7 +471,6 @@ public class testStream {
         Map<Long, Map<String, Long>> collect3 = orders.stream().collect(Collectors.groupingBy(Order::getId, Collectors.groupingBy(Order::getType, Collectors.counting())));
 
 
-
         collect3.forEach((k, v) -> System.out.println(k + "----" + v));
 
         System.out.println("-------------------------");
@@ -479,7 +483,7 @@ public class testStream {
     /**
      *
      */
-    public static void test006(){
+    public static void test006() {
         List<Order> orders = Lists.newArrayList();
 
         // 创建数据
@@ -501,23 +505,25 @@ public class testStream {
         orders.add(order7);
 
 
-        orders.forEach(item->{
-            if (item.getNum().contains(".")){
+        orders.forEach(item -> {
+            if (item.getNum().contains(".")) {
                 item.setNum(item.getNum().replace(".", "_"));
             }
             System.out.println(item);
         });
 
-       // java实现
+        // java实现
 //        orders.forEach(item->item.setNum(item.getNum().replace(".", "_")));
 
 
-        String a =  "123.23w123";
+        String a = "123.23w123";
         String replace = a.replace(".", "_");
         System.out.println(replace);
     }
+
     /**
      * 主方法
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -542,7 +548,7 @@ public class testStream {
         System.out.println(decoded);*/
 
 
-        test006();
+        listFilter();
 
     }
 
@@ -576,5 +582,6 @@ class Order {
         this.orderNum = orderNum;
     }
 
-
+    public Order() {
+    }
 }

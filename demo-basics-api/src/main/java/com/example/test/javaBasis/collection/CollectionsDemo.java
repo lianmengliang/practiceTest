@@ -1,14 +1,27 @@
 package com.example.test.javaBasis.collection;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Author ： Leo
  * @Date : 2021/8/20 16:51
  * @Desc: Collections  集合工具类的使用
+ *
+ * 集合使用一般规则：
+ * "在开发中，选择什么集合实现类。主要取决于业务操作特点，然后根据集合实现类特性进行选择,分析如下:
+ * 1) 先判断存储的类型(一组对象[单或一组键值对[双列)
+ * 2) 一组对象[单列:Collection接口
+ *   允许重复:List                                  --------------->{重复效率高}
+ *    增删多:LinkedList[底层维护了一个双向链表]         --------------->{重复增删效率高}
+ *    改查多:ArrayList [底层维护Object类型的可变数组   --------------->{重复改查效率高}
+ *   不允许重复:Set
+ *    无序: HashSet[底层是HashMap，维护了一个哈希表即(数组+链表+红黑树)  ------->{无序且唯一}
+ *    排序: TreeSet[底层是：TreeMap]                                ------->{有序且唯一： 默认按hash值进行排序，升序排列}
+ *    插入和取出顺序一致:LinkedHashSet,维护数组+双向链表             -----{有序且唯一： 按插入顺序进行排序}
+ * 3) 一组键值对[双列]:Map接口
+ *   键无序:HashMap [底层是:哈希表 jdk7:数组+链表，jdk8:数组+链表+红黑树]  ------->{无序且唯一}
+ *   键排序: TreeMap                                                    ------->{有序且唯一：默认按键的hash值进行排序，升序排列}
+ *   键插入和取出顺序一致: LinkedHashMap读取文件Properties"           -----{LinkedHashMap有序且唯一： 按插入顺序进行排序}
  */
 @SuppressWarnings("all")
 public class CollectionsDemo {
@@ -24,7 +37,7 @@ public class CollectionsDemo {
 
         List<String> list = new ArrayList<>();
 
-        //打乱顺序
+        //打乱顺序: 可用于无序操作
         Collections.shuffle(list);
         //反转顺序
         Collections.reverse(list);
@@ -64,6 +77,12 @@ public class CollectionsDemo {
         list.add("JelenaPlus");
         list.add("Plus");
 
+        // iterator
+        Iterator<String> iterator = list.iterator();
+        while (iterator.hasNext()){
+            String next = iterator.next();
+            System.out.println(next);
+        }
         System.out.println("list:" + list);
         // 自然排序后
         list.sort(Comparator.naturalOrder());
@@ -83,9 +102,23 @@ public class CollectionsDemo {
         String min = Collections.min(list);
         System.out.println("min：" + min);
 
-        // 计算某一元素出现的次数
+        // 计算某一元素出现的次数：
         int leoNum = Collections.frequency(list, "Leo");
         System.out.println("Leo出现的次数：" + leoNum);
+
+        //
+        List<Integer> integers = new ArrayList<>();
+        integers.add(2);
+        integers.add(221);
+        integers.add(21);
+        integers.add(22);
+        integers.add(23);
+        integers.add(23);
+        integers.add(231);
+
+        System.out.println("测试int类型集合出现某一元素的次数："+Collections.frequency(integers,23));
+
+
 
         //复制集合
         List<String> newList = new ArrayList<>();

@@ -26,7 +26,7 @@
         </plugin>
 
         <!--不生成xml，但是会生成example-->
-        <plugin type="com.xiqu.common.mbg.plugins.NoSqlMapXmlPlugin"></plugin>
+        <!--<plugin type="com.xiqu.common.mbg.plugins.NoSqlMapXmlPlugin"></plugin>-->
 
         <!-- 忽略生成注释日期 -->
         <commentGenerator>
@@ -39,7 +39,7 @@
 
         <!--mysql数据库连接-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/leotest"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/companyadr?useSSL=false"
                         userId="root"
                         password="root">
             <!--根据字段comment生成注释需要用此配置-->
@@ -92,7 +92,9 @@
             &lt;!&ndash;<columnOverride column="AUTHS_TYPE" jdbcType="NUMBER"/>&ndash;&gt;
         </table>-->
 
+        <table tableName="user_info" domainObjectName="UserInfo">
 
+        </table>
 
 
 

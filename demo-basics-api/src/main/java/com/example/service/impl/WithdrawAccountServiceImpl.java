@@ -3,6 +3,8 @@ package com.example.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.example.dao.UserInfoMapper;
+import com.example.domain.UserInfo;
 import com.example.response.CommonResult;
 import com.example.service.WithdrawAccountService;
 import com.example.utils.OkHttpUtil;
@@ -11,8 +13,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.text.MessageFormat;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,6 +27,19 @@ import java.util.Map;
 @Slf4j
 @Service
 public class WithdrawAccountServiceImpl implements WithdrawAccountService {
+
+    @Resource
+    private UserInfoMapper userInfoMapper;
+
+    public void testUserInfoMapper(){
+
+        List<UserInfo> userInfos = userInfoMapper.selectAll();
+
+    }
+
+
+
+
 
 
     @Override

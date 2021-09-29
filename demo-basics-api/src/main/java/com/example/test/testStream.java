@@ -548,10 +548,58 @@ public class testStream {
         System.out.println(decoded);*/
 
 
-        listFilter();
+        testListDemo();
 
     }
 
+    /**
+     *
+     */
+    public static void testListDemo(){
+
+        List<Integer> integers = new ArrayList<>();
+        integers.add(4);
+        integers.add(4);
+        integers.add(3);
+        integers.add(2);
+        integers.add(321);
+        integers.add(41);
+        integers.add(42);
+        integers.add(42);
+        List<Integer> list = new ArrayList<>();
+
+        System.out.println(integers.toString());
+        System.out.println(list.toString());
+        integers.forEach(t->{
+            if (!list.contains(t)){
+                list.add(t);
+            }
+        });
+        System.out.println("----------------转化后-------------------------");
+        System.out.println(integers.toString());
+        System.out.println(list.toString());
+
+        //=======>第二种方法
+        Set<Integer> set = new HashSet<>();
+        System.out.println(set.toString());
+        System.out.println("----------------全部添加到set后-------------------------");
+        set.addAll(integers);
+        System.out.println(set.toString());
+
+        System.out.println("----------------一步转化set后-------------------------");
+        Set<Integer> integers1 = new HashSet<>(integers);
+        System.out.println(integers1);
+
+        // ======>第三种方法
+        ArrayList<Integer> integerArrayList = new ArrayList<>(new HashSet<>(integers));
+        System.out.println("------------转化为list后-----------");
+
+        System.out.println(integerArrayList);
+
+
+
+
+    }
 
 }
 

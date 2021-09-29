@@ -50,9 +50,7 @@ import java.util.regex.Pattern;
  * 说明：包含3个或4个数字的字符串
  */
 public class RegExp01 {
-    public static void main(String[] args) {
-        test005();
-    }
+
 
     /**
      * 用于测试
@@ -171,7 +169,7 @@ public class RegExp01 {
         // 需要考虑的情况是： 假如只有一个广告id  8721,  或者最后一个广告id 3892
         regStr = "^([1-9]\\d{3,4},)*([1-9]\\d{3,4})$";
         boolean matches = content.matches(regStr);
-        System.out.println("----------->"+matches);
+        System.out.println("----------->" + matches);
         patternBoolean(content, regStr);
 
         Pattern.matches(regStr, content);
@@ -423,7 +421,7 @@ public class RegExp01 {
      */
     public static void test005() {
 
-        String url = getURL("https://news.163.com/","gbk");
+        String url = getURL("https://news.163.com/", "gbk");
         System.out.println(url);
         /**
          * 示例：
@@ -461,12 +459,10 @@ public class RegExp01 {
         Pattern pattern = Pattern.compile(regStr);
         Matcher matcher = pattern.matcher(url);
 
-        while (matcher.find()){
+        while (matcher.find()) {
             System.out.println(matcher.group(0));
 //            System.out.println(matcher.group(1));
         }
-
-
 
 
         // 分组 或  零宽断言
@@ -478,7 +474,7 @@ public class RegExp01 {
      * @param urlStr
      * @return
      */
-    public static String getURL(String urlStr,String codingFormat) {
+    public static String getURL(String urlStr, String codingFormat) {
         StringBuilder sb = new StringBuilder();
         try {
             URL url = new URL(urlStr);
@@ -493,4 +489,29 @@ public class RegExp01 {
         return sb.toString();
     }
 
+    /**
+     * 测试 老用户激活接口 的老用户id 格式
+     */
+    public static void testOldAdids() {
+        content = "9861,9720,9720,9405,09281";
+        regStr = "^([0-9]\\d{3,4},)*([0-9]\\d{3,4})$";
+        pattern(content, regStr);
+
+
+        regStr = "^([1-9]\\d{3,4},)*([1-9]\\d{3,4})$";
+        pattern(content, regStr);
+
+        boolean matches = content.matches(regStr);
+        System.out.println("匹配结果" + matches);
+
+    }
+
+    /**
+     * 主方法
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        testOldAdids();
+    }
 }

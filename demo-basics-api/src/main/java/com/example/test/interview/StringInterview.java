@@ -30,6 +30,11 @@ public class StringInterview {
         String b = null;
         String c = new String();
 
+        System.out.println("a:"+a.hashCode());
+//        System.out.println("b:"+b.hashCode());
+        System.out.println("c:"+c.hashCode());
+        System.out.println("d:"+ "java".hashCode());
+
         System.out.println("a==b :" + (a == b));  //false b对象的引用还没有创建，也没有分配内存空间
         System.out.println("a==c :" + (a == c));  //false a 和 c两个对象的内存地址不一致，而两个值是一样的
         System.out.println("b==c :" + (b == c));  //false b对象的引用还没有创建，也没有分配内存空间
@@ -205,6 +210,60 @@ public class StringInterview {
      */
     public static void main(String[] args) {
 
-        strEquals();
+//        strEquals();
+        nullTest();
+
+        B b = new B();
     }
+}
+
+class A{
+    public Object getObject(){
+
+        return "";
+    }
+
+    public String getString(){
+        return "";
+    }
+
+    public Integer getString(Integer a){
+        return 1;
+    }
+
+    public long getString(int a){
+        return 1;
+    }
+    public Integer getInteger(){
+        return 1;
+    }
+
+
+
+
+}
+
+class B extends A {
+    /*@Override
+    public String getObject(){
+        return "";
+    }
+
+    @Override
+    public String getString(){
+        return "";
+    }
+
+    @Override
+    public Integer getInteger(){
+        return 1;
+    }*/
+}
+
+interface C {
+   /* // 方法1
+    int test(int a);*/
+    // 方法2
+    long test(int a);
+
 }

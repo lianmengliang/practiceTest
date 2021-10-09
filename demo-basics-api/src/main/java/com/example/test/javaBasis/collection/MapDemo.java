@@ -10,8 +10,30 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class MapDemo {
     public static void main(String[] args) {
-        tsetMap001();
-        tsetMap002();
+       /* tsetMap001();
+        tsetMap002();*/
+
+
+        Map<Object, String> map = new HashMap<>();
+        map.put(1, "Leo");
+        map.put(2, "Leo");
+
+
+        System.out.println("size:" + map.size());
+
+        Hashtable<Object, String> tableMap = new Hashtable<>();
+        tableMap.put(3,"Kevin");
+        tableMap.put(4,"Alice");
+
+        ConcurrentHashMap<Object, String> concurrentHashMap = new ConcurrentHashMap<>();
+
+        concurrentHashMap.put(3,"Kevin");
+        concurrentHashMap.put(4,"Alice");
+
+        int i = 1;
+        int j;
+
+        j = ++i;
     }
 
     /**
@@ -30,6 +52,9 @@ public class MapDemo {
         Object a = hashMap.get("123");
         System.out.println(leo);
         System.out.println(a);
+
+
+        Map<String, Object> map = new HashMap<>();
     }
 
     /**
@@ -88,6 +113,7 @@ public class MapDemo {
     /**
      * 基于 “...”的测试， 三个点相当于“[]”, 数组
      * 可以传入多个int类型的参数 （或者其他类型也可以）
+     *
      * @param args
      */
     public void testDemo(int... args) {
@@ -96,15 +122,14 @@ public class MapDemo {
         for (int i = 0; i < args.length; i++) {
             System.out.println(args[i]);
         }
-        
-        
+
+
         int[] ints = new int[9];
         for (int i = 0; i < ints.length; i++) {
             System.out.println(ints[i]);
         }
-        
-        
-        
+
+
     }
 
 }

@@ -4,6 +4,7 @@ package com.example.test;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -88,23 +89,38 @@ public class testDate {
         }
     }
 
+    public static String getWeekByDateTime() {
+        DateTime dt = new DateTime();
+
+        System.out.println(dt.toString("EEEE dd MMMM yyyy HH:mm:ss a"));
+
+        String weekResult = dt.toString("EEEE dd MMMM yyyy HH:mm:ss a").split(" ")[0];
+        System.out.println(weekResult);
+        return weekResult;
+    }
+
     /**
      * 日期处理
      */
-    public static void dateHandle(){
+    public static void dateHandle() {
 
         /**
          * 日期格式化： hh:12小时制， HH:24小时制
          */
         DateTime dt = new DateTime();
+
         //2020/11/30 04:38:44.18下午
         System.out.println(dt.toString("yyyy/MM/dd hh:mm:ss.SSa"));
+
         //2020-11-30 16:38:44
         System.out.println(dt.toString("yyyy-MM-dd HH:mm:ss EEEE a"));
+
         //星期一 30 十一月 , 2020 16:38:44 下午
         System.out.println(dt.toString("EEEE dd MMMM yyyy HH:mm:ss a"));
+
         //2020/11/30 16:38 Asia/Shanghai
         System.out.println(dt.toString("yyyy/MM/dd HH:mm ZZZZ"));
+
         //2020/11/30 16:38 +0800
         System.out.println(dt.toString("yyyy/MM/dd HH:mm Z"));
 
@@ -123,35 +139,35 @@ public class testDate {
          */
         //昨天
         DateTime yesterday = dt.minusDays(1);
-        System.out.println("yesterday--:"+ yesterday.toString("yyyy-MM-dd HH:mm:ss"));
+        System.out.println("yesterday--:" + yesterday.toString("yyyy-MM-dd HH:mm:ss"));
         //明天
         DateTime tomorrow = dt.plusDays(1);
-        System.out.println("tomorrow---:"+tomorrow.toString("yyyy-MM-dd HH:mm:ss"));
+        System.out.println("tomorrow---:" + tomorrow.toString("yyyy-MM-dd HH:mm:ss"));
         //明天
         DateTime afterTwoWeeks = dt.plusWeeks(2);
-        System.out.println("afterTwoWeeks---:"+afterTwoWeeks.toString("yyyy-MM-dd HH:mm:ss"));
+        System.out.println("afterTwoWeeks---:" + afterTwoWeeks.toString("yyyy-MM-dd HH:mm:ss"));
         //1个月前
         DateTime beforeOneMonth = dt.minusMonths(1);
-        System.out.println("beforeOneMonth----:"+beforeOneMonth.toString("yyyy-MM-dd HH:mm:ss"));
+        System.out.println("beforeOneMonth----:" + beforeOneMonth.toString("yyyy-MM-dd HH:mm:ss"));
         //3个月前
         DateTime beforeThreeMonth = dt.minusMonths(3);
-        System.out.println("beforeThreeMonth-----:"+beforeThreeMonth.toString("yyyy-MM-dd HH:mm:ss"));
+        System.out.println("beforeThreeMonth-----:" + beforeThreeMonth.toString("yyyy-MM-dd HH:mm:ss"));
         //2年前
         DateTime beforeTwoYears = dt.minusYears(2);
-        System.out.println("beforeTwoYears------:"+beforeTwoYears.toString("yyyy-MM-dd HH:mm:ss"));
+        System.out.println("beforeTwoYears------:" + beforeTwoYears.toString("yyyy-MM-dd HH:mm:ss"));
         //2月后
         DateTime afterTwoMonths = dt.plusMonths(3);
-        System.out.println("afterTwoMonths-------:"+afterTwoMonths.toString("yyyy-MM-dd HH:mm:ss"));
+        System.out.println("afterTwoMonths-------:" + afterTwoMonths.toString("yyyy-MM-dd HH:mm:ss"));
         //2年后
         DateTime afterTwoYears = dt.plusYears(2);
-        System.out.println("afterTwoYears---------:"+afterTwoYears.toString("yyyy-MM-dd HH:mm:ss"));
+        System.out.println("afterTwoYears---------:" + afterTwoYears.toString("yyyy-MM-dd HH:mm:ss"));
 
     }
 
     /**
-     *日期比较：
+     * 日期比较：
      */
-    public static void dateComparison(){
+    public static void dateComparison() {
         DateTime dTime1 = new DateTime("2020-10-12");
         DateTime dTime2 = new DateTime("2020-10-19");
 
@@ -174,15 +190,38 @@ public class testDate {
         System.out.println(equal);
     }
 
+    /**
+     * java Date  和 joda互换 --
+     */
+    public static void dateTimeExchangeToJavaDate(){
+        
+        // Date 转换为 DateTime
+        Date date = new Date();
+        DateTime dateTime = new DateTime(date);
+        System.out.println("Date to DateTime : " + "date:"+date + "---->DateTime:"+ dateTime);
+
+
+        System.out.println(dateTime.toString("yyyy/MM/dd HH:mm:ss"));
+        System.out.println(dateTime.toString("yyyy-MM-dd"));
+
+
+        DateTime dateTime1 = new DateTime();
+        Date toDate = dateTime1.toDate();
+        System.out.println("DateTime to Date : " + "DateTime:"+ dateTime + "---->date:"+date);
+
+
+    }
+
 
 
 
     /**
      * 运行 主方法
+     *
      * @param args
      */
     public static void main(String[] args) {
-        basePonint();
+       /* basePonint();
         System.out.println("-------------------");
         weekHandle();
         System.out.println("------------------");
@@ -193,12 +232,10 @@ public class testDate {
 
 
         Date date = new Date();
-        System.out.println("date="+ date);
+        System.out.println("date=" + date);
         DateTime dt = new DateTime();
-        System.out.println("dt="+ dt);
+        System.out.println("dt=" + dt);*/
 
-
-    
-
+        dateTimeExchangeToJavaDate();
     }
 }

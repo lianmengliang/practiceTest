@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +23,7 @@ import java.io.IOException;
  * @Date :2019/11/6 15:05
  */
 @Api(description = "用户登录注册相关接口", value = "用户登录注册相关接口")
-@Controller
+@RestController
 @RequestMapping("/user")
 public class LoginController {
 
@@ -89,9 +90,7 @@ public class LoginController {
     //退出登录
     @RequestMapping("outUser")
     public void outUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         request.getSession().removeAttribute("session_user");
         response.sendRedirect("/user/toIndex");
-
     }
 }

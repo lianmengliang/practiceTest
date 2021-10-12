@@ -20,7 +20,7 @@ spring:
 
   #Mybatis：
 mybatis:
-  mapper-locations: classpath:mapping/*UserMapper.xml
+  mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.example.domain
 
 

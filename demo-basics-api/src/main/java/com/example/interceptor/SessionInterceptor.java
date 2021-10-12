@@ -7,6 +7,7 @@ package com.example.interceptor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -44,7 +45,6 @@ public class SessionInterceptor implements WebMvcConfigurer {
         "/v2/**",
         "/swagger-resources/**",
         "/webjars/**");
-
     }
 
 
@@ -56,7 +56,7 @@ public class SessionInterceptor implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
-   /* @Override
+    @Override
     public void addCorsMappings(CorsRegistry registry) {
         //支持所有的请求跨域
         registry.addMapping("/**")
@@ -64,7 +64,7 @@ public class SessionInterceptor implements WebMvcConfigurer {
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE")
                 .allowedOrigins("*")//此处设置所有跨域请求，防止生产上漏配配错
                 .maxAge(300);
-    }*/
+    }
 
 
 }

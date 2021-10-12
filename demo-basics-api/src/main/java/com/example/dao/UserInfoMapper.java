@@ -7,13 +7,5 @@ import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;
 
 public interface UserInfoMapper extends Mapper<UserInfo> {
-    int countByExample(UserInfoExample example);
 
-    int deleteByExample(UserInfoExample example);
-
-    List<UserInfo> selectByExample(UserInfoExample example);
-
-    int updateByExampleSelective(@Param("record") UserInfo record, @Param("example") UserInfoExample example);
-
-    int updateByExample(@Param("record") UserInfo record, @Param("example") UserInfoExample example);
 }

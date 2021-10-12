@@ -28,20 +28,6 @@ import java.util.Map;
 @Service
 public class WithdrawAccountServiceImpl implements WithdrawAccountService {
 
-    @Resource
-    private UserInfoMapper userInfoMapper;
-
-    public void testUserInfoMapper(){
-
-        List<UserInfo> userInfos = userInfoMapper.selectAll();
-
-    }
-
-
-
-
-
-
     @Override
     public CommonResult queryAccountBalance() {
         Map<String, String> map = new HashMap<>();

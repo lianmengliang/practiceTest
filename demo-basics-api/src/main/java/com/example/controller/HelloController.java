@@ -1,8 +1,9 @@
 package com.example.controller;
 
-import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
  * @Author ： leo
  * @Date :2019/11/6 14:33
  */
-@Controller
+@RestController
 @RequestMapping("/demo")
 public class HelloController {
 

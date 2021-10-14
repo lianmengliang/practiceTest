@@ -1,5 +1,8 @@
 package com.example.test.designpatterns.visitor;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 /**
  * @Author ： Leo
  * @Date : 2021/4/7 18:19
@@ -25,6 +28,10 @@ public class Client {
         System.out.println("------------------");
         Wait wait = new Wait();
         objectStructure.display(wait);
+
+
+        ArrayList<Object> objects = new ArrayList<>();
+        objects.iterator();
 
     }
 }

@@ -1,5 +1,7 @@
 package com.example.test.designpatterns.decorator;
 
+import lombok.Data;
+
 /**
  * @Author ： Leo
  * @Date : 2021/3/24 18:04

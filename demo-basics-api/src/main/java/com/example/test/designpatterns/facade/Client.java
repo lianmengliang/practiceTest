@@ -6,7 +6,7 @@ package com.example.test.designpatterns.facade;
  * @Date : 2021/3/25 15:19
  * @Desc:
  */
-public class Client {
+public class Client extends TimeSleep{
     public static void main(String[] args) throws InterruptedException {
 
 

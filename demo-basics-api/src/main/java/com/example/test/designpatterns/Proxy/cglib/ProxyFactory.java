@@ -1,5 +1,6 @@
 package com.example.test.designpatterns.Proxy.cglib;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
@@ -11,6 +12,7 @@ import java.lang.reflect.Method;
  * @Date : 2021/3/26 14:10
  * @Desc:
  */
+@Slf4j
 public class ProxyFactory implements MethodInterceptor {
 
     // 维护一个目标对象
@@ -51,7 +53,14 @@ public class ProxyFactory implements MethodInterceptor {
     @Override
     public Object intercept(Object o, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
         System.out.println("Cglib代理模式~~开始");
+
+        log.info("对象：{}\n",o);
+        log.info("使用方法：{}\n",method);
+        log.info("参数：{}\n",args);
+        log.info("代理方法：{}\n",methodProxy);
+
         Object invokeResult = method.invoke(target, args);
+        log.info("返回结果：{}\n",invokeResult);
         System.out.println("Cglib代理模式~~提交");
         return invokeResult;
     }

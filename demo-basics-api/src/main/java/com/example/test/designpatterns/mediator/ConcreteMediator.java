@@ -8,6 +8,7 @@ import java.util.Map;
  * @Date : 2021/4/9 12:09
  * @Desc:
  */
+@SuppressWarnings("all")
 public class ConcreteMediator extends Mediator {
     /**
      * 集合，放入所有同事对象

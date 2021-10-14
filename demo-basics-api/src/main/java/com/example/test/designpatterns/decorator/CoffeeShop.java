@@ -6,8 +6,9 @@ import cn.hutool.core.util.NumberUtil;
 /**
  * @Author ： Leo
  * @Date : 2021/3/24 18:08
- * @Desc:
+ * @Desc: 咖啡店  实现装饰者模式
  */
+@SuppressWarnings("all")
 public class CoffeeShop {
     public static void main(String[] args) {
 
@@ -24,6 +25,10 @@ public class CoffeeShop {
         order = new Chocolate(order);
         System.out.println("费用3:" + order.cost());
         System.out.println("描述3:" + order.getDes());
+
+        order = new Soy(order);
+        System.out.println("费用4：" + order.cost());
+        System.out.println("描述5：" + order.getDes());
 
         System.out.println("====================");
 

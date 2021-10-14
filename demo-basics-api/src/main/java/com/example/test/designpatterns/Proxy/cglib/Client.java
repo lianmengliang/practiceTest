@@ -13,9 +13,13 @@ public class Client {
         TeacherDao proxyInstance = (TeacherDao) new ProxyFactory(target).getProxyInstance();
 
         //执行代理对象的方法，触发intercept方法，从而实现对目标对象的调用
-
+        System.out.println("-------------------------------------------------------");
         String teach = proxyInstance.teach();
+        System.out.println("teach:"+ teach);
 
-        System.out.println(teach);
+        System.out.println("----------------------------------------------------------");
+        proxyInstance.sayHello("Leo");
+
     }
+
 }

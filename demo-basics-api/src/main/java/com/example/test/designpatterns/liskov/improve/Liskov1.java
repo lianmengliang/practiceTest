@@ -1,5 +1,8 @@
 package com.example.test.designpatterns.liskov.improve;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 /**
  * @Author ： Leo
  * @Date : 2021/3/17 11:54
@@ -19,8 +22,6 @@ public class Liskov1 {
         System.out.println("11-3=" + b.func3(11, 3));
         System.out.println("1+8=" + b.func1(1, 8));
         System.out.println("11+3+9=" + b.func2(11, 3));
-
-
     }
 }
 

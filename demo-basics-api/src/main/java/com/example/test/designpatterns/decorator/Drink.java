@@ -25,6 +25,7 @@ public abstract class Drink {
     }
 
     public float getPrice() {
+//        System.out.println("DrinkClassPrint----> des：" + des + "\t price：" + price);
         return price;
     }
 

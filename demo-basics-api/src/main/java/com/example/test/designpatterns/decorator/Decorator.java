@@ -1,10 +1,13 @@
 package com.example.test.designpatterns.decorator;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @Author ： Leo
  * @Date : 2021/3/24 17:59
  * @Desc: 装饰器
  */
+@Slf4j
 public class Decorator extends Drink {
 
     private Drink obj;
@@ -26,7 +29,11 @@ public class Decorator extends Drink {
 
     @Override
     public String getDes() {
+        System.out.println("obj：" + obj.toString());
+        System.out.println("obj.getPrice：" + obj.getPrice());
+
         // obj.getDes()输出被装饰者的信息
+//        return des + ":" + super.getPrice() + " & " + obj.getDes()+":"+ obj.getPrice();
         return des + ":" + super.getPrice() + " & " + obj.getDes();
     }
 }

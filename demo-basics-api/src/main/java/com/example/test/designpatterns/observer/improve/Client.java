@@ -33,5 +33,7 @@ public class Client {
         weatherData.removeObserver(conditions);
         weatherData.dataChange();
 
+
+
     }
 }

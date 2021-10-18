@@ -54,11 +54,11 @@ public class ProxyFactory implements MethodInterceptor {
     public Object intercept(Object o, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
         System.out.println("Cglib代理模式~~开始");
 
-        log.info("对象：{}\n",o);
+       /* log.info("对象：{}\n",o);
         log.info("使用方法：{}\n",method);
         log.info("参数：{}\n",args);
         log.info("代理方法：{}\n",methodProxy);
-
+*/
         Object invokeResult = method.invoke(target, args);
         log.info("返回结果：{}\n",invokeResult);
         System.out.println("Cglib代理模式~~提交");

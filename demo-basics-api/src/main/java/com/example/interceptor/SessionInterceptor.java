@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ import java.util.List;
 @Configuration
 public class SessionInterceptor implements WebMvcConfigurer {
 
-    @Autowired
+    @Resource
     private UserInterceptor userInterceptor;
 
     /**
@@ -63,7 +64,8 @@ public class SessionInterceptor implements WebMvcConfigurer {
                 .allowCredentials(true)
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE")
                 .allowedOrigins("*")//此处设置所有跨域请求，防止生产上漏配配错
-                .maxAge(300);
+                .maxAge(300)
+                .allowedHeaders("X-PINGOTHER", "Content-Type");
     }
 
 

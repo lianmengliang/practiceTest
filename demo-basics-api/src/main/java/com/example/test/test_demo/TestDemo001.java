@@ -5,7 +5,9 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.expression.Expression;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Author ： Leo
@@ -21,8 +23,21 @@ public class TestDemo001 {
 
         demo001();*/
 
-        int anInt = getInt();
-        System.out.println("int值：" + anInt);
+       /* int anInt = getInt();
+        System.out.println("int值：" + anInt);*/
+
+
+        List list = new ArrayList<String>();
+        list.add("123");
+        list.add("1213");
+        list.add("1123");
+        list.add("1234");
+
+        list.forEach(System.out::println);
+
+        list.forEach(System.out::println);
+
+
     }
 
 
@@ -85,9 +100,4 @@ public class TestDemo001 {
     }
 
 
-    abstract class ABC {
-
-        abstract void getR();
-
-    }
 }

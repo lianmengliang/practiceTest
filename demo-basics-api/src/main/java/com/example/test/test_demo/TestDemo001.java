@@ -99,5 +99,9 @@ public class TestDemo001 {
         return a;
     }
 
+    // 方法1
+    public int test(int a){
+        return 1;
+    }
 
 }

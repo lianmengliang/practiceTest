@@ -2,6 +2,7 @@ package com.example.domain;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * @Author ： Leo
@@ -10,6 +11,7 @@ import lombok.Data;
  */
 
 @Data
+@Accessors(chain = true)
 public class IpAddress {
 
    /*  <locationInfo>

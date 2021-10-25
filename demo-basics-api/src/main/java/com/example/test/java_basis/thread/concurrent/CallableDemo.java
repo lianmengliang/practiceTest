@@ -70,8 +70,6 @@ public class CallableDemo {
          */
         ExecutorService service1 = newFixedThreadPool(3);
 
-
-
         /**
          * 创建一个可缓存的线程池，如果线程池的规模超过了处理需求，将自动回收空闲线程，
          * 而当需求增加时，则可以自动添加新线程，线程池的规模不存在任何限制。
@@ -88,8 +86,20 @@ public class CallableDemo {
         /**
          * 创建了一个固定长度的线程池，而且以延迟或定时的方式来执行任务，类似于Timer
          */
-        ScheduledExecutorService service4 = newScheduledThreadPool(3);
+        ScheduledExecutorService service4 = Executors.newScheduledThreadPool(3);
 
+        ThreadPoolExecutor th = new ThreadPoolExecutor(1, 2, 1000, TimeUnit.MILLISECONDS, new SynchronousQueue<Runnable>(),Executors.defaultThreadFactory(),new ThreadPoolExecutor.AbortPolicy());
+
+        // 1. 创建目标对象
+        JPGDownloader j1 = new JPGDownloader("http://static.ws.126.net/f2e/news/res/img/cloudapp_8.png", "j1");
+        Future<Boolean> submit = th.submit(j1);
+        try {
+            Boolean aBoolean = submit.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
     }
 }

@@ -9,19 +9,20 @@ import java.io.InputStreamReader;
  * @Date : 2021/3/22 12:01
  * @Desc:
  */
+@SuppressWarnings("all")
 public class PizzaStore {
     public static void main(String[] args) {
 
         // 1.依赖接口 传递方式 实现
         OrderPizza orderPizza = new OrderPizza();
         String area = getArea();
-        if(area.equals("001")){
+        if (area.equals("001")) {
             BJFactory bjFactory = new BJFactory();
             orderPizza.orderPizza(bjFactory);
-        }else if(area.equals("002")){
+        } else if (area.equals("002")) {
             LDFactory ldFactory = new LDFactory();
             orderPizza.orderPizza(ldFactory);
-        }else{
+        } else {
             System.out.println("输入地区有误，请重新输入 选择北京001或伦敦002");
         }
 

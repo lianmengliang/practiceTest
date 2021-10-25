@@ -17,14 +17,17 @@ public class HelloSender {
     @Autowired
     private AmqpTemplate rabbitTemlate;
 
-    public void send(){
-        String context = "hello"+new Date();
-        System.out.println("Sender :"+context);
+    public  void send() {
+        String context = "hello" + new Date();
+        System.out.println("Sender :" + context);
 
-        this.rabbitTemlate.convertAndSend("hello",context);
+        this.rabbitTemlate.convertAndSend("hello", context);
     }
 
     public static void main(String[] args) {
+     /*   HelloSender helloSender = new HelloSender();
+        helloSender.send();*/
+
         System.out.println("修改了");
     }
 }

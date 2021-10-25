@@ -92,9 +92,8 @@ public class IPCheckUtil {
     }
 
     public static void main(String[] args) {
-        String IP = "111.226.132.66";
-
-
+//        String IP = "111.226.132.66";
+        String IP = "192.168.10.93";
 
         System.out.println(ipAddress(IP));
 

@@ -13,7 +13,6 @@ public class DichotomousAgorithm {
     public static void main(String[] args) {
         int[] array = RandomGenerationUtil.getArrayByRandom(15);
 
-
         int[] arr = {8, 9, 1, 7, 2, 3, 5, 4, 6, 0};
         Arrays.sort(arr);
         System.out.println("排序后：" + Arrays.toString(arr));

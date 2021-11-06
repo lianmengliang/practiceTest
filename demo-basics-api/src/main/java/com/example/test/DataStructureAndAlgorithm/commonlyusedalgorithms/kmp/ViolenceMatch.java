@@ -29,13 +29,16 @@ public class ViolenceMatch {
             // String str2 = "BBC";A
 //            int[] next = kmpNext("ABCDABD"); //next=[0, 0, 0, 0, 1, 2, 0]
 //            int[] next = kmpNext("ABCDABA"); //next=[0, 0, 0, 0, 1, 2, 1]
-            int[] next = kmpNext("ABCDABABCBACD"); //[0,0,0,0,1,2,1,3,1,1,2,1,2]
+           /* int[] next = kmpNext("ABCDABABCBACD"); //[0,0,0,0,1,2,1,3,1,1,2,1,2]
 
 
-            System.out.println("next=" + Arrays.toString(next));
+            System.out.println("next=" + Arrays.toString(next));*/
 
             /*int index = kmpSearch(str1, str2);
             System.out.println("index=" + index); // 15*/
+
+        int i = violenceMatch(str1, str2);
+        System.out.println(i);
 
 
     }

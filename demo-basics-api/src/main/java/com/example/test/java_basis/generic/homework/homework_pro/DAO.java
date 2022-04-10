@@ -71,6 +71,7 @@ public class DAO<T> {
         System.out.println("其他转十进制练习......");
 
         System.out.println("原码反码和补码练习");
+
         System.out.println(2|3);
         System.out.println(2^3);
         System.out.println((-2)|3);

@@ -15,6 +15,7 @@ import java.util.Map;
  * 简单理解就是：
  *  经过嵌套循环，把某个数组中素的最小值一个一个的从前面第一个索引0往后排序
  */
+@SuppressWarnings("all")
 public class SelectSort {
     public static void main(String[] args) {
 

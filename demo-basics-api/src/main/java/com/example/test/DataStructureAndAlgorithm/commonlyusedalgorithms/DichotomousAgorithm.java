@@ -9,6 +9,7 @@ import java.util.Arrays;
  * @Date : 2021/5/19 20:09
  * @Desc: 二分算法
  */
+@SuppressWarnings("all")
 public class DichotomousAgorithm {
     public static void main(String[] args) {
         int[] array = RandomGenerationUtil.getArrayByRandom(15);

@@ -12,6 +12,7 @@ import java.util.Arrays;
  *
  * 简单理解就是：经过嵌套循环，判断，交换，循环
  */
+@SuppressWarnings("all")
 public class insertSort {
     public static void main(String[] args) {
 

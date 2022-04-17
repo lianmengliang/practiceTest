@@ -48,11 +48,12 @@ public class BubbleSort {
 
         // 测试程序运行时间长短
 
-       /* long start4 = System.currentTimeMillis();
+        long start4 = System.currentTimeMillis();
         Arrays.toString(random5);
+        Arrays.sort(random5);
         long end4 = System.currentTimeMillis();
         System.out.println("Arrays工具类排序运行的时间为："+(end4-start4)+"ms");
-        System.out.println("----------------------------------");*/
+        System.out.println("----------------------------------");
 
         long start = System.currentTimeMillis();
         bubbleSort(random1);

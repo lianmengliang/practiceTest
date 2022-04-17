@@ -14,6 +14,7 @@ import java.util.Arrays;
  *
  * KMP算法详解：（参考链接）https://blog.csdn.net/v_july_v/article/details/7041827#t9
  */
+@SuppressWarnings("all")
 public class ViolenceMatch {
     public static void main(String[] args) {
         // 测试暴力匹配算法

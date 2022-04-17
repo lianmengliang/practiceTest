@@ -8,7 +8,125 @@ package com.example.test.java_basis.array;
 @SuppressWarnings("all")
 public class ArrayDemo {
     public static void main(String[] args) {
-        array004();
+        array008();
+    }
+
+    /**
+     * 杨辉三角
+     */
+    private static void array008() {
+
+
+        int[][] arr = new int[5][];
+
+
+        for (int i = 0; i < arr.length; i++) {
+
+            arr[i] = new int[i+1];
+
+            for (int j = 0; j < arr[i].length; j++) {
+                if (j ==0 || j == arr[i].length-1){
+                    arr[i][j] = 1;
+                }else{
+                    arr[i][j] = arr[i-1][j] + arr[i-1][j-1];
+                }
+            }
+        }
+
+
+        // 遍历校验
+        for (int[] arr1 : arr) {
+            for (int arr2 : arr1) {
+                System.out.print(arr2 + "\t");
+            }
+            System.out.println("");
+        }
+
+
+
+    }
+
+    /**
+     * 动态二维数组:赋值
+     */
+    private static void array007() {
+
+        int[][] arr = new int[3][];
+
+        for (int i = 0; i < arr.length; i++) {
+
+            arr[i] = new int[i + 1];
+
+            for (int j = 0; j < arr[i].length; j++) {
+                arr[i][j] = i + 1;
+            }
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            for (int i1 = 0; i1 < arr[i].length; i1++) {
+                System.out.print(arr[i][i1] +"\t");
+            }
+            System.out.println();
+        }
+
+    }
+
+
+    /**
+     * 二维数组
+     */
+    private static void array006() {
+
+        //二维数组
+        int[][] arr = {{1, 2, 4, 5}, {1, 1, 4, 5}, {1, 2, 1, 1}, {0, 2, 4, 0}};
+
+        System.out.println();
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
+                System.out.print(arr[i][j] + "\t");
+            }
+            System.out.println("");
+        }
+
+    }
+
+    /**
+     * 二分查询法
+     */
+    private static int array005() {
+
+
+        int[] arr = {12, 35, 45, 56, 65};
+
+        int left = 0;
+        int right = arr.length - 1;
+
+        int num = 45;
+        //使用二分法查询
+        while (left <= right) {
+            /*int mid = (left + right) / 2;
+            if (arr[mid] == num) {
+                return mid;
+            } else if (arr[mid] > num) {
+                // 需要向左边查找
+                right = mid - 1;
+            } else {
+                // 向右查找
+                left = mid + 1;
+            }*/
+            int mid = (left + right) / 2;
+            if (arr[mid] == num) {
+                return mid;
+            } else if (arr[mid] > num) {
+                //需要向左边查询
+                right = mid - 1;
+            } else {
+                //向右查询
+                left = mid + 1;
+            }
+        }
+
+        return -1;
     }
 
     /**

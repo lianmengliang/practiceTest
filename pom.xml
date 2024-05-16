@@ -175,7 +175,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.6.1</version>
+            <version>5.8.21</version>
         </dependency>
         <!--谷歌的插件：用于json格式化-->
         <dependency>
